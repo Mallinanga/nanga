@@ -1,0 +1,124 @@
+@font-face{
+    font-family:'FS Albert Pro Web';
+    src:url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
+}
+@font-face{
+    font-family:'FS Albert Pro Web Bold';
+    src:url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
+}
+body{
+    font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+strong{
+    font-family:'FS Albert Pro Web Bold';
+}
+.login h1{
+    display:none;
+}
+.login h1 a{
+    /*background-image:url("/favicon.ico");*/
+    /*background-size:170px;*/
+    /*height:170px;*/
+    /*width:auto;*/
+}
+.login form input,
+.login form input:active,
+.login form input:focus{
+    box-shadow:none;
+}
+.login form{
+    box-shadow:none;
+    background:none;
+    padding:0;
+}
+.login #nav,
+.login #backtoblog{
+    padding:0;
+    margin:0;
+    color:#999;
+}
+.login #backtoblog{
+    display:none;
+}
+#login_error,
+.login .message{
+    padding:0;
+    margin-bottom:16px;
+}
+.login #login_error{
+    background:none;
+    box-shadow:none;
+    border-left:none;
+}
+.login .message{
+    background:none;
+    box-shadow:none;
+    border-left:none;
+}
+.login form .forgetmenot{
+    display:none;
+}
+#login form p.submit input[type="submit"]{
+    float:none;
+    width:100%;
+    background-color:#808080;
+    border:.071428571em solid #808080;
+    color:#ffffff;
+    display:block;
+    font-weight:normal;
+    line-height:1;
+    margin-bottom:16px;
+    padding:15px;
+    text-align:center;
+    text-decoration:none;
+    font-size:13px;
+}
+#login form p.submit input[type="submit"]:hover{
+    background-color:#1d1c1c;
+    border-color:#1d1c1c;
+}
+#login form p.submit input[type="submit"]:focus,
+#login form p.submit input[type="submit"]:active{
+    outline:0;
+    outline:none;
+}
+.login label{
+    /*font-size:0;*/
+}
+#login form p{
+    /*line-height:0;*/
+}
+.wp-social-login-connect-with{
+    margin-bottom:16px;
+}
+.wp-social-login-provider{
+    background-color:#808080;
+    border:.071428571em solid #808080;
+    color:#ffffff;
+    display:block;
+    font-weight:normal;
+    line-height:1;
+    margin-bottom:16px;
+    padding:15px;
+    text-align:center;
+    text-decoration:none;
+}
+.wp-social-login-provider:hover{
+    color:#ffffff;
+}
+.wp-social-login-provider-github{
+    background-color:#3a3838;
+    border-color:#3a3838;
+}
+.wp-social-login-provider-github:hover{
+    background-color:#1d1c1c;
+    border-color:#1d1c1c;
+}
+.wp-social-login-provider-wordpress{
+    background-color:#1F8CBE;
+    border-color:#1F8CBE;
+}
+.wp-social-login-provider-wordpress:hover{
+    background-color:#7CCCEA;
+    border-color:#7CCCEA;
+}

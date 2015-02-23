@@ -1,0 +1,16 @@
+html,
+#wpcontent{
+    background:#e5e5e5;
+}
+.acf-field{
+    /*background: white;*/
+    /*height: 200px;*/
+    /*padding: 20px;*/
+    /*text-align: center;*/
+}
+#postbox-container-1{
+    /*display: none;*/
+}
+#poststuff #post-body.columns-2{
+    /*margin-right: 0;*/
+}

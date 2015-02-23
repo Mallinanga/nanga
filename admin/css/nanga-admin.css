@@ -1,0 +1,29 @@
+@font-face{
+    font-family:"FS Albert Pro Web";
+    src:url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
+}
+@font-face{
+    font-family:"FS Albert Pro Web Bold";
+    src:url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
+}
+body{
+    font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+strong{
+    font-family:"FS Albert Pro Web Bold";
+}
+#cpt_info_box{
+    display:none;
+}
+#collapse-menu{
+    /*display:none;*/
+}
+[for="wp_welcome_panel-hide"]{
+    /*display:none !important;*/
+}
+#icl_div .icl_cyan_box{
+    display:none !important;
+}
+#wpadminbar *{
+    font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
