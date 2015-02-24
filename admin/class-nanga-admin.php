@@ -98,8 +98,8 @@ class Nanga_Admin {
     }
 
     public function admin_color_scheme() {
-        //remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
         wp_admin_css_color( $this->nanga, 'VG web things', plugin_dir_url( __FILE__ ) . 'css/nanga-admin-colors.css', array( '#000000', '#0098ed', '#e1e1e1', '#ffffff' ) );
+        remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
         add_filter( 'get_user_option_admin_color', function ( $result ) {
             return 'nanga';
         } );
