@@ -1,31 +1,5 @@
 <?php
-/**
- * The file that defines the core plugin class
- *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the dashboard.
- *
- * @link       https://github.com/Mallinanga
- * @since      1.0.0
- *
- * @package    Nanga
- * @subpackage Nanga/includes
- */
 
-/**
- * The core plugin class.
- *
- * This is used to define internationalization, dashboard-specific hooks, and
- * public-facing site hooks.
- *
- * Also maintains the unique identifier of this plugin as well as the current
- * version of the plugin.
- *
- * @since      1.0.0
- * @package    Nanga
- * @subpackage Nanga/includes
- * @author     Panos Paganis <mallinanga@gmail.com>
- */
 class Nanga {
     protected $loader;
     protected $nanga;
@@ -43,10 +17,6 @@ class Nanga {
         $this->define_shortcodes();
     }
 
-    /**
-     * @since    1.0.0
-     * @access   private
-     */
     private function load_dependencies() {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-loader.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-i18n.php';
