@@ -83,6 +83,8 @@ class Nanga {
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_wordpress_social_login' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_wpml' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_yoast_seo' );
+        $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
+        $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
     }
 
     public function get_version() {

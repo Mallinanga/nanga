@@ -265,6 +265,18 @@ class Nanga_Shared {
         }
     }
 
+    public function mail_from() {
+        $from = 'info@' . $_SERVER['SERVER_NAME'];
+
+        return apply_filters( 'vg_mail_from', $from );
+    }
+
+    public function mail_from_name() {
+        $from_name = get_bloginfo();
+
+        return apply_filters( 'vg_mail_from_name', $from_name );
+    }
+
     private function run_hash() {
         add_action( 'wp_enqueue_scripts', 'nanga_password_hash' );
         add_action( 'admin_enqueue_scripts', 'nanga_password_hash' );
