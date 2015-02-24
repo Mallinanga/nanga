@@ -59,6 +59,21 @@ class Nanga_Shared {
         remove_post_type_support( 'post', 'trackbacks' );
     }
 
+    public function acf_load_point( $paths ) {
+        unset( $paths[0] );
+        $paths[] = plugin_dir_url( __FILE__ ) . 'acf';
+
+        return $paths;
+    }
+
+    public function acf_save_point( $path ) {
+        if ( defined( 'NG_PLAYGROUND' ) ) {
+            $paths = plugin_dir_url( __FILE__ ) . 'acf';
+        }
+
+        return $path;
+    }
+
     public function feautures_wordpress_social_login() {
         if ( function_exists( 'wsl_add_stylesheets' ) ) {
             remove_action( 'wp_enqueue_scripts', 'wsl_add_stylesheets' );
