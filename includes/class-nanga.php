@@ -40,6 +40,7 @@ class Nanga {
         $this->define_shared_hooks();
         $this->define_admin_hooks();
         $this->define_public_hooks();
+        $this->define_shortcodes();
     }
 
     /**
@@ -53,6 +54,7 @@ class Nanga {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nanga-public.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shared.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cache.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shortcodes.php';
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
         $this->loader = new Nanga_Loader();
     }
@@ -128,6 +130,10 @@ class Nanga {
         //$this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );
         //$this->loader->add_filter( 'get_avatar', $plugin_public, 'remove_self_closing_tags' );
         //$this->loader->add_filter( 'post_thumbnail_html', $plugin_public, 'remove_self_closing_tags' );
+    }
+
+    private function define_shortcodes() {
+        $plugin_shortcodes = new Nanga_Shortcodes( $this->get_nanga(), $this->get_version() );
     }
 
     public function run() {
