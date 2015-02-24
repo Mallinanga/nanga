@@ -112,11 +112,13 @@ class Nanga {
         $this->loader->add_action( 'wp_ajax_clear_debug_log', $plugin_admin, 'clear_debug_log' );
         $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'disable_metaboxes' );
         $this->loader->add_filter( 'acf/settings/show_admin', $plugin_admin, 'acf_settings_show_admin' );
+        $this->loader->add_filter( 'jpeg_quality', $plugin_admin, 'image_quality' );
         $this->loader->add_filter( 'login_headertitle', $plugin_admin, 'login_headertitle' );
         $this->loader->add_filter( 'login_headerurl', $plugin_admin, 'login_headerurl' );
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
         $this->loader->add_filter( 'screen_options_show_screen', $plugin_admin, 'screen_options_show_screen' );
         $this->loader->add_filter( 'update_footer', $plugin_admin, 'footer_right', 999 );
+        $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
         //$this->loader->add_filter( 'locale', $plugin_admin, 'set_locale', 10 );
         //$this->loader->add_action( 'init', $plugin_admin, 'disable_update_checks', 11 );
         //$this->loader->add_filter( 'plugin_action_links_nanga.php', $plugin_admin, 'plugin_action_links' );

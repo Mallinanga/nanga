@@ -9,6 +9,10 @@ class Nanga_Admin {
         $this->version = $version;
     }
 
+    public function image_quality() {
+        return 100;
+    }
+
     public function login_headerurl() {
         return get_site_url();
     }
