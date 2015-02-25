@@ -59,6 +59,16 @@ class Nanga_Shared {
         remove_post_type_support( 'post', 'trackbacks' );
     }
 
+    public function filter_rewrites( $rules ) {
+        foreach ( $rules as $rule => $rewrite ) {
+            if ( preg_match( '/trackback\/\?\$$/i', $rule ) ) {
+                unset( $rules[ $rule ] );
+            }
+        }
+
+        return $rules;
+    }
+
     public function acf_load_point( $paths ) {
         unset( $paths[0] );
         $paths[] = plugin_dir_url( __FILE__ ) . 'acf';

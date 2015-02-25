@@ -49,10 +49,11 @@ class Nanga {
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_wordpress_social_login' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_wpml' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_yoast_seo' );
-        $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
-        $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
         $this->loader->add_filter( 'acf/settings/load_json', $plugin_shared, 'acf_load_point' );
         $this->loader->add_filter( 'acf/settings/save_json', $plugin_shared, 'acf_save_point' );
+        $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
+        $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
+        $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
     }
 
     public function get_version() {
