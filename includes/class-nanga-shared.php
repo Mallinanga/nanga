@@ -306,15 +306,6 @@ class Nanga_Shared {
         return apply_filters( 'vg_mail_from_name', $from_name );
     }
 
-    private function run_hash() {
-        add_action( 'wp_enqueue_scripts', 'nanga_password_hash' );
-        add_action( 'admin_enqueue_scripts', 'nanga_password_hash' );
-        add_action( 'login_enqueue_scripts', 'nanga_password_hash' );
-        function nanga_password_hash() {
-            wp_enqueue_script( 'hash', get_template_directory_uri() . '/assets/js/_hash.js', array( 'jquery' ), null, true );
-        }
-    }
-
     private function run_updates() {
         //add_filter( 'auto_update_theme', '__return_true' );
         //add_filter( 'auto_core_update_send_email', '__return_false' );
