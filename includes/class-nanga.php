@@ -10,7 +10,6 @@ class Nanga {
         $this->version = '1.0.0';
         $this->load_dependencies();
         $this->set_locale();
-        $this->plugin_control();
         $this->define_shared_hooks();
         $this->define_admin_hooks();
         $this->define_public_hooks();
