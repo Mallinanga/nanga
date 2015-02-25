@@ -72,6 +72,7 @@ class Nanga {
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'disable_menus', 999 );
         $this->loader->add_action( 'after_setup_theme', $plugin_admin, 'add_editor_style' );
         $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_login_styles' );
+        $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_password_hash' );
         $this->loader->add_action( 'login_init', $plugin_admin, 'dequeue_login_styles' );
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'jigsaw' );
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'settings_page' );

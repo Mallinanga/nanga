@@ -56,6 +56,10 @@ class Nanga_Admin {
         //wp_print_styles( $this->nanga . '-login-style' );
     }
 
+    public function enqueue_password_hash() {
+        wp_enqueue_script( $this->nanga . 'hash', plugin_dir_url( __FILE__ ) . 'js/nanga-hash.js', array( 'jquery' ), $this->version, true );
+    }
+
     public function enqueue_styles() {
         wp_deregister_style( 'open-sans' );
         wp_register_style( 'open-sans', false );
