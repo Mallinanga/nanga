@@ -20,9 +20,9 @@ class Nanga {
     private function load_dependencies() {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-loader.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-i18n.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shared.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-nanga-admin.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nanga-public.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shared.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cache.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shortcodes.php';
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
@@ -37,10 +37,6 @@ class Nanga {
 
     public function get_nanga() {
         return $this->nanga;
-    }
-
-    private function plugin_control() {
-        return;
     }
 
     private function define_shared_hooks() {

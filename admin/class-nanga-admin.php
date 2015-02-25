@@ -291,34 +291,36 @@ class Nanga_Admin {
                 }
                 global $wp_admin_bar;
                 $screen->add_help_tab( array(
-                    'id'      => 'adminbar_info',
-                    'title'   => 'Adminbar Info',
+                    'id'      => 'debug_adminbar',
+                    'title'   => 'Debug Adminbar',
                     'content' => '<pre>' . grab_dump( $wp_admin_bar ) . '</pre>',
                 ) );
                 global $menu, $submenu;
                 $screen->add_help_tab( array(
-                    'id'      => 'menu_info',
-                    'title'   => 'Menu Info',
+                    'id'      => 'debug_menu',
+                    'title'   => 'Debug Menu',
                     'content' => '<pre>' . grab_dump( $submenu ) . '</pre>' . '<pre>' . grab_dump( $menu ) . '</pre>',
                 ) );
                 global $wp_meta_boxes;
                 $screen->add_help_tab( array(
-                    'id'      => 'metaboxes_info',
-                    'title'   => 'Metaboxes Info',
+                    'id'      => 'debug_metaboxes',
+                    'title'   => 'Debug Metaboxes',
                     'content' => '<pre>' . grab_dump( $wp_meta_boxes ) . '</pre>',
                 ) );
             }
             $screen->add_help_tab( array(
-                'id'      => 'screen_info',
-                'title'   => 'Screen Info',
+                'id'      => 'debug_screen',
+                'title'   => 'Debug Screen',
                 'content' => '<pre>' . grab_dump( $screen ) . '</pre>',
             ) );
+            /*
             global $wpdb;
             $screen->add_help_tab( array(
                 'id'      => 'queries_info',
                 'title'   => 'Queries Info',
                 'content' => '<pre>' . grab_dump( $wpdb->queries ) . '</pre>',
             ) );
+            */
         }
     }
 
