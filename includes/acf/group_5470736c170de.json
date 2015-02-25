@@ -1,0 +1,139 @@
+{
+    "key": "group_5470736c170de",
+    "title": "Advanced Settings Part II",
+    "fields": [
+        {
+            "key": "field_547073afac27d",
+            "label": "Tab",
+            "name": "",
+            "prefix": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top"
+        },
+        {
+            "key": "field_547075014230d",
+            "label": "Enable Debug",
+            "name": "vg_plugin_enable_debug",
+            "prefix": "",
+            "type": "true_false",
+            "instructions": "Instructions for authors. Shown when submitting data.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 15,
+                "class": "vg_settings_card",
+                "id": "vg_plugin_enable_debug"
+            },
+            "message": "",
+            "default_value": 1
+        },
+        {
+            "key": "field_5470761553a09",
+            "label": "Enable Setting I",
+            "name": "vg_plugin_enable_setting_i",
+            "prefix": "",
+            "type": "true_false",
+            "instructions": "Instructions for authors. Shown when submitting data.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 15,
+                "class": "vg_settings_card",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1
+        },
+        {
+            "key": "field_5470762953a0a",
+            "label": "Enable Setting II",
+            "name": "vg_plugin_enable_setting_ii",
+            "prefix": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 15,
+                "class": "vg_settings_card",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1
+        },
+        {
+            "key": "field_5470763153a0b",
+            "label": "Enable Setting III",
+            "name": "vg_plugin_enable_setting_iii",
+            "prefix": "",
+            "type": "true_false",
+            "instructions": "Instructions for authors. Shown when submitting data.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 15,
+                "class": "vg_settings_card",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1
+        },
+        {
+            "key": "field_5470763753a0c",
+            "label": "Enable Setting IV",
+            "name": "vg_plugin_enable_setting_iv",
+            "prefix": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 15,
+                "class": "vg_settings_card",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1
+        },
+        {
+            "key": "field_547073baac27e",
+            "label": "Tab",
+            "name": "",
+            "prefix": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "advanced-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "modified": 1424900880
+}
