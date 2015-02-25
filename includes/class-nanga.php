@@ -73,6 +73,7 @@ class Nanga {
         $this->loader->add_action( 'after_setup_theme', $plugin_admin, 'add_editor_style' );
         $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_login_styles' );
         $this->loader->add_action( 'login_init', $plugin_admin, 'dequeue_login_styles' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'jigsaw' );
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'settings_page' );
         $this->loader->add_action( 'tgmpa_register', $plugin_admin, 'required_plugins' );
         $this->loader->add_action( 'wp_ajax_clear_debug_log', $plugin_admin, 'clear_debug_log' );

@@ -9,6 +9,15 @@ class Nanga_Admin {
         $this->version = $version;
     }
 
+    public function jigsaw() {
+        if ( class_exists( 'Jigsaw' ) ) {
+            Jigsaw::remove_column( 'page', 'author' );
+            Jigsaw::remove_column( 'post', 'categories' );
+            Jigsaw::remove_column( 'post', 'tags' );
+            //Jigsaw::remove_taxonomy( 'post_tag' );
+        }
+    }
+
     public function image_quality() {
         return 100;
     }
