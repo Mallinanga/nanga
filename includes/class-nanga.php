@@ -101,6 +101,7 @@ class Nanga {
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
         //$this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );
         //$this->loader->add_filter( 'get_avatar', $plugin_public, 'remove_self_closing_tags' );
+        //$this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
         //$this->loader->add_filter( 'post_thumbnail_html', $plugin_public, 'remove_self_closing_tags' );
     }
 
