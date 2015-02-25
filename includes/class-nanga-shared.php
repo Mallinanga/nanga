@@ -157,7 +157,11 @@ class Nanga_Shared {
 
     public function feautures_easy_digital_downloads() {
         if ( class_exists( 'Easy Digital Downloads' ) ) {
+            remove_action( 'plugins_loaded', array( 'EDD_Heartbeat', 'init' ) );
             remove_action( 'wp_head', 'edd_version_in_header' );
+            if ( ! defined( 'EDD_SLUG' ) ) {
+                define( 'EDD_SLUG', 'products' );
+            }
         }
     }
 
