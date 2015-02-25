@@ -89,7 +89,7 @@ class Nanga_Admin {
         }
     }
 
-    public function set_locale( $locale ) {
+    public function force_dashboard_locale( $locale ) {
         if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
             return 'en_US';
         } else {
