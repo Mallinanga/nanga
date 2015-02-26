@@ -84,6 +84,7 @@ class Nanga {
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'jigsaw' );
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'settings_page' );
         $this->loader->add_action( 'tgmpa_register', $plugin_admin, 'required_plugins' );
+        $this->loader->add_action( 'widgets_init', $plugin_admin, 'disable_widgets', 1 );
         $this->loader->add_action( 'wp_ajax_clear_debug_log', $plugin_admin, 'clear_debug_log' );
         $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'disable_metaboxes' );
         $this->loader->add_filter( 'acf/settings/show_admin', $plugin_admin, 'acf_settings_show_admin' );
