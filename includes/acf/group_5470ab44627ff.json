@@ -3,6 +3,107 @@
     "title": "General Settings",
     "fields": [
         {
+            "key": "field_54ef72de71250",
+            "label": "Social Media",
+            "name": "",
+            "prefix": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top"
+        },
+        {
+            "key": "field_54ef72f971251",
+            "label": "Facebook",
+            "name": "facebook",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_54ef730e71252",
+            "label": "Twitter",
+            "name": "twitter",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_54ef732ef4739",
+            "label": "Google+",
+            "name": "google",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_54ef731a71253",
+            "label": "Instagram",
+            "name": "instagram",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_54ef732171254",
+            "label": "Pinterest",
+            "name": "pinterest",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
             "key": "field_547641aa98cc4",
             "label": "Map",
             "name": "",
@@ -32,7 +133,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "37.9774571",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -54,7 +155,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "23.7362011",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -116,5 +217,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "modified": 1424900885
+    "modified": 1424978795
 }
