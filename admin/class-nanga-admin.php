@@ -9,6 +9,10 @@ class Nanga_Admin {
         $this->version = $version;
     }
 
+    public function plugin_settings_menu() {
+        add_menu_page( 'The Settings', 'The Settings', 'manage_options', 'nanga-settings.php', array( $this, 'plugin_settings_page' ), 'dashicons-shield', 666 );
+    }
+
     public function jigsaw() {
         if ( class_exists( 'Jigsaw' ) ) {
             Jigsaw::remove_column( 'page', 'author' );
@@ -59,14 +63,19 @@ class Nanga_Admin {
         wp_enqueue_script( $this->nanga . 'hash', plugin_dir_url( __FILE__ ) . 'js/nanga-hash.js', array( 'jquery' ), $this->version, true );
     }
 
-    public function enqueue_styles() {
+    public function enqueue_styles( $hook ) {
         wp_deregister_style( 'open-sans' );
         wp_register_style( 'open-sans', false );
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-admin.css', array(), $this->version, 'all' );
+        if ( 'settings_page_advanced-settings' === $hook || 'toplevel_page_nanga-settings' === $hook ) {
+            wp_enqueue_style( $this->nanga . '-settings', plugin_dir_url( __FILE__ ) . 'css/nanga-settings.css', array(), $this->version, 'all' );
+        }
     }
 
-    public function enqueue_scripts() {
+    public function enqueue_scripts( $hook ) {
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-admin.js', array( 'jquery' ), $this->version, true );
+        if ( 'toplevel_page_nanga-settings' === $hook ) {
+        }
     }
 
     public function plugin_action_links( $links ) {
@@ -278,7 +287,7 @@ class Nanga_Admin {
     }
 
     public function all_options_page() {
-        add_options_page( 'Debug Settings', 'Debug Settings', 'administrator', 'options.php' );
+        add_submenu_page( 'nanga-settings.php', 'Debug Settings', 'Debug Settings', 'manage_options', 'options.php' );
     }
 
     public function debug() {
@@ -417,5 +426,9 @@ class Nanga_Admin {
             )
         );
         tgmpa( $plugins, $config );
+    }
+
+    public function plugin_settings_page() {
+        include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/nanga-settings-page.php';
     }
 }

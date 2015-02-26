@@ -67,6 +67,7 @@ class Nanga {
 
     private function define_admin_hooks() {
         $plugin_admin = new Nanga_Admin( $this->get_nanga(), $this->get_version() );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'plugin_settings_menu' );
         $this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'admin_bar', 999 );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
