@@ -390,11 +390,6 @@ class Nanga_Admin {
                 'slug'     => 'underconstruction',
                 'required' => false,
             ),
-            array(
-                'name'     => 'Relevanssi',
-                'slug'     => 'relevanssi',
-                'required' => false,
-            ),
         );
         $config  = array(
             'default_path' => '',
