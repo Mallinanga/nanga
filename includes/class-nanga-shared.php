@@ -18,7 +18,7 @@ class Nanga_Shared {
         remove_action( 'set_comment_cookies', 'wp_set_comment_cookies' );
         remove_action( 'welcome_panel', 'wp_welcome_panel' );
         remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
-        remove_action( 'wp_head', 'feed_links' );
+        remove_action( 'wp_head', 'feed_links', 2 );
         remove_action( 'wp_head', 'feed_links_extra' );
         remove_action( 'wp_head', 'feed_links_extra', 3 );
         remove_action( 'wp_head', 'index_rel_link' );
@@ -59,9 +59,16 @@ class Nanga_Shared {
         remove_post_type_support( 'post', 'trackbacks' );
     }
 
+    public function disable_feeds() {
+        wp_die( 'Nothing to see here...' );
+    }
+
     public function filter_rewrites( $rules ) {
         foreach ( $rules as $rule => $rewrite ) {
             if ( preg_match( '/trackback\/\?\$$/i', $rule ) ) {
+                unset( $rules[ $rule ] );
+            }
+            if ( preg_match( '/.*(feed)/', $rule ) ) {
                 unset( $rules[ $rule ] );
             }
         }

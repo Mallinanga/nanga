@@ -40,6 +40,11 @@ class Nanga {
 
     private function define_shared_hooks() {
         $plugin_shared = new Nanga_Shared( $this->get_nanga(), $this->get_version() );
+        $this->loader->add_action( 'do_feed', $plugin_shared, 'disable_feeds', 1 );
+        $this->loader->add_action( 'do_feed_atom', $plugin_shared, 'disable_feeds', 1 );
+        $this->loader->add_action( 'do_feed_rdf', $plugin_shared, 'disable_feeds', 1 );
+        $this->loader->add_action( 'do_feed_rss', $plugin_shared, 'disable_feeds', 1 );
+        $this->loader->add_action( 'do_feed_rss2', $plugin_shared, 'disable_feeds', 1 );
         $this->loader->add_action( 'init', $plugin_shared, 'disable_core_functionality', 10 );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_easy_digital_downloads' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_gravity_forms' );
