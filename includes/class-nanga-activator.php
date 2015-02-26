@@ -20,6 +20,12 @@ class Nanga_Activator {
                 update_post_meta( $playground_id, '_wp_page_template', $playground_template );
             }
         }
+        add_action( 'after_setup_theme', function () {
+            if ( ! get_option( 'nanga_cleared_widgets' ) ) {
+                update_option( 'sidebars_widgets', array() );
+                update_option( 'nanga_cleared_widgets', true );
+            }
+        } );
         update_option( 'avatar_default', 'blank' );
         update_option( 'blog_public', 0 );
         update_option( 'blogdescription', '' );
