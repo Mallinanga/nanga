@@ -98,9 +98,12 @@ class Nanga_Admin {
     }
 
     public function disable_menus() {
+        remove_menu_page( 'separator-last' );
         remove_menu_page( 'separator1' );
         remove_menu_page( 'separator2' );
-        remove_menu_page( 'separator-last' );
+        remove_submenu_page( 'edit.php', 'post-new.php' );
+        remove_submenu_page( 'edit.php?post_type=page', 'post-new.php?post_type=page' );
+        remove_submenu_page( 'upload.php', 'media-new.php' );
         if ( ! current_user_can( 'manage_options' ) ) {
             remove_menu_page( 'tools.php' );
             remove_menu_page( 'profile.php' );
