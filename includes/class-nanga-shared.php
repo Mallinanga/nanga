@@ -76,19 +76,23 @@ class Nanga_Shared {
         return $rules;
     }
 
-    public function acf_load_point( $paths ) {
-        unset( $paths[0] );
-        $paths[] = plugin_dir_url( __FILE__ ) . 'acf';
+    public function acf_load_point() {
+        add_filter( 'acf/settings/load_json', function ( $paths ) {
+            unset( $paths[0] );
+            $paths[] = dirname( __FILE__ ) . '/acf';
 
-        return $paths;
+            return $paths;
+        } );
     }
 
-    public function acf_save_point( $path ) {
-        if ( defined( 'NG_PLAYGROUND' ) ) {
-            $paths = plugin_dir_url( __FILE__ ) . 'acf';
-        }
+    public function acf_save_point() {
+        if ( defined( 'NG_PLAYGROUND' ) && NG_PLAYGROUND ) {
+            add_filter( 'acf/settings/save_json', function ( $path ) {
+                $path = dirname( __FILE__ ) . '/acf';
 
-        return $path;
+                return $path;
+            } );
+        }
     }
 
     public function features_wordpress_social_login() {
