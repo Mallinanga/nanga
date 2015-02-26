@@ -84,14 +84,14 @@ class Nanga_Shared {
         return $path;
     }
 
-    public function feautures_wordpress_social_login() {
+    public function features_wordpress_social_login() {
         if ( function_exists( 'wsl_add_stylesheets' ) ) {
             remove_action( 'wp_enqueue_scripts', 'wsl_add_stylesheets' );
             remove_action( 'login_enqueue_scripts', 'wsl_add_stylesheets' );
         }
     }
 
-    public function feautures_gravity_forms() {
+    public function features_gravity_forms() {
         if ( class_exists( 'GFForms' ) ) {
             remove_action( 'install_plugins_pre_plugin-information', array( 'GFLogging', 'display_changelog' ) );
             remove_filter( 'site_transient_update_plugins', array( 'GFForms', 'check_update', ) );
@@ -123,7 +123,7 @@ class Nanga_Shared {
         }
     }
 
-    public function feautures_woocommerce() {
+    public function features_woocommerce() {
         if ( class_exists( 'WooCommerce' ) ) {
             add_filter( 'woocommerce_enqueue_styles', '__return_false' );
             add_action( 'get_header', 'nanga_remove_woocommerce_generator_tag' );
@@ -165,7 +165,7 @@ class Nanga_Shared {
         }
     }
 
-    public function feautures_easy_digital_downloads() {
+    public function features_easy_digital_downloads() {
         if ( class_exists( 'Easy Digital Downloads' ) ) {
             remove_action( 'plugins_loaded', array( 'EDD_Heartbeat', 'init' ) );
             remove_action( 'wp_head', 'edd_version_in_header' );
@@ -175,7 +175,7 @@ class Nanga_Shared {
         }
     }
 
-    public function feautures_wpml() {
+    public function features_wpml() {
         if ( class_exists( 'SitePress' ) ) {
             global $sitepress;
             remove_action( 'wp_head', array(
@@ -196,7 +196,7 @@ class Nanga_Shared {
         }
     }
 
-    public function feautures_yoast_seo() {
+    public function features_yoast_seo() {
         if ( class_exists( 'WPSEO_Frontend' ) ) {
             add_filter( 'wpseo_use_page_analysis', '__return_false' );
             add_action( 'admin_init', function () {
@@ -213,7 +213,7 @@ class Nanga_Shared {
         }
     }
 
-    public function feautures_jetpack() {
+    public function features_jetpack() {
         if ( function_exists( 'jetpack_photon_url' ) ) {
             add_filter( 'jetpack_photon_url', 'jetpack_photon_url', 10, 3 );
         }

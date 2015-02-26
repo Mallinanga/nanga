@@ -14,7 +14,6 @@ class Nanga_Admin {
             Jigsaw::remove_column( 'page', 'author' );
             Jigsaw::remove_column( 'post', 'categories' );
             Jigsaw::remove_column( 'post', 'tags' );
-            //Jigsaw::remove_taxonomy( 'post_tag' );
         }
     }
 
