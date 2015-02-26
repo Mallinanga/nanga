@@ -41,13 +41,14 @@ class Nanga {
     private function define_shared_hooks() {
         $plugin_shared = new Nanga_Shared( $this->get_nanga(), $this->get_version() );
         $this->loader->add_action( 'init', $plugin_shared, 'disable_core_functionality', 10 );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_easy_digital_downloads' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_gravity_forms' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_jetpack' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_woocommerce' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_wordpress_social_login' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_wpml' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'feautures_yoast_seo' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_easy_digital_downloads' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_gravity_forms' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_jetpack' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_json_api' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_woocommerce' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wordpress_social_login' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wpml' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_yoast_seo' );
         $this->loader->add_filter( 'acf/settings/load_json', $plugin_shared, 'acf_load_point' );
         $this->loader->add_filter( 'acf/settings/save_json', $plugin_shared, 'acf_save_point' );
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );

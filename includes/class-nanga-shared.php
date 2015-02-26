@@ -294,6 +294,29 @@ class Nanga_Shared {
         }
     }
 
+    public function features_json_api() {
+        if ( class_exists( 'WP_JSON_Server' ) ) {
+            add_filter( 'json_url_prefix', function () {
+                return 'api/v1';
+            } );
+            add_filter( 'json_serve_request', function () {
+                header( 'Access-Control-Allow-Origin: *' );
+            } );
+            add_filter( 'json_query_var-posts_per_page', function ( $posts_per_page ) {
+                if ( 10 < intval( $posts_per_page ) ) {
+                    $posts_per_page = 10;
+                }
+
+                return $posts_per_page;
+            } );
+            add_filter( 'json_query_vars', function ( $valid_vars ) {
+                $valid_vars[] = 'offset';
+
+                return $valid_vars;
+            } );
+        }
+    }
+
     public function mail_from() {
         $from = 'info@' . $_SERVER['SERVER_NAME'];
 
