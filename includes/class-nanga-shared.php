@@ -63,6 +63,18 @@ class Nanga_Shared {
         wp_die( 'Nothing to see here...' );
     }
 
+    public function disable_taxonomies() {
+        global $wp_taxonomies;
+        if ( current_theme_supports( 'disable_categories' ) ) {
+            unset( $wp_taxonomies['category'] );
+        }
+        if ( current_theme_supports( 'disable_tags' ) ) {
+            unset( $wp_taxonomies['post_tag'] );
+        }
+        unset( $wp_taxonomies['link_category'] );
+        unset( $wp_taxonomies['post_format'] );
+    }
+
     public function filter_rewrites( $rules ) {
         foreach ( $rules as $rule => $rewrite ) {
             if ( preg_match( '/trackback\/\?\$$/i', $rule ) ) {
@@ -70,6 +82,30 @@ class Nanga_Shared {
             }
             if ( preg_match( '/.*(feed)/', $rule ) ) {
                 unset( $rules[ $rule ] );
+            }
+        }
+        if ( current_theme_supports( 'disable_categories' ) ) {
+            if ( get_option( 'category_base' ) ) {
+                $category_base = get_option( 'category_base' );
+            } else {
+                $category_base = 'category';
+            }
+            foreach ( $rules as $rule => $rewrite ) {
+                if ( preg_match( '/(' . $category_base . ')/', $rule ) ) {
+                    unset( $rules[ $rule ] );
+                }
+            }
+        }
+        if ( current_theme_supports( 'disable_tags' ) ) {
+            if ( get_option( 'tag_base' ) ) {
+                $tag_base = get_option( 'tag_base' );
+            } else {
+                $tag_base = 'tag';
+            }
+            foreach ( $rules as $rule => $rewrite ) {
+                if ( preg_match( '/(' . $tag_base . ')/', $rule ) ) {
+                    unset( $rules[ $rule ] );
+                }
             }
         }
 
