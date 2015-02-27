@@ -70,7 +70,6 @@ class Nanga {
 
     private function define_admin_hooks() {
         $plugin_admin = new Nanga_Admin( $this->get_nanga(), $this->get_version() );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'plugin_settings_menu' );
         $this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'admin_bar', 999 );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -80,6 +79,7 @@ class Nanga {
         $this->loader->add_action( 'admin_init', $plugin_admin, 'disable_admin_notices' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'all_options_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'disable_menus', 999 );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'plugin_settings_menu' );
         $this->loader->add_action( 'after_setup_theme', $plugin_admin, 'add_editor_style' );
         $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_login_styles' );
         $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_password_hash' );
@@ -95,14 +95,13 @@ class Nanga {
         $this->loader->add_filter( 'login_headertitle', $plugin_admin, 'login_headertitle' );
         $this->loader->add_filter( 'login_headerurl', $plugin_admin, 'login_headerurl' );
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
-        $this->loader->add_filter( 'screen_options_show_screen', $plugin_admin, 'screen_options_show_screen' );
         $this->loader->add_filter( 'posts_fields', $plugin_admin, 'limit_post_fields', 0, 2 );
         $this->loader->add_filter( 'update_footer', $plugin_admin, 'footer_right', 999 );
         $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
         //$this->loader->add_action( 'init', $plugin_admin, 'disable_update_checks', 11 );
         //$this->loader->add_filter( 'locale', $plugin_admin, 'force_dashboard_locale', 10 );
         //$this->loader->add_filter( 'plugin_action_links_nanga.php', $plugin_admin, 'plugin_action_links' );
-        //$this->loader->add_filter( 'rewrite_rules_array', $plugin_admin, 'disable_rewrite_rules' );
+        //$this->loader->add_filter( 'screen_options_show_screen', $plugin_admin, 'screen_options_show_screen' );
     }
 
     private function define_public_hooks() {

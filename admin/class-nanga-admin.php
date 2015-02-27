@@ -13,6 +13,10 @@ class Nanga_Admin {
         add_menu_page( 'The Settings', 'The Settings', 'manage_options', 'nanga-settings.php', array( $this, 'plugin_settings_page' ), 'dashicons-shield', 666 );
     }
 
+    public function plugin_settings_page() {
+        include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/nanga-settings-page.php';
+    }
+
     public function limit_post_fields( $fields, $query ) {
         if ( ! is_admin() OR ! $query->is_main_query() OR ( defined( 'DOING_AJAX' ) AND DOING_AJAX ) OR ( defined( 'DOING_CRON' ) AND DOING_CRON ) ) {
             return $fields;
@@ -184,9 +188,10 @@ class Nanga_Admin {
             'Twitter Reactions' => 'http://search.twitter.com/search?q=' . get_site_url(),
         );
         $wp_toolbar->add_menu( array(
-            'href'  => false,
-            'id'    => 'nanga-links',
-            'title' => 'Administration Tools',
+            'href'   => false,
+            'id'     => 'nanga-links',
+            'parent' => 'top-secondary',
+            'title'  => 'Administration Tools',
         ) );
         $count = 1;
         foreach ( $links as $label => $url ) {
@@ -199,10 +204,11 @@ class Nanga_Admin {
             ) );
         }
         $wp_toolbar->add_node( array(
-            'href'  => 'http://www.vgwebthings.com/',
-            'id'    => 'get-help',
-            'meta'  => array( 'target' => '_blank', ),
-            'title' => 'Get Support',
+            'href'   => 'http://www.vgwebthings.com/',
+            'id'     => 'get-help',
+            'meta'   => array( 'target' => '_blank', ),
+            'parent' => 'top-secondary',
+            'title'  => 'Get Support',
         ) );
         $wp_toolbar->add_node( array(
             'href'   => 'mailto:info@vgwebthings.com?subject=Support%20Request',
@@ -219,7 +225,8 @@ class Nanga_Admin {
         ) );
         $wp_toolbar->add_node( array(
             'id'    => 'site-name',
-            'title' => get_bloginfo( 'name' ) . ' ' . get_bloginfo( 'description' ),
+            //'title' => get_bloginfo( 'name' ) . ' ' . get_bloginfo( 'description' ),
+            'title' => false,
             'meta'  => array( 'target' => '_blank' )
         ) );
         $wp_toolbar->remove_node( 'about' );
@@ -318,15 +325,18 @@ class Nanga_Admin {
     }
 
     public function all_options_page() {
-        add_submenu_page( 'nanga-settings.php', 'Debug Settings', 'Debug Settings', 'manage_options', 'options.php' );
+        //add_submenu_page( 'nanga-settings.php', 'Debug Settings', 'Debug Settings', 'manage_options', 'options.php' );
+    }
+
     }
 
     public function debug() {
         $screen = get_current_screen();
         $screen->set_help_sidebar( '' );
+        //add_filter( 'get_user_option_screen_layout_dashboard', function () { return 2; } );
         //add_filter( 'get_user_option_screen_layout_' . $screen->id, function () { return 1; } );
-        //add_filter( 'screen_layout_columns', function ( $aaa ) { write_log( $aaa ); } );
-        //if ( 'dashboard' == $screen->id ) { $screen->set_columns(); }
+        //add_filter( 'screen_layout_columns', function ( $columns ) { write_log( $columns ); } );
+        //if ( 'dashboard' == $screen->id ) { }
         if ( ! current_user_can( 'manage_options' ) ) {
             $screen->remove_help_tabs();
         }
@@ -397,7 +407,7 @@ class Nanga_Admin {
                 'slug'             => 'github-updater',
                 'source'           => 'https://github.com/afragen/github-updater/archive/develop.zip',
                 'required'         => true,
-                'force_activation' => false,
+                'force_activation' => true,
                 'external_url'     => 'https://github.com/afragen/github-updater'
             ),
             array(
@@ -409,24 +419,20 @@ class Nanga_Admin {
                 'name'             => 'Image Sanity',
                 'slug'             => 'imsanity',
                 'required'         => true,
+                'force_activation' => false,
+            ),
+            array(
+                'name'             => 'Jigsaw',
+                'slug'             => 'jigsaw',
+                'required'         => true,
                 'force_activation' => true,
-            ),
-            array(
-                'name'     => 'Jigsaw',
-                'slug'     => 'jigsaw',
-                'required' => false,
-            ),
-            array(
-                'name'     => 'Under Construction',
-                'slug'     => 'underconstruction',
-                'required' => false,
             ),
         );
         $config  = array(
             'default_path' => '',
             'menu'         => 'nanga-install-plugins',
             'has_notices'  => true,
-            'dismissable'  => false,
+            'dismissable'  => true,
             'dismiss_msg'  => false,
             'is_automatic' => true,
             'message'      => false,
@@ -435,8 +441,8 @@ class Nanga_Admin {
                 'menu_title'                      => 'Install Plugins',
                 'installing'                      => 'Installing Plugin: %s',
                 'oops'                            => 'Something went wrong with the plugin API.',
-                'notice_can_install_required'     => _n_noop( 'This theme requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.' ),
-                'notice_can_install_recommended'  => _n_noop( 'This theme recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.' ),
+                'notice_can_install_required'     => _n_noop( 'This plugin requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.' ),
+                'notice_can_install_recommended'  => _n_noop( 'This plugin recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.' ),
                 'notice_cannot_install'           => _n_noop( 'Sorry, but you do not have the correct permissions to install the %s plugin. Contact the administrator of this site for help on getting the plugin installed.', 'Sorry, but you do not have the correct permissions to install the %s plugins. Contact the administrator of this site for help on getting the plugins installed.' ),
                 'notice_can_activate_required'    => _n_noop( 'The following required plugin is currently inactive: %1$s.', 'The following required plugins are currently inactive: %1$s.' ),
                 'notice_can_activate_recommended' => _n_noop( 'The following recommended plugin is currently inactive: %1$s.', 'The following recommended plugins are currently inactive: %1$s.' ),
@@ -452,9 +458,5 @@ class Nanga_Admin {
             )
         );
         tgmpa( $plugins, $config );
-    }
-
-    public function plugin_settings_page() {
-        include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/nanga-settings-page.php';
     }
 }
