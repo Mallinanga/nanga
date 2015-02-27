@@ -37,7 +37,12 @@ register_activation_hook( __FILE__, 'activate_nanga' );
 register_deactivation_hook( __FILE__, 'deactivate_nanga' );
 require plugin_dir_path( __FILE__ ) . 'includes/nanga-helpers.php';
 require plugin_dir_path( __FILE__ ) . 'includes/class-nanga.php';
-require plugin_dir_path( __FILE__ ) . 'vendor/zamoose/themehookalliance/tha-theme-hooks.php';
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'includes/nanga-limbo.php' ) ) {
+    require plugin_dir_path( __FILE__ ) . 'includes/nanga-limbo.php';
+}
+if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/zamoose/themehookalliance/tha-theme-hooks.php' ) ) {
+    require plugin_dir_path( __FILE__ ) . 'vendor/zamoose/themehookalliance/tha-theme-hooks.php';
+}
 function run_nanga() {
     $plugin = new Nanga();
     $plugin->run();
