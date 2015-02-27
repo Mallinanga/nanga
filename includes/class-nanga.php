@@ -94,6 +94,7 @@ class Nanga {
         $this->loader->add_filter( 'login_headerurl', $plugin_admin, 'login_headerurl' );
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
         $this->loader->add_filter( 'screen_options_show_screen', $plugin_admin, 'screen_options_show_screen' );
+        $this->loader->add_filter( 'posts_fields', $plugin_admin, 'limit_post_fields', 0, 2 );
         $this->loader->add_filter( 'update_footer', $plugin_admin, 'footer_right', 999 );
         $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
         //$this->loader->add_action( 'init', $plugin_admin, 'disable_update_checks', 11 );

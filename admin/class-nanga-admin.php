@@ -13,6 +13,24 @@ class Nanga_Admin {
         add_menu_page( 'The Settings', 'The Settings', 'manage_options', 'nanga-settings.php', array( $this, 'plugin_settings_page' ), 'dashicons-shield', 666 );
     }
 
+    public function limit_post_fields( $fields, $query ) {
+        if ( ! is_admin() OR ! $query->is_main_query() OR ( defined( 'DOING_AJAX' ) AND DOING_AJAX ) OR ( defined( 'DOING_CRON' ) AND DOING_CRON ) ) {
+            return $fields;
+        }
+        $post_fields = $GLOBALS['wpdb']->posts;
+
+        return implode( ',', array(
+            "{$post_fields}.ID",
+            "{$post_fields}.post_title",
+            "{$post_fields}.post_date",
+            "{$post_fields}.post_author",
+            "{$post_fields}.post_name",
+            "{$post_fields}.comment_status",
+            "{$post_fields}.ping_status",
+            "{$post_fields}.post_password",
+        ) );
+    }
+
     public function jigsaw() {
         if ( class_exists( 'Jigsaw' ) ) {
             Jigsaw::remove_column( 'page', 'author' );
