@@ -346,6 +346,19 @@ class Nanga_Shared {
         add_filter( 'auto_core_update_email', function () {
             return 'mallinanga+wordpress@gmail.com';
         } );
+    /**
+     * @todo
+     *
+     * @param $query_vars
+     *
+     * @return mixed
+     */
+    public function empty_search( $query_vars ) {
+        if ( isset( $_GET['s'] ) && empty( $_GET['s'] ) ) {
+            $query_vars['s'] = 'Please do not do empty searches...';
+        }
+
+        return $query_vars;
     }
 
     private function run_plugin_control() {

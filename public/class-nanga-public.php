@@ -114,6 +114,18 @@ class Nanga_Public {
         return $classes;
     }
 
+    public function nice_search() {
+        global $wp_rewrite;
+        if ( ! isset( $wp_rewrite ) || ! is_object( $wp_rewrite ) || ! $wp_rewrite->using_permalinks() ) {
+            return;
+        }
+        $search_base = $wp_rewrite->search_base;
+        if ( is_search() && ! is_admin() && false === strpos( $_SERVER['REQUEST_URI'], "/{$search_base}/" ) ) {
+            wp_redirect( home_url( "/{$search_base}/" . urlencode( get_query_var( 's' ) ) ) );
+            exit();
+        }
+    }
+
     /**
      * @todo
      */

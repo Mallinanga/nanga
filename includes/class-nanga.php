@@ -56,6 +56,7 @@ class Nanga {
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wordpress_social_login' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wpml' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_yoast_seo' );
+        $this->loader->add_filter( 'request', $plugin_shared, 'empty_search' );
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
         $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
         $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
@@ -103,6 +104,7 @@ class Nanga {
 
     private function define_public_hooks() {
         $plugin_public = new Nanga_Public( $this->get_nanga(), $this->get_version() );
+        $this->loader->add_action( 'template_redirect', $plugin_public, 'nice_search' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'asset_cachebusting', 100 );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
