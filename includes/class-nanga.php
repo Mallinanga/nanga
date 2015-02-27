@@ -100,6 +100,8 @@ class Nanga {
         $this->loader->add_filter( 'update_footer', $plugin_admin, 'footer_right', 999 );
         $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
         //$this->loader->add_action( 'init', $plugin_admin, 'disable_update_checks', 11 );
+        $this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'columns_users' );
+        $this->loader->add_filter( 'manage_media_columns', $plugin_admin, 'columns_media' );
         //$this->loader->add_filter( 'locale', $plugin_admin, 'force_dashboard_locale', 10 );
         //$this->loader->add_filter( 'plugin_action_links_nanga.php', $plugin_admin, 'plugin_action_links' );
         //$this->loader->add_filter( 'screen_options_show_screen', $plugin_admin, 'screen_options_show_screen' );

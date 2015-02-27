@@ -337,6 +337,16 @@ class Nanga_Admin {
         //add_submenu_page( 'nanga-settings.php', 'Debug Settings', 'Debug Settings', 'manage_options', 'options.php' );
     }
 
+    public function columns_users( $columns ) {
+        unset( $columns['name'] );
+        unset( $columns['role'] );
+
+        return $columns;
+    }
+    public function columns_media( $columns ) {
+        unset( $columns['author'] );
+
+        return $columns;
     }
 
     public function debug() {
