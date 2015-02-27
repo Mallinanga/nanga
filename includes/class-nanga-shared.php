@@ -350,6 +350,7 @@ class Nanga_Shared {
 
     public function features_json_api() {
         if ( class_exists( 'WP_JSON_Server' ) ) {
+            remove_action( 'wp_head', 'json_output_link_wp_head', 10, 0 );
             add_filter( 'json_url_prefix', function () {
                 return 'api/v1';
             } );
