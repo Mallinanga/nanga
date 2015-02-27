@@ -110,6 +110,9 @@ class Nanga_Admin {
         remove_menu_page( 'separator-last' );
         remove_menu_page( 'separator1' );
         remove_menu_page( 'separator2' );
+        if ( current_theme_supports( 'disable_posts' ) ) {
+            remove_menu_page( 'edit.php' );
+        }
         remove_submenu_page( 'edit.php', 'post-new.php' );
         remove_submenu_page( 'edit.php?post_type=page', 'post-new.php?post_type=page' );
         remove_submenu_page( 'upload.php', 'media-new.php' );

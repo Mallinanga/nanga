@@ -75,6 +75,13 @@ class Nanga_Shared {
         unset( $wp_taxonomies['post_format'] );
     }
 
+    public function disable_post_types() {
+        if ( current_theme_supports( 'disable_posts' ) ) {
+            //global $wp_post_types;
+            //unset( $wp_post_types['post'] );
+        }
+    }
+
     public function filter_rewrites( $rules ) {
         foreach ( $rules as $rule => $rewrite ) {
             if ( preg_match( '/trackback\/\?\$$/i', $rule ) ) {

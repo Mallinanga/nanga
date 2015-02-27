@@ -46,6 +46,7 @@ class Nanga {
         $this->loader->add_action( 'do_feed_rss', $plugin_shared, 'disable_feeds', 1 );
         $this->loader->add_action( 'do_feed_rss2', $plugin_shared, 'disable_feeds', 1 );
         $this->loader->add_action( 'init', $plugin_shared, 'disable_core_functionality', 10 );
+        $this->loader->add_action( 'init', $plugin_shared, 'disable_post_types' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'acf_load_point' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'acf_save_point' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_easy_digital_downloads' );
