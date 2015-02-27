@@ -350,7 +350,7 @@ class Nanga_Shared {
 
     private function run_plugin_control() {
         /*
-         * @TODO
+         * @todo
          */
         /*
         $plugin_control = new Nanga_Plugin_Control( array( 'core-control.php' ) );

@@ -115,7 +115,7 @@ class Nanga_Public {
     }
 
     /**
-     * @TODO
+     * @todo
      */
     public function change_locale_on_the_fly( $locale ) {
         if ( isset( $_GET['language'] ) && 'el' == $_GET['language'] ) {

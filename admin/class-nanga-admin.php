@@ -84,15 +84,6 @@ class Nanga_Admin {
         return $links;
     }
 
-    public function disable_update_checks() {
-    }
-
-    public function disable_rewrite_rules( $rules ) {
-        write_log( print_r( $rules ) );
-
-        return $rules;
-    }
-
     public function disable_admin_notices() {
         remove_action( 'admin_notices', 'update_nag', 3 );
     }
