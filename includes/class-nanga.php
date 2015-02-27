@@ -58,6 +58,7 @@ class Nanga {
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wordpress_social_login' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wpml' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_yoast_seo' );
+        $this->loader->add_action( 'shutdown', $plugin_shared, 'dump_queries', 999 );
         $this->loader->add_filter( 'request', $plugin_shared, 'empty_search' );
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
         $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );

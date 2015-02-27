@@ -390,6 +390,15 @@ class Nanga_Shared {
         add_filter( 'auto_core_update_email', function () {
             return 'mallinanga+wordpress@gmail.com';
         } );
+    public function dump_queries() {
+        if ( isset( $_GET['nanga_dump'] ) && current_user_can( 'manage_options' ) ) {
+            global $wpdb;
+            echo '<pre>';
+            print_r( $wpdb->queries );
+            echo '</pre>';
+        }
+    }
+
     /**
      * @todo
      *
