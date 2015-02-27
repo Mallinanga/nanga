@@ -278,6 +278,15 @@ class Nanga_Admin {
         remove_meta_box( 'rg_forms_dashboard', 'dashboard', 'normal' );
     }
 
+    public function disable_postboxes() {
+        remove_meta_box( 'authordiv', 'attachment', 'normal' );
+        remove_meta_box( 'authordiv', 'page', 'normal' );
+        remove_meta_box( 'authordiv', 'post', 'normal' );
+        remove_meta_box( 'slugdiv', 'attachment', 'normal' );
+        remove_meta_box( 'slugdiv', 'page', 'normal' );
+        remove_meta_box( 'slugdiv', 'post', 'normal' );
+    }
+
     public function footer_left() {
         return 'Developed by <a href="' . get_the_author_meta( 'user_url', 1 ) . '" target="_blank">' . get_the_author_meta( 'display_name', 1 ) . '</a>';
     }

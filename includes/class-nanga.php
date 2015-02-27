@@ -77,6 +77,7 @@ class Nanga {
         $this->loader->add_action( 'admin_head', $plugin_admin, 'debug' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'admin_color_scheme' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'disable_admin_notices' );
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'disable_postboxes' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'all_options_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'disable_menus', 999 );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'plugin_settings_menu' );
