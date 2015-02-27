@@ -126,6 +126,12 @@ class Nanga_Public {
         }
     }
 
+    public function maintenance_mode() {
+        if ( defined( 'WP_ENV' ) && 'production' === WP_ENV && true === get_option( 'nanga_maintenance_mode' ) ) {
+            include plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/nanga-maintenance-mode.php';
+        }
+    }
+
     /**
      * @todo
      */
