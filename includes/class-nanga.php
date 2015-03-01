@@ -63,6 +63,13 @@ class Nanga {
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
         $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
         $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
+        /* Disable Trackbacks and Pingbacks */
+        $this->loader->add_action( 'xmlrpc_call', $plugin_shared, 'xmlrpc_call' );
+        $this->loader->add_filter( 'bloginfo_url', $plugin_shared, 'bloginfo_url' );
+        $this->loader->add_filter( 'wp_headers', $plugin_shared, 'wp_headers' );
+        $this->loader->add_filter( 'xmlrpc_methods', $plugin_shared, 'xmlrpc_methods' );
+        /* Theme */
+        $this->loader->add_action( 'after_setup_theme', $plugin_shared, 'setup_theme' );
     }
 
     public function get_version() {
@@ -78,13 +85,15 @@ class Nanga {
         $this->loader->add_action( 'admin_head', $plugin_admin, 'debug' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'admin_color_scheme' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'disable_admin_notices' );
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'disable_pointers' );
         $this->loader->add_action( 'admin_init', $plugin_admin, 'disable_postboxes' );
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'layout_columns' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'all_options_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'disable_menus', 999 );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'plugin_settings_menu' );
         $this->loader->add_action( 'after_setup_theme', $plugin_admin, 'add_editor_style' );
+        $this->loader->add_action( 'edit_attachment', $plugin_admin, 'image_license_save' );
         $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_login_styles' );
-        $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_password_hash' );
         $this->loader->add_action( 'login_init', $plugin_admin, 'dequeue_login_styles' );
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'jigsaw' );
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'settings_page' );
@@ -93,16 +102,36 @@ class Nanga {
         $this->loader->add_action( 'wp_ajax_clear_debug_log', $plugin_admin, 'clear_debug_log' );
         $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'disable_metaboxes' );
         $this->loader->add_filter( 'acf/settings/show_admin', $plugin_admin, 'acf_settings_show_admin' );
+        $this->loader->add_filter( 'attachment_fields_to_edit', $plugin_admin, 'image_license_field', 10, 2 );
         $this->loader->add_filter( 'jpeg_quality', $plugin_admin, 'image_quality' );
+        $this->loader->add_filter( 'login_errors', $plugin_admin, 'login_errors' );
         $this->loader->add_filter( 'login_headertitle', $plugin_admin, 'login_headertitle' );
         $this->loader->add_filter( 'login_headerurl', $plugin_admin, 'login_headerurl' );
+        $this->loader->add_filter( 'manage_media_columns', $plugin_admin, 'columns_media' );
+        $this->loader->add_filter( 'manage_pages_columns', $plugin_admin, 'columns_pages' );
+        $this->loader->add_filter( 'manage_plugins_columns', $plugin_admin, 'columns_plugins' );
+        $this->loader->add_filter( 'manage_posts_columns', $plugin_admin, 'columns_posts', 10, 2 );
+        $this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'columns_users' );
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
+        $this->loader->add_filter( 'page_row_actions', $plugin_admin, 'row_actions', 10, 2 );
+        $this->loader->add_filter( 'post_row_actions', $plugin_admin, 'row_actions', 10, 2 );
         $this->loader->add_filter( 'posts_fields', $plugin_admin, 'limit_post_fields', 0, 2 );
         $this->loader->add_filter( 'update_footer', $plugin_admin, 'footer_right', 999 );
+        $this->loader->add_filter( 'upload_mimes', $plugin_admin, 'mime_types' );
         $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
-        //$this->loader->add_action( 'init', $plugin_admin, 'disable_update_checks', 11 );
-        $this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'columns_users' );
-        $this->loader->add_filter( 'manage_media_columns', $plugin_admin, 'columns_media' );
+        /* Support Request Widget */
+        //$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'support_request_widget' );
+        /* Google Analytics Dashboard & Widget */
+        //$this->loader->add_action( 'admin_menu', $plugin_admin, 'google_analytics_dashboard' );
+        $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'google_analytics_widget' );
+        /* Display future publish date in lists */
+        $this->loader->add_filter( 'post_date_column_time', $plugin_admin, 'post_date_column_time', 10, 2 );
+        /* Show message in Featured Image */
+        $this->loader->add_filter( 'admin_post_thumbnail_html', $plugin_admin, 'admin_post_thumbnail_html' );
+        /* Customizer */
+        $this->loader->add_action( 'customize_preview_init', $plugin_admin, 'customizer_scripts' );
+        $this->loader->add_action( 'customize_register', $plugin_admin, 'customizer_register' );
+        //$this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_password_hash' );
         //$this->loader->add_filter( 'locale', $plugin_admin, 'force_dashboard_locale', 10 );
         //$this->loader->add_filter( 'plugin_action_links_nanga.php', $plugin_admin, 'plugin_action_links' );
         //$this->loader->add_filter( 'screen_options_show_screen', $plugin_admin, 'screen_options_show_screen' );
@@ -117,6 +146,8 @@ class Nanga {
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
         $this->loader->add_filter( 'body_class', $plugin_public, 'body_class' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
+        /* Customizer Output */
+        //$this->loader->add_action( 'wp_head', $plugin_public, 'customizer_output' );
         //$this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );
         //$this->loader->add_filter( 'get_avatar', $plugin_public, 'remove_self_closing_tags' );
         //$this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );

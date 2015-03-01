@@ -10,11 +10,50 @@ class Nanga_Public {
     }
 
     public function enqueue_styles() {
+        $suffix = ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) ? '' : '.min';
+        if ( current_theme_supports( 'cdn_assets' ) ) {
+            wp_enqueue_style( 'normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css', false, null );
+        } else {
+            wp_enqueue_style( 'normalize', plugin_dir_url( __FILE__ ) . '../assets/vendor/normalize.css/normalize.css', false, null );
+        }
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-public.css', array(), $this->version, 'all' );
     }
 
     public function enqueue_scripts() {
+        $mobile_check = wp_is_mobile_phone() ? 'true' : 'false';
+        $tablet_check = wp_is_mobile() ? 'true' : 'false';
+        wp_enqueue_script( 'modernizr', plugin_dir_url( __FILE__ ) . 'js/_modernizr.js', array(), null, false );
+        if ( ! is_admin() ) {
+            wp_deregister_script( 'jquery' );
+            if ( current_theme_supports( 'cdn_assets' ) ) {
+                //wp_register_script( 'jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js', array(), null, false );
+                wp_register_script( 'jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', array(), null, false );
+            } else {
+                wp_register_script( 'jquery', plugin_dir_url( __FILE__ ) . 'js/jquery.min.js', array(), null, false );
+            }
+            wp_enqueue_script( 'jquery' );
+        }
+        if ( current_theme_supports( 'mobile_check' ) ) {
+            wp_enqueue_script( 'wurfl', '//wurfl.io/wurfl.js', array(), null, false );
+        }
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-public.js', array( 'jquery' ), $this->version, true );
+        wp_localize_script( $this->nanga, $this->nanga, array(
+            'ajax_url'     => admin_url( 'admin-ajax.php' ),
+            'is_mobile'    => $mobile_check,
+            'is_tablet'    => $tablet_check,
+            'locale'       => get_locale(),
+            'current_user' => get_current_user_id(),
+            'environment'  => WP_ENV,
+            'nonce'        => wp_create_nonce()
+        ) );
+        if ( current_theme_supports( 'debug_assets' ) ) {
+            if ( current_theme_supports( 'cdn_assets' ) ) {
+                wp_enqueue_script( 'html-inspector', '//cdnjs.cloudflare.com/ajax/libs/html-inspector/0.8.1/html-inspector.js', array(), null, true );
+            } else {
+                wp_enqueue_script( 'html-inspector', plugin_dir_url( __FILE__ ) . '../assets/vendor/html-inspector/html-inspector.js', array(), null, true );
+            }
+            wp_enqueue_script( $this->nanga . '-debug', plugin_dir_url( __FILE__ ) . 'js/nanga-debug.js', array(), null, true );
+        }
     }
 
     public function asset_cachebusting() {
@@ -128,7 +167,7 @@ class Nanga_Public {
 
     public function maintenance_mode() {
         if ( defined( 'WP_ENV' ) && 'production' === WP_ENV && true === get_option( 'nanga_maintenance_mode' ) ) {
-            include plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/nanga-maintenance-mode.php';
+            //include plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/nanga-maintenance-mode.php';
         }
     }
 

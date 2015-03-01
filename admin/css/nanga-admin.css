@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,greek);
+/*
 @font-face{
     font-family:"FS Albert Pro Web";
     src:url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
@@ -7,11 +8,12 @@
     font-family:"FS Albert Pro Web Bold";
     src:url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
 }
+*/
 body{
     font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
 strong{
-    font-family:"FS Albert Pro Web Bold";
+    /*font-family:"FS Albert Pro Web Bold";*/
 }
 #cpt_info_box{
     display:none;
@@ -24,4 +26,45 @@ strong{
 }
 #wpadminbar *{
     font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+}
+#collapse-menu{
+    display:none;
+}
+#wpadminbar #wp-admin-bar-my-sites > .ab-item:before,
+#wpadminbar #wp-admin-bar-site-name > .ab-item:before{
+    top:auto;
+}
+#wpadminbar #wp-admin-bar-nanga-visit-site > .ab-item:before{
+    content:'\f177';
+}
+#wpadminbar #wp-admin-bar-nanga-links > .ab-item:before{
+    content:'\f239';
+}
+#wpadminbar #wp-admin-bar-nanga-logout > .ab-item:before{
+    content:'\f160';
+}
+#wpadminbar #wp-admin-bar-nanga-tools > .ab-item:before{
+    content:'\f511';
+}
+#wpadminbar #wp-admin-bar-get-help > .ab-item:before{
+    content:'\f488';
+}
+.tablenav .bulkactions{
+    padding:0;
+}
+.tablenav .alignleft.actions{
+    /*display:none;*/
+}
+.js .postbox .hndle,
+.js .widget .widget-top{
+    cursor:default;
+}
+.postbox .handlediv{
+    display:none;
+}
+.tablenav .view-switch{
+    display:none;
+}
+.fixed .column-icon{
+    width:60px;
 }

@@ -441,15 +441,4 @@ div#wp-responsive-toggle a:before {
 .theme-filter.current {
   border-bottom-color: #0098ed; }
 
-table.widefat {
-  background: #fcfcfc;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  border: none; }
-
-.postbox {
-  background: #fcfcfc; }
-
-.alternate, .alt {
-  background-color: #fcfcfc; }
-
+/*# sourceMappingURL=nanga-admin-colors.css.map */

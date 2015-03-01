@@ -1,6 +1,7 @@
 html,
 #wpcontent{
-    background:#E1E1E1;
+    background:#0098ED url(../img/polygons.jpg);
+    background-size:cover;
 }
 .acf-field{
     height:200px;
@@ -19,4 +20,9 @@ html,
 }
 #poststuff #post-body.columns-2{
     margin-right:0;
+}
+#screen-meta,
+#screen-meta-links,
+#wpfooter{
+    display:none;
 }

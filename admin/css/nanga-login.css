@@ -9,8 +9,8 @@
 body{
     font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
-strong{
-    font-family:'FS Albert Pro Web Bold';
+#login{
+    width:250px;
 }
 .login h1{
     display:none;
@@ -102,6 +102,11 @@ strong{
     padding:15px;
     text-align:center;
     text-decoration:none;
+    -webkit-transition:all 0.15s;
+    -moz-transition:all 0.15s;
+    -ms-transition:all 0.15s;
+    -o-transition:all 0.15s;
+    transition:all 0.15s;
 }
 .wp-social-login-provider:hover{
     color:#ffffff;
@@ -121,4 +126,12 @@ strong{
 .wp-social-login-provider-wordpress:hover{
     background-color:#7CCCEA;
     border-color:#7CCCEA;
+}
+.wp-social-login-provider-yahoo{
+    background-color:#4101AF;
+    border-color:#4101AF;
+}
+.wp-social-login-provider-yahoo:hover{
+    background-color:#2D1152;
+    border-color:#2D1152;
 }

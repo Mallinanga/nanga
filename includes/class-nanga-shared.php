@@ -9,11 +9,15 @@ class Nanga_Shared {
         $this->version = $version;
         $this->run_cleanup();
         $this->run_search_visibility();
+        $this->run_updates();
     }
 
     private function run_cleanup() {
+        add_filter( 'comment_flood_filter', '__return_false', 10, 3 );
         add_filter( 'enable_post_by_email_configuration', '__return_false', 100 );
         add_filter( 'sanitize_user', 'strtolower' );
+        add_filter( 'use_default_gallery_style', '__return_false' );
+        add_filter( 'widget_text', 'do_shortcode' );
         remove_action( 'login_head', 'wp_shake_js', 12 );
         remove_action( 'set_comment_cookies', 'wp_set_comment_cookies' );
         remove_action( 'welcome_panel', 'wp_welcome_panel' );
@@ -28,6 +32,7 @@ class Nanga_Shared {
         remove_action( 'wp_head', 'wlwmanifest_link' );
         remove_action( 'wp_head', 'wp_generator' );
         remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+        remove_all_filters( 'comment_flood_filter' );
         remove_filter( 'comment_text', 'capital_P_dangit', 31 );
         remove_filter( 'the_content', 'capital_P_dangit', 11 );
         remove_filter( 'the_title', 'capital_P_dangit', 11 );
@@ -39,14 +44,50 @@ class Nanga_Shared {
             return;
         }
         if ( 'production' === WP_ENV ) {
-            if ( 0 === get_option( 'blog_public' ) ) {
+            if ( ! get_option( 'blog_public' ) ) {
                 update_option( 'blog_public', 1 );
             }
         } else {
-            if ( 1 === get_option( 'blog_public' ) ) {
+            if ( get_option( 'blog_public' ) ) {
                 update_option( 'blog_public', 0 );
             }
         }
+    }
+
+    private function run_updates() {
+        add_filter( 'auto_core_update_send_email', '__return_false' );
+        if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
+            add_filter( 'automatic_updates_is_vcs_checkout', '__return_false', 1 );
+        }
+        if ( defined( 'NG_PLAYGROUND' ) && NG_PLAYGROUND ) {
+            add_filter( 'auto_update_plugin', function ( $update, $item ) {
+                $disallowed_plugins = array( 'nanga' );
+                if ( in_array( $item->slug, $disallowed_plugins ) ) {
+                    return false;
+                }
+
+                return true;
+            }, 20, 2 );
+        } else {
+            add_filter( 'auto_update_plugin', function ( $update, $item ) {
+                $allowed_plugins = array( 'advanced-custom-fields-pro', 'github-updater', 'jigsaw', 'timber-library' );
+                if ( in_array( $item->slug, $allowed_plugins ) ) {
+                    return true;
+                }
+
+                return false;
+            }, 20, 2 );
+        }
+        /*
+         * @todo
+        add_filter( 'auto_update_theme', function ( $update, $item ) {
+            $allowed_themes = array( 'vg-base' );
+            if ( in_array( $item->slug, $allowed_themes ) ) {
+            }
+
+            return false;
+        }, 20, 2 );
+        */
     }
 
     public function disable_core_functionality() {
@@ -54,8 +95,12 @@ class Nanga_Shared {
         remove_post_type_support( 'attachment', 'comments' );
         remove_post_type_support( 'page', 'comments' );
         remove_post_type_support( 'page', 'custom-fields' );
+        remove_post_type_support( 'page', 'revisions' );
+        remove_post_type_support( 'page', 'thumbnail' );
         remove_post_type_support( 'post', 'custom-fields' );
+        remove_post_type_support( 'post', 'excerpt' );
         remove_post_type_support( 'post', 'post-formats' );
+        remove_post_type_support( 'post', 'revisions' );
         remove_post_type_support( 'post', 'trackbacks' );
     }
 
@@ -69,6 +114,7 @@ class Nanga_Shared {
             unset( $wp_taxonomies['category'] );
         }
         if ( current_theme_supports( 'disable_tags' ) ) {
+            //register_taxonomy( 'post_tag', array() );
             unset( $wp_taxonomies['post_tag'] );
         }
         unset( $wp_taxonomies['link_category'] );
@@ -79,6 +125,34 @@ class Nanga_Shared {
         if ( current_theme_supports( 'disable_posts' ) ) {
             //global $wp_post_types;
             //unset( $wp_post_types['post'] );
+        }
+    }
+
+    public function wp_headers( $headers ) {
+        if ( isset( $headers['X-Pingback'] ) ) {
+            unset( $headers['X-Pingback'] );
+        }
+
+        return $headers;
+    }
+
+    public function xmlrpc_methods( $methods ) {
+        unset( $methods['pingback.ping'] );
+
+        return $methods;
+    }
+
+    public function bloginfo_url( $output, $show ) {
+        if ( 'pingback_url' === $show ) {
+            $output = '';
+        }
+
+        return $output;
+    }
+
+    public function xmlrpc_call( $action ) {
+        if ( 'pingback.ping' === $action ) {
+            wp_die( 'Pingbacks are not supported', 'Not Allowed!', array( 'response' => 403 ) );
         }
     }
 
@@ -119,6 +193,34 @@ class Nanga_Shared {
         return $rules;
     }
 
+    public function setup_theme() {
+        if ( ! isset( $content_width ) ) {
+            if ( function_exists( 'get_field' ) ) {
+                if ( get_field( 'vg_content_width', 'options' ) ) {
+                    $content_width = get_field( 'vg_content_width', 'options' );
+                } else {
+                    $content_width = 800;
+                }
+            } else {
+                $content_width = 800;
+            }
+        }
+        add_theme_support( 'menus' );
+        add_theme_support( 'post-thumbnails' );
+        add_theme_support( 'title-tag' );
+        add_theme_support( 'html5', array(
+            'caption',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'search-form',
+        ) );
+        register_nav_menus( array(
+            'primary' => __( 'Primary Menu', 'vg' ),
+            'footer'  => __( 'Footer Menu', 'vg' ),
+        ) );
+    }
+
     public function acf_load_point() {
         add_filter( 'acf/settings/load_json', function ( $paths ) {
             unset( $paths[0] );
@@ -147,6 +249,9 @@ class Nanga_Shared {
 
     public function features_gravity_forms() {
         if ( class_exists( 'GFForms' ) ) {
+            add_filter( 'gform_confirmation_anchor', create_function( '', 'return false;' ) );
+            add_filter( 'gform_enable_shortcode_notification_message', '__return_false' );
+            add_filter( 'gform_init_scripts_footer', '__return_true' );
             remove_action( 'install_plugins_pre_plugin-information', array( 'GFLogging', 'display_changelog' ) );
             remove_filter( 'site_transient_update_plugins', array( 'GFForms', 'check_update', ) );
             remove_filter( 'site_transient_update_plugins', array( 'GFLogging', 'check_update', ) );
@@ -154,8 +259,6 @@ class Nanga_Shared {
             remove_filter( 'transient_update_plugins', array( 'GFForms', 'check_update', ) );
             remove_filter( 'transient_update_plugins', array( 'GFLogging', 'check_update', ) );
             remove_filter( 'transient_update_plugins', array( 'RGForms', 'check_update', ) );
-            add_filter( 'gform_confirmation_anchor', create_function( '', 'return false;' ) );
-            add_filter( 'gform_init_scripts_footer', '__return_true' );
             //add_filter( 'gform_cdata_open', 'wrap_gform_cdata_open' );
             function wrap_gform_cdata_open( $content = '' ) {
                 $content = 'document.addEventListener( "DOMContentLoaded", function() { ';
@@ -221,6 +324,7 @@ class Nanga_Shared {
 
     public function features_easy_digital_downloads() {
         if ( class_exists( 'Easy Digital Downloads' ) ) {
+            add_filter( 'edd_api_log_requests', '__return_false' );
             remove_action( 'plugins_loaded', array( 'EDD_Heartbeat', 'init' ) );
             remove_action( 'wp_head', 'edd_version_in_header' );
             if ( ! defined( 'EDD_SLUG' ) ) {
@@ -384,12 +488,6 @@ class Nanga_Shared {
         return apply_filters( 'vg_mail_from_name', $from_name );
     }
 
-    private function run_updates() {
-        //add_filter( 'auto_update_theme', '__return_true' );
-        //add_filter( 'auto_core_update_send_email', '__return_false' );
-        add_filter( 'auto_core_update_email', function () {
-            return 'mallinanga+wordpress@gmail.com';
-        } );
     public function dump_queries() {
         if ( isset( $_GET['nanga_dump'] ) && current_user_can( 'manage_options' ) ) {
             global $wpdb;
@@ -401,10 +499,6 @@ class Nanga_Shared {
 
     /**
      * @todo
-     *
-     * @param $query_vars
-     *
-     * @return mixed
      */
     public function empty_search( $query_vars ) {
         if ( isset( $_GET['s'] ) && empty( $_GET['s'] ) ) {
