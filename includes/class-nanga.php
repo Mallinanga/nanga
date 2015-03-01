@@ -65,7 +65,7 @@ class Nanga {
         $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
         /* Disable Trackbacks and Pingbacks */
         $this->loader->add_action( 'xmlrpc_call', $plugin_shared, 'xmlrpc_call' );
-        $this->loader->add_filter( 'bloginfo_url', $plugin_shared, 'bloginfo_url' );
+        $this->loader->add_filter( 'bloginfo_url', $plugin_shared, 'bloginfo_url', 10, 2 );
         $this->loader->add_filter( 'wp_headers', $plugin_shared, 'wp_headers' );
         $this->loader->add_filter( 'xmlrpc_methods', $plugin_shared, 'xmlrpc_methods' );
         /* Theme */
