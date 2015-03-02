@@ -400,6 +400,7 @@ class Nanga_Admin {
         $post_types = get_post_types( array( '_builtin' => false, 'public' => true ) );
         foreach ( $post_types as $post_type ) {
             remove_meta_box( 'authordiv', $post_type, 'normal' );
+            remove_meta_box( 'sharing_meta', $post_type, 'advanced' );
             remove_meta_box( 'slugdiv', $post_type, 'normal' );
         }
     }
