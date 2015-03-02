@@ -466,6 +466,7 @@ class Nanga_Admin {
     public function columns_media( $columns ) {
         unset( $columns['cb'] );
         unset( $columns['author'] );
+        unset( $columns['icon'] );
         unset( $columns['parent'] );
 
         return $columns;
@@ -493,9 +494,9 @@ class Nanga_Admin {
         switch ( $column_name ) {
             case 'icon':
                 if ( function_exists( 'the_post_thumbnail' ) && '' != get_the_post_thumbnail() ) {
-                    echo the_post_thumbnail( array( 60, 60 ) );
+                    echo the_post_thumbnail( 'thumbnail', array( 'width' => '60', 'height' => 60, 'style' => 'width:60px;height:60px;' ) );
                 } else {
-                    echo '<div style="width:60px;height:60px;background:#0098ed;"></div>';
+                    echo '<div style="width:60px;height:60px;background:#e1e1e1;color:#0098ed;text-align:center;"><span class="dashicons dashicons-images-alt2" style="font-size:40px;width:60px;height:60px;line-height:60px;"></span></div>';
                 }
                 break;
         }
