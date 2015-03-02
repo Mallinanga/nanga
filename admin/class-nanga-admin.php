@@ -685,6 +685,12 @@ class Nanga_Admin {
                 'force_activation' => false,
             ),
             array(
+                'name'             => 'Help',
+                'slug'             => 'wp-help',
+                'required'         => false,
+                'force_activation' => false,
+            ),
+            array(
                 'name'             => 'Jigsaw',
                 'slug'             => 'jigsaw',
                 'required'         => true,
