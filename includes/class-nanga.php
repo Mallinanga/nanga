@@ -50,14 +50,6 @@ class Nanga {
         $this->loader->add_action( 'init', $plugin_shared, 'disable_taxonomies' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'acf_load_point' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'acf_save_point' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_easy_digital_downloads' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_gravity_forms' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_jetpack' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_json_api' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_woocommerce' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wordpress_social_login' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wpml' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_yoast_seo' );
         $this->loader->add_action( 'shutdown', $plugin_shared, 'dump_queries', 999 );
         $this->loader->add_filter( 'request', $plugin_shared, 'empty_search' );
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
@@ -70,6 +62,15 @@ class Nanga {
         $this->loader->add_filter( 'xmlrpc_methods', $plugin_shared, 'xmlrpc_methods' );
         /* Theme */
         $this->loader->add_action( 'after_setup_theme', $plugin_shared, 'setup_theme' );
+        /* Third-party */
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_easy_digital_downloads' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_gravity_forms' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_jetpack' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_json_api' );
+        //$this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_woocommerce' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wordpress_social_login' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wpml' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_yoast_seo' );
     }
 
     public function get_version() {
