@@ -11,7 +11,7 @@ class Nanga_Public {
 
     public function enqueue_styles() {
         $suffix = ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) ? '' : '.min';
-        if ( current_theme_supports( 'cdn_assets' ) ) {
+        if ( current_theme_supports( 'cdn-assets' ) ) {
             wp_enqueue_style( 'normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css', false, null );
         } else {
             wp_enqueue_style( 'normalize', plugin_dir_url( __FILE__ ) . '../assets/vendor/normalize.css/normalize.css', false, null );
@@ -25,7 +25,7 @@ class Nanga_Public {
         wp_enqueue_script( 'modernizr', plugin_dir_url( __FILE__ ) . 'js/_modernizr.js', array(), null, false );
         if ( ! is_admin() ) {
             wp_deregister_script( 'jquery' );
-            if ( current_theme_supports( 'cdn_assets' ) ) {
+            if ( current_theme_supports( 'cdn-assets' ) ) {
                 //wp_register_script( 'jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js', array(), null, false );
                 wp_register_script( 'jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', array(), null, false );
             } else {
@@ -33,7 +33,7 @@ class Nanga_Public {
             }
             wp_enqueue_script( 'jquery' );
         }
-        if ( current_theme_supports( 'mobile_check' ) ) {
+        if ( current_theme_supports( 'mobile-check' ) ) {
             wp_enqueue_script( 'wurfl', '//wurfl.io/wurfl.js', array(), null, false );
         }
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-public.js', array( 'jquery' ), $this->version, true );
@@ -46,8 +46,8 @@ class Nanga_Public {
             'environment'  => WP_ENV,
             'nonce'        => wp_create_nonce()
         ) );
-        if ( current_theme_supports( 'debug_assets' ) ) {
-            if ( current_theme_supports( 'cdn_assets' ) ) {
+        if ( current_theme_supports( 'debug-assets' ) ) {
+            if ( current_theme_supports( 'cdn-assets' ) ) {
                 wp_enqueue_script( 'html-inspector', '//cdnjs.cloudflare.com/ajax/libs/html-inspector/0.8.1/html-inspector.js', array(), null, true );
             } else {
                 wp_enqueue_script( 'html-inspector', plugin_dir_url( __FILE__ ) . '../assets/vendor/html-inspector/html-inspector.js', array(), null, true );

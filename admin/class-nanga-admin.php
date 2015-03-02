@@ -84,13 +84,13 @@ class Nanga_Admin {
                     wp_cache_flush();
                     Jigsaw::show_notice( 'Object Cache has been <strong>flushed</strong>', 'updated' );
                 }, 'nanga-tools' );
-                if ( class_exists( 'TimberCommand' ) ) {
+                if ( class_exists( 'TimberLoader' ) ) {
                     Jigsaw::add_toolbar_item( 'Clear Timber Cache', function () {
-                        TimberCommand::clear_cache_timber();
+                        TimberLoader::clear_cache_timber();
                         Jigsaw::show_notice( 'Timber Cache has been <strong>flushed</strong>', 'updated' );
                     }, 'nanga-tools' );
                     Jigsaw::add_toolbar_item( 'Clear Twig Cache', function () {
-                        TimberCommand::clear_cache_twig();
+                        TimberLoader::clear_cache_twig();
                         Jigsaw::show_notice( 'Twig Cache has been <strong>flushed</strong>', 'updated' );
                     }, 'nanga-tools' );
                 }
@@ -165,7 +165,7 @@ class Nanga_Admin {
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-admin.js', array( 'jquery' ), $this->version, true );
         if ( 'toplevel_page_nanga-settings' === $hook ) {
         }
-        if ( 'index.php' === $hook && current_theme_supports( 'support_request' ) ) {
+        if ( 'index.php' === $hook && current_theme_supports( 'support-request' ) ) {
             wp_enqueue_script( $this->nanga . '-support-request', plugin_dir_url( __FILE__ ) . 'js/nanga-support-form.js', array( 'jquery' ), $this->version, true );
             wp_localize_script( $this->nanga . '-support-request', $this->nanga . '_support_request', array(
                 'msg_success' => __( 'Thank you! Your request has been sent. We will get back at you as soon as possible.', 'vg' ),
@@ -201,7 +201,7 @@ class Nanga_Admin {
         remove_submenu_page( 'plugins.php', 'plugin-install.php' );
         remove_submenu_page( 'upload.php', 'media-new.php' );
         remove_submenu_page( 'users.php', 'user-new.php' );
-        if ( current_theme_supports( 'disable_posts' ) ) {
+        if ( current_theme_supports( 'disable-posts' ) ) {
             remove_menu_page( 'edit.php' );
         }
         if ( ! current_user_can( 'manage_options' ) ) {
@@ -479,6 +479,18 @@ class Nanga_Admin {
         unset( $columns['cb'] );
 
         return $columns;
+    }
+
+    public function manage_posts_custom_column( $column_name, $post_id ) {
+        switch ( $column_name ) {
+            case 'icon':
+                if ( function_exists( 'the_post_thumbnail' ) && '' != get_the_post_thumbnail() ) {
+                    echo the_post_thumbnail( array( 60, 60 ) );
+                } else {
+                    echo '<div style="width:60px;height:60px;background:#0098ed;"></div>';
+                }
+                break;
+        }
     }
 
     public function columns_pages( $columns ) {

@@ -107,11 +107,6 @@ class Nanga {
         $this->loader->add_filter( 'login_errors', $plugin_admin, 'login_errors' );
         $this->loader->add_filter( 'login_headertitle', $plugin_admin, 'login_headertitle' );
         $this->loader->add_filter( 'login_headerurl', $plugin_admin, 'login_headerurl' );
-        $this->loader->add_filter( 'manage_media_columns', $plugin_admin, 'columns_media' );
-        $this->loader->add_filter( 'manage_pages_columns', $plugin_admin, 'columns_pages' );
-        $this->loader->add_filter( 'manage_plugins_columns', $plugin_admin, 'columns_plugins' );
-        $this->loader->add_filter( 'manage_posts_columns', $plugin_admin, 'columns_posts', 10, 2 );
-        $this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'columns_users' );
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
         $this->loader->add_filter( 'page_row_actions', $plugin_admin, 'row_actions', 10, 2 );
         $this->loader->add_filter( 'post_row_actions', $plugin_admin, 'row_actions', 10, 2 );
@@ -119,6 +114,13 @@ class Nanga {
         $this->loader->add_filter( 'update_footer', $plugin_admin, 'footer_right', 999 );
         $this->loader->add_filter( 'upload_mimes', $plugin_admin, 'mime_types' );
         $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
+        /* Columns */
+        $this->loader->add_action( 'manage_posts_custom_column', $plugin_admin, 'manage_posts_custom_column', 5, 2 );
+        $this->loader->add_filter( 'manage_media_columns', $plugin_admin, 'columns_media' );
+        $this->loader->add_filter( 'manage_pages_columns', $plugin_admin, 'columns_pages' );
+        $this->loader->add_filter( 'manage_plugins_columns', $plugin_admin, 'columns_plugins' );
+        $this->loader->add_filter( 'manage_posts_columns', $plugin_admin, 'columns_posts', 10, 2 );
+        $this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'columns_users' );
         /* Support Request Widget */
         //$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'support_request_widget' );
         /* Google Analytics Dashboard & Widget */

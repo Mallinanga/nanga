@@ -110,10 +110,10 @@ class Nanga_Shared {
 
     public function disable_taxonomies() {
         global $wp_taxonomies;
-        if ( current_theme_supports( 'disable_categories' ) ) {
+        if ( current_theme_supports( 'disable-categories' ) ) {
             unset( $wp_taxonomies['category'] );
         }
-        if ( current_theme_supports( 'disable_tags' ) ) {
+        if ( current_theme_supports( 'disable-tags' ) ) {
             //register_taxonomy( 'post_tag', array() );
             unset( $wp_taxonomies['post_tag'] );
         }
@@ -122,7 +122,7 @@ class Nanga_Shared {
     }
 
     public function disable_post_types() {
-        if ( current_theme_supports( 'disable_posts' ) ) {
+        if ( current_theme_supports( 'disable-posts' ) ) {
             //global $wp_post_types;
             //unset( $wp_post_types['post'] );
         }
@@ -165,7 +165,7 @@ class Nanga_Shared {
                 unset( $rules[ $rule ] );
             }
         }
-        if ( current_theme_supports( 'disable_categories' ) ) {
+        if ( current_theme_supports( 'disable-categories' ) ) {
             if ( get_option( 'category_base' ) ) {
                 $category_base = get_option( 'category_base' );
             } else {
@@ -177,7 +177,7 @@ class Nanga_Shared {
                 }
             }
         }
-        if ( current_theme_supports( 'disable_tags' ) ) {
+        if ( current_theme_supports( 'disable-tags' ) ) {
             if ( get_option( 'tag_base' ) ) {
                 $tag_base = get_option( 'tag_base' );
             } else {
