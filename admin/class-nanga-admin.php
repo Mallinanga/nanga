@@ -24,11 +24,17 @@ class Nanga_Admin {
     }
 
     public function google_analytics_widget() {
-        add_meta_box( 'google_analytics_widget', 'Google Analytics', array( $this, 'google_analytics_widget_content' ), 'dashboard', 'normal', 'high' );
+        if ( current_user_can( 'manage_options' ) ) {
+            add_meta_box( 'google_analytics_widget', 'Google Analytics', array( $this, 'google_analytics_widget_content' ), 'dashboard', 'side', 'low' );
+        }
     }
 
     public function google_analytics_widget_content() {
-        include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/nanga-google-analytics-widget.php';
+        if ( get_field( 'vg_google_analytics' ) ) {
+            include plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/nanga-google-analytics-widget.php';
+        } else {
+            printf( '<p>' . __( 'Please insert a valid Google Analytics UA Code in %1$s.', $this->nanga ) . '</p>', '<a href="' . admin_url( 'admin.php?page=general-settings' ) . '">settings</a>' );
+        }
     }
 
     public function login_errors( $error ) {
@@ -460,7 +466,6 @@ class Nanga_Admin {
     public function columns_media( $columns ) {
         unset( $columns['cb'] );
         unset( $columns['author'] );
-        //unset( $columns['icon'] );
         unset( $columns['parent'] );
 
         return $columns;
@@ -473,10 +478,13 @@ class Nanga_Admin {
     }
 
     public function columns_posts( $columns, $post_type ) {
-        if ( post_type_supports( $post_type, 'thumbnail' ) ) {
+        $post_types = get_post_types( array( 'public' => true ), 'names' );
+        if ( post_type_supports( $post_type, 'thumbnail' ) && 'product' != $post_type ) {
             $columns = array( 'icon' => false ) + $columns;
         }
-        unset( $columns['cb'] );
+        if ( in_array( $post_type, $post_types, true ) ) {
+            unset( $columns['cb'] );
+        }
 
         return $columns;
     }
@@ -581,12 +589,6 @@ class Nanga_Admin {
                         'content' => '<pre id="debug-log" style="margin:10px 0 0 0;overflow-x:hidden;max-height:640px;line-height:1;font-size:10px;">' . file_get_contents( WP_CONTENT_DIR . '/debug.log' ) . '</pre><p><a href="#" id="clear-debug-log" style="text-decoration:none;">Clear Log</a></p>',
                     ) );
                 }
-                global $wp_admin_bar;
-                $screen->add_help_tab( array(
-                    'id'      => 'debug_adminbar',
-                    'title'   => 'Debug Adminbar',
-                    'content' => '<pre>' . grab_dump( $wp_admin_bar ) . '</pre>',
-                ) );
                 global $menu, $submenu;
                 $screen->add_help_tab( array(
                     'id'      => 'debug_menu',

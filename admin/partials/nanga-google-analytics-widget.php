@@ -20,15 +20,17 @@
 </script>
 <script>
     gapi.analytics.ready(function () {
+        var dataChart;
+        var viewSelector;
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
             clientid: '487950333609.apps.googleusercontent.com'
         });
-        var viewSelector = new gapi.analytics.ViewSelector({
+        viewSelector = new gapi.analytics.ViewSelector({
             container: 'view-selector-container'
         });
         viewSelector.execute();
-        var dataChart = new gapi.analytics.googleCharts.DataChart({
+        dataChart = new gapi.analytics.googleCharts.DataChart({
             query: {
                 metrics: 'ga:sessions',
                 dimensions: 'ga:date',

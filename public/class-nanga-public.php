@@ -103,7 +103,7 @@ class Nanga_Public {
 
     public function analytics() {
         $google_analytics_ua = get_field( 'vg_google_analytics', 'options' );
-        if ( ! empty( $google_analytics_ua ) ) {
+        if ( ! empty( $google_analytics_ua ) && get_option( 'blog_public' ) ) {
             echo '<script type="text/javascript">var _gaq = _gaq || []; _gaq.push([\'_setAccount\', \'' . $google_analytics_ua . '\']); _gaq.push([\'_trackPageview\']); (function () { var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true; ga.src = (\'https:\' == document.location.protocol ? \'https://ssl\' : \'http://www\') + \'.google-analytics.com/ga.js\'; var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s); })();</script>';
         }
         if ( get_field( 'vg_google_analytics_events', 'options', true ) ) {
