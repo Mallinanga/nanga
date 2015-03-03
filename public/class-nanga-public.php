@@ -91,7 +91,7 @@ class Nanga_Public {
     public function the_password_form() {
         $output = '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form pure-form pure-form-stacked" method="post">';
         $output .= '<input name="post_password" type="password" class="pure-input-1">';
-        $output .= '<input type="submit" class="pure-button pure-input-1" value="' . __( 'View', 'nanga' ) . '">';
+        $output .= '<input type="submit" class="pure-button pure-input-1" value="' . __( 'View', $this->nanga ) . '">';
         $output .= '</form>';
 
         return $output;

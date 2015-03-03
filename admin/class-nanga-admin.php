@@ -42,7 +42,9 @@ class Nanga_Admin {
     }
 
     public function plugin_settings_menu() {
-        add_menu_page( 'The Settings', 'The Settings', 'manage_options', 'nanga-settings.php', array( $this, 'plugin_settings_page' ), 'dashicons-shield', 666 );
+        if ( current_theme_supports( 'nanga-settings' ) ) {
+            add_menu_page( __( 'The Settings', $this->nanga ), __( 'The Settings', $this->nanga ), 'manage_options', 'nanga-settings.php', array( $this, 'plugin_settings_page' ), 'dashicons-shield', 666 );
+        }
     }
 
     public function plugin_settings_page() {
@@ -278,26 +280,28 @@ class Nanga_Admin {
         $wp_toolbar->add_node( array(
             'id'     => 'nanga-logout',
             'parent' => 'top-secondary',
-            'title'  => 'Logout',
+            'title'  => __( 'Logout', $this->nanga ),
             'href'   => wp_logout_url(),
         ) );
         $wp_toolbar->add_node( array(
             'id'     => 'get-help',
             'parent' => 'top-secondary',
-            'title'  => 'Get Support',
+            'title'  => __( 'Get Support', $this->nanga ),
         ) );
         $wp_toolbar->add_node( array(
             'href'   => 'mailto:info@vgwebthings.com?subject=Support%20Request',
             'id'     => 'get-support',
             'parent' => 'get-help',
-            'title'  => 'Email Support',
+            'title'  => __( 'Email Support', $this->nanga ),
         ) );
-        $wp_toolbar->add_node( array(
-            'href'   => get_admin_url(),
-            'id'     => 'get-support-request',
-            'parent' => 'get-help',
-            'title'  => 'Create Support Request',
-        ) );
+        if ( current_theme_supports( 'nanga-support-request' ) ) {
+            $wp_toolbar->add_node( array(
+                'href'   => get_admin_url(),
+                'id'     => 'get-support-request',
+                'parent' => 'get-help',
+                'title'  => __( 'Create Support Request', $this->nanga ),
+            ) );
+        }
         $links = array(
             'Google Analytics'  => 'https://www.google.com/analytics/',
             'Webmaster Tools'   => 'https://www.google.com/webmasters/tools/dashboard?hl=en&siteUrl=' . get_site_url(),
@@ -307,7 +311,7 @@ class Nanga_Admin {
             'href'   => admin_url( 'index.php?page=nanga-google-analytics-dashboard' ),
             'id'     => 'nanga-links',
             'parent' => 'top-secondary',
-            'title'  => 'Analytics',
+            'title'  => __( 'Analytics', $this->nanga ),
         ) );
         $count = 1;
         foreach ( $links as $label => $url ) {
@@ -324,7 +328,7 @@ class Nanga_Admin {
                 'href'   => false,
                 'id'     => 'nanga-tools',
                 'parent' => 'top-secondary',
-                'title'  => 'Tools',
+                'title'  => __( 'Tools', $this->nanga ),
             ) );
         }
         /*
@@ -337,7 +341,7 @@ class Nanga_Admin {
         $wp_toolbar->add_node( array(
             'id'    => 'nanga-visit-site',
             'href'  => get_site_url(),
-            'title' => __( 'View Public Side of the Site', 'vg' ),
+            'title' => __( 'View Public Side of the Site', $this->nanga ),
             'meta'  => array( 'target' => '_blank' )
         ) );
         $wp_toolbar->remove_node( 'about' );
@@ -537,7 +541,7 @@ class Nanga_Admin {
 
     public function customizer_register( $wp_customize ) {
         $wp_customize->add_section( 'vg_customizer_section', array(
-            'title'    => __( 'VG Settings', 'vg' ),
+            'title'    => __( 'VG Settings', $this->nanga ),
             'priority' => 30,
         ) );
         $wp_customize->add_setting( 'site_logo', array(
@@ -552,17 +556,17 @@ class Nanga_Admin {
             'transport' => 'postMessage',
         ) );
         $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'site_logo', array(
-            'label'    => __( 'Site Logo', 'vg' ),
+            'label'    => __( 'Site Logo', $this->nanga ),
             'section'  => 'vg_customizer_section',
             'settings' => 'site_logo',
         ) ) );
         $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'site_color', array(
-            'label'    => __( 'Site Main Color', 'vg' ),
+            'label'    => __( 'Site Main Color', $this->nanga ),
             'section'  => 'vg_customizer_section',
             'settings' => 'site_color',
         ) ) );
         $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'site_secondary_color', array(
-            'label'    => __( 'Site Secondary Color', 'vg' ),
+            'label'    => __( 'Site Secondary Color', $this->nanga ),
             'section'  => 'vg_customizer_section',
             'settings' => 'site_secondary_color',
         ) ) );
@@ -639,7 +643,7 @@ class Nanga_Admin {
         $field_value            = get_post_meta( $post->ID, 'license', true );
         $form_fields['license'] = array(
             'value' => $field_value ? $field_value : '',
-            'label' => __( 'Photo License', 'vg' )
+            'label' => __( 'Photo License', $this->nanga )
         );
 
         return $form_fields;
@@ -653,7 +657,7 @@ class Nanga_Admin {
     }
 
     public function support_request_widget() {
-        add_meta_box( 'support_request_widget', __( 'Create a Support Request', 'vg' ), array( $this, 'support_request_form' ), 'dashboard', 'side', 'high' );
+        add_meta_box( 'support_request_widget', __( 'Create a Support Request', $this->nanga ), array( $this, 'support_request_form' ), 'dashboard', 'side', 'high' );
     }
 
     public function support_request_form() {

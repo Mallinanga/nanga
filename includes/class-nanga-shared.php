@@ -223,8 +223,8 @@ class Nanga_Shared {
             'search-form',
         ) );
         register_nav_menus( array(
-            'primary' => __( 'Primary Menu', 'vg' ),
-            'footer'  => __( 'Footer Menu', 'vg' ),
+            'primary' => __( 'Primary Menu', $this->nanga ),
+            'footer'  => __( 'Footer Menu', $this->nanga ),
         ) );
     }
 
