@@ -1,6 +1,6 @@
 <div id="embed-api-auth-container"></div>
-<div id="chart-container-1" style="display:none;"></div><!--<div id="view-selector-container-1"></div>-->
-<div id="chart-container-2" style="display:none;"></div><!--<div id="view-selector-container-2"></div>-->
+<div id="chart-container-1"></div><!--<div id="view-selector-container-1"></div>-->
+<div id="chart-container-2"></div><!--<div id="view-selector-container-2"></div>-->
 <script>
     (function (w, d, s, g, js, fs) {
         g = w.gapi || (w.gapi = {});
@@ -24,8 +24,8 @@
         $(function () {
         });
         $(window).load(function () {
-            $('#chart-container-1').delay(2000).fadeIn('fast');
-            $('#chart-container-2').delay(2000).fadeIn('fast');
+            $('#chart-container-1');
+            $('#chart-container-2');
         });
     })(jQuery);
     gapi.analytics.ready(function () {

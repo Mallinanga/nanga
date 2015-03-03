@@ -16,7 +16,9 @@ class Nanga_Admin {
     }
 
     public function google_analytics_dashboard() {
-        add_dashboard_page( 'Google Analytics', 'Google Analytics', 'read', 'nanga-google-analytics-dashboard', array( $this, 'google_analytics_dashboard_page' ) );
+        if ( current_user_can( 'edit_pages' ) ) {
+            add_dashboard_page( 'Google Analytics', 'Google Analytics', 'read', 'nanga-google-analytics-dashboard', array( $this, 'google_analytics_dashboard_page' ) );
+        }
     }
 
     public function google_analytics_dashboard_page() {
@@ -24,7 +26,7 @@ class Nanga_Admin {
     }
 
     public function google_analytics_widget() {
-        if ( current_user_can( 'manage_options' ) ) {
+        if ( current_user_can( 'edit_pages' ) ) {
             add_meta_box( 'google_analytics_widget', 'Google Analytics', array( $this, 'google_analytics_widget_content' ), 'dashboard', 'side', 'low' );
         }
     }

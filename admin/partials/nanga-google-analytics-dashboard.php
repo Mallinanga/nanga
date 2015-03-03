@@ -1,8 +1,8 @@
+<link rel="stylesheet" href="https://ga-dev-tools.appspot.com/public/css/main.css" media="all">
 <style>
-    html{
-        /*background-image:url('/wp-content/plugins/nanga/admin/img/polygons.jpg');*/
-        /*background-repeat:no-repeat;*/
-        /*background-size:cover;*/
+    .Dashboard-header{
+        margin:0 0 2em 0;
+        padding:2em 0;
     }
 </style>
 <script>
@@ -30,14 +30,15 @@
 <div class="wrap">
     <h2>Google Analytics</h2>
 
-    <div class="Dashboard Dashboard--full">
+    <div id="embed-api-auth-container"></div>
+    <!--<div class="Dashboard Dashboard--full">-->
+    <div class="Dashboard--full">
         <header class="Dashboard-header">
             <ul class="FlexGrid">
                 <li class="FlexGrid-item">
                     <div class="Titles">
                         <h1 class="Titles-main" id="view-name">Select a View</h1>
-
-                        <div class="Titles-sub">Various visualizations</div>
+                        <!--<div class="Titles-sub">Various visualizations</div>-->
                     </div>
                 </li>
                 <li class="FlexGrid-item FlexGrid-item--fixed">
