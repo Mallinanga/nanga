@@ -104,6 +104,9 @@ class Nanga_Admin {
                     flush_rewrite_rules();
                     Jigsaw::show_notice( 'Rewrite Rules have been <strong>flushed</strong>', 'updated' );
                 }, 'nanga-tools' );
+                Jigsaw::add_toolbar_item( 'Force Updates', function () {
+                    wp_maybe_auto_update();
+                }, 'nanga-tools' );
                 $maintenance_status = get_option( 'nanga_maintenance_mode' ) ? 'ON' : 'OFF';
                 Jigsaw::add_toolbar_item( 'Under Construction <strong>' . $maintenance_status . '</strong>', function () {
                     if ( get_option( 'nanga_maintenance_mode' ) ) {

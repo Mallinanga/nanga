@@ -56,6 +56,11 @@ class Nanga_Shared {
 
     private function run_updates() {
         //add_filter( 'auto_core_update_send_email', '__return_false' );
+        add_filter( 'auto_core_update_email', function ( $email ) {
+            $email['to'] = 'mallinanga+wp@gmail.com';
+
+            return $email;
+        }, 1 );
         add_filter( 'automatic_updates_send_debug_email', '__return_true' );
         if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
             add_filter( 'automatic_updates_is_vcs_checkout', '__return_false', 1 );
@@ -81,14 +86,15 @@ class Nanga_Shared {
         }
         /*
          * @todo
+        */
         add_filter( 'auto_update_theme', function ( $update, $item ) {
-            $allowed_themes = array( 'vg-base' );
-            if ( in_array( $item->slug, $allowed_themes ) ) {
-            }
+            write_log( $update );
+            write_log( $item );
+            //$allowed_themes = array( 'vg-base' );
+            //if ( in_array( $item->slug, $allowed_themes ) ) {}
 
             return false;
         }, 20, 2 );
-        */
     }
 
     public function disable_core_functionality() {
