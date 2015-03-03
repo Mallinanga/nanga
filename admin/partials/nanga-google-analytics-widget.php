@@ -1,6 +1,6 @@
 <div id="embed-api-auth-container"></div>
-<div id="chart-container"></div>
-<div id="view-selector-container"></div>
+<div id="chart-container-1" style="display:none;"></div><!--<div id="view-selector-container-1"></div>-->
+<div id="chart-container-2" style="display:none;"></div><!--<div id="view-selector-container-2"></div>-->
 <script>
     (function (w, d, s, g, js, fs) {
         g = w.gapi || (w.gapi = {});
@@ -19,18 +19,47 @@
     }(window, document, 'script'));
 </script>
 <script>
+    (function ($) {
+        'use strict';
+        $(function () {
+        });
+        $(window).load(function () {
+            $('#chart-container-1').delay(2000).fadeIn('fast');
+            $('#chart-container-2').delay(2000).fadeIn('fast');
+        });
+    })(jQuery);
     gapi.analytics.ready(function () {
-        var dataChart;
-        var viewSelector;
+        var dataChart1;
+        var dataChart2;
+        //var viewSelector1;
+        //var viewSelector2;
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
             clientid: '487950333609.apps.googleusercontent.com'
         });
-        viewSelector = new gapi.analytics.ViewSelector({
-            container: 'view-selector-container'
+        //viewSelector1 = new gapi.analytics.ViewSelector({ container: 'view-selector-container-1'});
+        //viewSelector2 = new gapi.analytics.ViewSelector({ container: 'view-selector-container-2'});
+        //viewSelector1.execute();
+        //viewSelector2.execute();
+        dataChart1 = new gapi.analytics.googleCharts.DataChart({
+            query: {
+                metrics: 'ga:sessions',
+                dimensions: 'ga:country',
+                'start-date': '30daysAgo',
+                'end-date': 'yesterday',
+                'max-results': 6,
+                sort: '-ga:sessions'
+            },
+            chart: {
+                container: 'chart-container-1',
+                type: 'PIE',
+                options: {
+                    width: '100%'
+                }
+            }
         });
-        viewSelector.execute();
-        dataChart = new gapi.analytics.googleCharts.DataChart({
+        dataChart1.set({query: {ids: 'ga:81300888'}}).execute();
+        dataChart2 = new gapi.analytics.googleCharts.DataChart({
             query: {
                 metrics: 'ga:sessions',
                 dimensions: 'ga:date',
@@ -38,15 +67,15 @@
                 'end-date': 'yesterday'
             },
             chart: {
-                container: 'chart-container',
+                container: 'chart-container-2',
                 type: 'LINE',
                 options: {
                     width: '100%'
                 }
             }
         });
-        viewSelector.on('change', function (ids) {
-            dataChart.set({query: {ids: ids}}).execute();
-        });
+        dataChart2.set({query: {ids: 'ga:81300888'}}).execute();
+        //viewSelector1.on('change', function (ids) { dataChart1.set({query: {ids: ids}}).execute(); });
+        //viewSelector2.on('change', function (ids) { dataChart2.set({query: {ids: ids}}).execute(); });
     });
 </script>

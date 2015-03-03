@@ -5,7 +5,7 @@
  * Plugin URI:        https://github.com/Mallinanga/nanga
  * GitHub Plugin URI: https://github.com/Mallinanga/nanga
  * Description:       Functions that don't belong to the theme.
- * Version:           1.0.5
+ * Version:           1.0.7
  * Author:            Panos Paganis
  * Author URI:        https://github.com/Mallinanga
  * License:           GPL-2.0+

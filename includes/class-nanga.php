@@ -7,7 +7,7 @@ class Nanga {
 
     public function __construct() {
         $this->nanga   = 'nanga';
-        $this->version = '1.0.5';
+        $this->version = '1.0.7';
         $this->load_dependencies();
         $this->set_locale();
         $this->define_shared_hooks();
@@ -24,6 +24,7 @@ class Nanga {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nanga-public.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cache.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shortcodes.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cron.php';
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
         $this->loader = new Nanga_Loader();
     }
@@ -125,7 +126,7 @@ class Nanga {
         /* Support Request Widget */
         //$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'support_request_widget' );
         /* Google Analytics Dashboard & Widget */
-        //$this->loader->add_action( 'admin_menu', $plugin_admin, 'google_analytics_dashboard' );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'google_analytics_dashboard' );
         $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'google_analytics_widget' );
         /* Display future publish date in lists */
         $this->loader->add_filter( 'post_date_column_time', $plugin_admin, 'post_date_column_time', 10, 2 );

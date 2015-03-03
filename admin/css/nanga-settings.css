@@ -1,6 +1,6 @@
-html,
-#wpcontent{
-    background:#0098ED url(../img/polygons.jpg);
+html{
+    background-image:url(../img/polygons.jpg);
+    background-repeat:no-repeat;
     background-size:cover;
 }
 .acf-field{

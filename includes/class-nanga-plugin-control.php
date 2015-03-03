@@ -10,10 +10,7 @@ class Nanga_Plugin_Control {
                 $this->disable( $disable );
             }
         }
-        add_filter( 'option_active_plugins', array(
-            $this,
-            'do_disabling'
-        ) );
+        add_filter( 'option_active_plugins', array( $this, 'do_disabling' ) );
         self::$instance = $this;
     }
 

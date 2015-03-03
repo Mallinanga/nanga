@@ -118,5 +118,4 @@ class Nanga_Helpers {
         }
         echo $output;
     }
-
 }

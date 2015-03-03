@@ -241,6 +241,12 @@ class Nanga_Shared {
         }
     }
 
+    public function features_help() {
+        if ( class_exists( 'CWS_WP_Help_Plugin' ) ) {
+            //add_filter( 'cws_wp_help_option_defaults', array( 'menu_location' => 'below-dashboard', ) );
+        }
+    }
+
     public function features_wordpress_social_login() {
         if ( function_exists( 'wsl_add_stylesheets' ) ) {
             remove_action( 'wp_enqueue_scripts', 'wsl_add_stylesheets' );
@@ -329,7 +335,7 @@ class Nanga_Shared {
             remove_action( 'plugins_loaded', array( 'EDD_Heartbeat', 'init' ) );
             remove_action( 'wp_head', 'edd_version_in_header' );
             if ( ! defined( 'EDD_SLUG' ) ) {
-                define( 'EDD_SLUG', 'products' );
+                define( 'EDD_SLUG', 'services' );
             }
         }
     }
