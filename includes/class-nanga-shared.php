@@ -76,7 +76,7 @@ class Nanga_Shared {
             }, 20, 2 );
         } else {
             add_filter( 'auto_update_plugin', function ( $update, $item ) {
-                $allowed_plugins = array( 'advanced-custom-fields-pro', 'github-updater', 'jigsaw', 'timber-library' );
+                $allowed_plugins = array( 'nanga', 'advanced-custom-fields-pro', 'github-updater', 'jigsaw', 'timber-library', 'user-role-editor' );
                 if ( in_array( $item->slug, $allowed_plugins ) ) {
                     return true;
                 }
@@ -84,9 +84,7 @@ class Nanga_Shared {
                 return false;
             }, 20, 2 );
         }
-        /*
-         * @todo
-        */
+        //@todo
         add_filter( 'auto_update_theme', function ( $update, $item ) {
             write_log( $update );
             write_log( $item );
@@ -298,6 +296,9 @@ class Nanga_Shared {
             remove_action( 'wp_head', 'wc_generator_tag' );
             add_action( 'admin_menu', function () {
                 remove_menu_page( 'separator-last' );
+                if ( ! current_user_can( 'manage_woocommerce' ) ) {
+                    remove_menu_page( 'woocommerce' );
+                }
             }, 999 );
             //add_filter( 'woocommerce_enqueue_styles', '__return_false' );
             //remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
@@ -511,9 +512,7 @@ class Nanga_Shared {
         }
     }
 
-    /**
-     * @todo
-     */
+    //@todo
     public function empty_search( $query_vars ) {
         if ( isset( $_GET['s'] ) && empty( $_GET['s'] ) ) {
             $query_vars['s'] = 'Please do not do empty searches...';

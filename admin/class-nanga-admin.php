@@ -469,6 +469,7 @@ class Nanga_Admin {
         //unset( $columns['cb'] );
         unset( $columns['posts'] );
         unset( $columns['role'] );
+        unset( $columns['ure_roles'] );
 
         return $columns;
     }
