@@ -11,11 +11,6 @@ class Nanga_Public {
 
     public function enqueue_styles() {
         $suffix = ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) ? '' : '.min';
-        if ( current_theme_supports( 'cdn-assets' ) ) {
-            wp_enqueue_style( 'normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css', false, null );
-        } else {
-            wp_enqueue_style( 'normalize', plugin_dir_url( __FILE__ ) . '../assets/vendor/normalize.css/normalize.css', false, null );
-        }
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-public.css', array(), $this->version, 'all' );
     }
 
