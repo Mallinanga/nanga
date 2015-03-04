@@ -57,7 +57,7 @@ a:focus{
     content:'\f488';
 }
 .tablenav .bulkactions{
-    padding:0;
+    /*padding:0;*/
 }
 .tablenav .alignleft.actions{
     /*display:none;*/

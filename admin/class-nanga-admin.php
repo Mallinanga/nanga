@@ -466,7 +466,7 @@ class Nanga_Admin {
     }
 
     public function columns_users( $columns ) {
-        unset( $columns['cb'] );
+        //unset( $columns['cb'] );
         unset( $columns['posts'] );
         unset( $columns['role'] );
 
@@ -474,7 +474,7 @@ class Nanga_Admin {
     }
 
     public function columns_media( $columns ) {
-        unset( $columns['cb'] );
+        //unset( $columns['cb'] );
         unset( $columns['author'] );
         unset( $columns['icon'] );
         unset( $columns['parent'] );
@@ -483,19 +483,19 @@ class Nanga_Admin {
     }
 
     public function columns_plugins( $columns ) {
-        unset( $columns['cb'] );
+        //unset( $columns['cb'] );
 
         return $columns;
     }
 
     public function columns_posts( $columns, $post_type ) {
-        $post_types = get_post_types( array( 'public' => true ), 'names' );
-        if ( post_type_supports( $post_type, 'thumbnail' ) && 'product' != $post_type ) {
-            $columns = array( 'icon' => false ) + $columns;
-        }
-        if ( in_array( $post_type, $post_types, true ) ) {
-            unset( $columns['cb'] );
-        }
+        //@todo
+        //$post_types = get_post_types( array( 'public' => true ), 'names' );
+        //if ( in_array( $post_type, $post_types, true ) ) { unset( $columns['cb'] ); }
+        //if ( post_type_supports( $post_type, 'thumbnail' ) && 'product' != $post_type ) {
+        //$columns = array( 'icon' => false ) + $columns;
+        //array_splice( $columns, 1, 0, array( 'icon' => false ) );
+        //}
 
         return $columns;
     }
@@ -513,10 +513,10 @@ class Nanga_Admin {
     }
 
     public function columns_pages( $columns ) {
-        if ( post_type_supports( 'page', 'thumbnail' ) ) {
-            $columns = array( 'icon' => false ) + $columns;
-        }
-        unset( $columns['cb'] );
+        //unset( $columns['cb'] );
+        //if ( post_type_supports( 'page', 'thumbnail' ) ) {
+        //$columns = array( 'icon' => false ) + $columns;
+        //}
 
         return $columns;
     }
