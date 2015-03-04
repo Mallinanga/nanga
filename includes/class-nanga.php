@@ -153,6 +153,11 @@ class Nanga {
         /* Comment Form */
         $this->loader->add_filter( 'comment_form_default_fields', $plugin_public, 'comment_form_default_fields' );
         $this->loader->add_filter( 'comment_form_defaults', $plugin_public, 'comment_form_defaults' );
+        /* Relative URLs */
+        if ( current_theme_supports( 'nanga-relative-urls' ) ) {
+            $this->loader->add_filter( 'script_loader_src', $plugin_public, 'relative_urls' );
+            $this->loader->add_filter( 'style_loader_src', $plugin_public, 'relative_urls' );
+        }
         /* Customizer Output */
         //$this->loader->add_action( 'wp_head', $plugin_public, 'customizer_output' );
         //$this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );
