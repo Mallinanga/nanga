@@ -150,6 +150,9 @@ class Nanga {
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
         $this->loader->add_filter( 'body_class', $plugin_public, 'body_class' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
+        /* Comment Form */
+        $this->loader->add_filter( 'comment_form_default_fields', $plugin_public, 'comment_form_default_fields' );
+        $this->loader->add_filter( 'comment_form_defaults', $plugin_public, 'comment_form_defaults' );
         /* Customizer Output */
         //$this->loader->add_action( 'wp_head', $plugin_public, 'customizer_output' );
         //$this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );

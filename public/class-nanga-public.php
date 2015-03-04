@@ -171,6 +171,24 @@ class Nanga_Public {
         }
     }
 
+    public function comment_form_default_fields( $fields ) {
+        unset( $fields['url'] );
+
+        return $fields;
+    }
+
+    function comment_form_defaults( $defaults ) {
+        $defaults['comment_field']        = '<textarea id="comment" class="pure-input-1" name="comment" rows="10" placeholder="' . __( 'Your comment', $this->nanga ) . '" aria-required="true" required></textarea>';
+        $defaults['title_reply']          = false;
+        $defaults['title_reply_to']       = false;
+        $defaults['logged_in_as']         = false;
+        $defaults['comment_notes_before'] = false;
+        $defaults['comment_notes_after']  = false;
+        $defaults['cancel_reply_link']    = __( 'Cancel', $this->nanga );
+
+        return $defaults;
+    }
+
     /**
      * @todo
      */
