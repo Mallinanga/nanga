@@ -68,7 +68,7 @@ class Nanga {
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_gravity_forms' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_jetpack' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_json_api' );
-        //$this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_woocommerce' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_woocommerce' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wordpress_social_login' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wpml' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_yoast_seo' );

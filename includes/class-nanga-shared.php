@@ -295,14 +295,14 @@ class Nanga_Shared {
 
     public function features_woocommerce() {
         if ( class_exists( 'WooCommerce' ) ) {
-            add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-            add_action( 'get_header', 'nanga_remove_woocommerce_generator_tag' );
-            function nanga_remove_woocommerce_generator_tag() {
-                remove_action( 'wp_head', 'wc_generator_tag' );
-            }
-
-            remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
-            add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+            remove_action( 'wp_head', 'wc_generator_tag' );
+            add_action( 'admin_menu', function () {
+                remove_menu_page( 'separator-last' );
+            }, 999 );
+            //add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+            //remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+            //add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+            /*
             if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
                 function woocommerce_template_loop_product_thumbnail() {
                     echo woocommerce_get_product_thumbnail();
@@ -332,6 +332,7 @@ class Nanga_Shared {
                     return $output;
                 }
             }
+            */
         }
     }
 
