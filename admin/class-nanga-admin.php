@@ -85,7 +85,6 @@ class Nanga_Admin {
             if ( get_option( 'nanga_maintenance_mode' ) ) {
                 Jigsaw::show_notice( 'Site is in maintenance mode', 'error' );
             }
-            //JigsawPermalinks::set_author_base( 'profile' );
             Jigsaw::remove_column( 'page', 'author' );
             Jigsaw::remove_column( 'post', 'categories' );
             Jigsaw::remove_column( 'post', 'tags' );
@@ -96,11 +95,11 @@ class Nanga_Admin {
                 }, 'nanga-tools' );
                 if ( class_exists( 'TimberLoader' ) ) {
                     Jigsaw::add_toolbar_item( 'Clear Timber Cache', function () {
-                        TimberLoader::clear_cache_timber();
+                        TimberCommand::clear_cache_timber();
                         Jigsaw::show_notice( 'Timber Cache has been <strong>flushed</strong>', 'updated' );
                     }, 'nanga-tools' );
                     Jigsaw::add_toolbar_item( 'Clear Twig Cache', function () {
-                        TimberLoader::clear_cache_twig();
+                        TimberCommand::clear_cache_twig();
                         Jigsaw::show_notice( 'Twig Cache has been <strong>flushed</strong>', 'updated' );
                     }, 'nanga-tools' );
                 }
