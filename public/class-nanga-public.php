@@ -197,6 +197,14 @@ class Nanga_Public {
         return $defaults;
     }
 
+    public function js_to_footer() {
+        if ( current_theme_supports( 'nanga-js-to-footer' ) ) {
+            remove_action( 'wp_head', 'wp_print_scripts' );
+            remove_action( 'wp_head', 'wp_print_head_scripts', 9 );
+            remove_action( 'wp_head', 'wp_enqueue_scripts', 1 );
+        }
+    }
+
     /**
      * @todo
      */

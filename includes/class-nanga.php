@@ -150,6 +150,8 @@ class Nanga {
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
         $this->loader->add_filter( 'body_class', $plugin_public, 'body_class' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
+        /* Move all scripts to footer */
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'js_to_footer' );
         /* Comment Form */
         $this->loader->add_filter( 'comment_form_default_fields', $plugin_public, 'comment_form_default_fields' );
         $this->loader->add_filter( 'comment_form_defaults', $plugin_public, 'comment_form_defaults' );
