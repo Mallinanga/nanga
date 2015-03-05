@@ -188,9 +188,7 @@ class Nanga_Admin {
     }
 
     public function plugin_action_links( $links ) {
-        $links[] = '<a href="' . get_admin_url( null, 'admin.php?page=advanced-settings' ) . '">' . __( 'Settings', 'nanga' ) . '</a>';
-
-        return $links;
+        return array_merge( array( 'advanced_settings' => '<a href="' . admin_url( 'admin.php?page=general-settings' ) . '">' . __( 'Settings', $this->nanga ) . '</a>' ), $links );
     }
 
     public function disable_admin_notices() {

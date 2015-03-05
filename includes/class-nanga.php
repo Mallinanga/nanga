@@ -135,9 +135,10 @@ class Nanga {
         /* Customizer */
         $this->loader->add_action( 'customize_preview_init', $plugin_admin, 'customizer_scripts' );
         $this->loader->add_action( 'customize_register', $plugin_admin, 'customizer_register' );
+        /* Plugin links */
+        $this->loader->add_filter( 'plugin_action_links_' . $this->nanga . '/' . $this->nanga . '.php', $plugin_admin, 'plugin_action_links' );
         //$this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_password_hash' );
         //$this->loader->add_filter( 'locale', $plugin_admin, 'force_dashboard_locale', 10 );
-        //$this->loader->add_filter( 'plugin_action_links_nanga.php', $plugin_admin, 'plugin_action_links' );
         //$this->loader->add_filter( 'screen_options_show_screen', $plugin_admin, 'screen_options_show_screen' );
     }
 
