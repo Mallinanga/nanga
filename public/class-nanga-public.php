@@ -17,7 +17,7 @@ class Nanga_Public {
     public function enqueue_scripts() {
         $mobile_check = wp_is_mobile_phone() ? 'true' : 'false';
         $tablet_check = wp_is_mobile() ? 'true' : 'false';
-        wp_enqueue_script( 'modernizr', plugin_dir_url( __FILE__ ) . 'js/_modernizr.js', array(), null, false );
+        //wp_enqueue_script( 'modernizr', plugin_dir_url( __FILE__ ) . 'js/_modernizr.js', array(), null, false );
         if ( ! is_admin() ) {
             wp_deregister_script( 'jquery' );
             if ( current_theme_supports( 'nanga-cdn-assets' ) ) {

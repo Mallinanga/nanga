@@ -261,9 +261,19 @@ class Nanga_Shared {
 
     public function features_gravity_forms() {
         if ( class_exists( 'GFForms' ) ) {
-            add_filter( 'gform_confirmation_anchor', create_function( '', 'return false;' ) );
+            add_filter( 'gform_confirmation_anchor', '__return_false' );
             add_filter( 'gform_enable_shortcode_notification_message', '__return_false' );
             add_filter( 'gform_init_scripts_footer', '__return_true' );
+            add_filter( 'gform_cdata_open', function ( $content = '' ) {
+                $content = 'document.addEventListener( "DOMContentLoaded", function() { ';
+
+                return $content;
+            } );
+            add_filter( 'gform_cdata_close', function ( $content = '' ) {
+                $content = ' }, false );';
+
+                return $content;
+            } );
             remove_action( 'install_plugins_pre_plugin-information', array( 'GFLogging', 'display_changelog' ) );
             remove_filter( 'site_transient_update_plugins', array( 'GFForms', 'check_update', ) );
             remove_filter( 'site_transient_update_plugins', array( 'GFLogging', 'check_update', ) );
@@ -271,24 +281,6 @@ class Nanga_Shared {
             remove_filter( 'transient_update_plugins', array( 'GFForms', 'check_update', ) );
             remove_filter( 'transient_update_plugins', array( 'GFLogging', 'check_update', ) );
             remove_filter( 'transient_update_plugins', array( 'RGForms', 'check_update', ) );
-            //add_filter( 'gform_cdata_open', 'wrap_gform_cdata_open' );
-            function wrap_gform_cdata_open( $content = '' ) {
-                $content = 'document.addEventListener( "DOMContentLoaded", function() { ';
-
-                return $content;
-            }
-
-            //add_filter( 'gform_cdata_close', 'wrap_gform_cdata_close' );
-            function wrap_gform_cdata_close( $content = '' ) {
-                $content = ' }, false );';
-
-                return $content;
-            }
-
-            //add_action( 'admin_head', 'custom_gform_admin_menu_icon' );
-            function custom_gform_admin_menu_icon() {
-                echo "<style>#adminmenu #toplevel_page_gf_entries div.wp-menu-image:before, #adminmenu #toplevel_page_gf_edit_forms div.wp-menu-image:before{content:'\175';}#adminmenu #toplevel_page_gf_entries div.wp-menu-image img, #adminmenu #toplevel_page_gf_edit_forms div.wp-menu-image img{display:none;}</style>";
-            }
         }
     }
 
@@ -296,7 +288,7 @@ class Nanga_Shared {
         if ( class_exists( 'WooCommerce' ) ) {
             remove_action( 'wp_head', 'wc_generator_tag' );
             add_action( 'admin_menu', function () {
-                remove_menu_page( 'separator-last' );
+                remove_menu_page( 'separator-woocommerce' );
                 if ( ! current_user_can( 'manage_woocommerce' ) ) {
                     remove_menu_page( 'woocommerce' );
                 }

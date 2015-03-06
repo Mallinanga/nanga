@@ -186,8 +186,8 @@ class Nanga_Admin {
         if ( 'index.php' === $hook && current_theme_supports( 'nanga-support-request' ) ) {
             wp_enqueue_script( $this->nanga . '-support-request', plugin_dir_url( __FILE__ ) . 'js/nanga-support-form.js', array( 'jquery' ), $this->version, true );
             wp_localize_script( $this->nanga . '-support-request', $this->nanga . '_support_request', array(
-                'msg_success' => __( 'Thank you! Your request has been sent. We will get back at you as soon as possible.', 'vg' ),
-                'msg_error'   => __( 'Oops! Something went wrong and we couldn\'t send your message.', 'vg' ),
+                'msg_success' => __( 'Thank you! Your request has been sent. We will get back at you as soon as possible.', $this->nanga ),
+                'msg_error'   => __( 'Oops! Something went wrong and we couldn\'t send your message.', $this->nanga ),
             ) );
         }
     }
@@ -310,7 +310,7 @@ class Nanga_Admin {
         $links = array(
             'Google Analytics'  => 'https://www.google.com/analytics/',
             'Webmaster Tools'   => 'https://www.google.com/webmasters/tools/dashboard?hl=en&siteUrl=' . get_site_url(),
-            'Twitter Reactions' => 'http://search.twitter.com/search?q=' . get_site_url(),
+            'Twitter Reactions' => 'https://twitter.com/search?q=' . $_SERVER['SERVER_NAME'],
         );
         if ( current_theme_supports( 'nanga-analytics' ) ) {
             $analytics_page = admin_url( 'index.php?page=nanga-google-analytics-dashboard' );
@@ -411,14 +411,14 @@ class Nanga_Admin {
         remove_meta_box( 'authordiv', 'attachment', 'normal' );
         remove_meta_box( 'authordiv', 'page', 'normal' );
         remove_meta_box( 'authordiv', 'post', 'normal' );
-        remove_meta_box( 'slugdiv', 'attachment', 'normal' );
-        remove_meta_box( 'slugdiv', 'page', 'normal' );
-        remove_meta_box( 'slugdiv', 'post', 'normal' );
+        //remove_meta_box( 'slugdiv', 'attachment', 'normal' );
+        //remove_meta_box( 'slugdiv', 'page', 'normal' );
+        //remove_meta_box( 'slugdiv', 'post', 'normal' );
         $post_types = get_post_types( array( '_builtin' => false, 'public' => true ) );
         foreach ( $post_types as $post_type ) {
             remove_meta_box( 'authordiv', $post_type, 'normal' );
             remove_meta_box( 'sharing_meta', $post_type, 'advanced' );
-            remove_meta_box( 'slugdiv', $post_type, 'normal' );
+            //remove_meta_box( 'slugdiv', $post_type, 'normal' );
         }
     }
 
