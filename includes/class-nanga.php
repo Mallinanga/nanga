@@ -124,7 +124,7 @@ class Nanga {
         $this->loader->add_filter( 'manage_posts_columns', $plugin_admin, 'columns_posts', 10, 2 );
         $this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'columns_users', 999 );
         /* Support Request Widget */
-        //$this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'support_request_widget' );
+        $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'support_request_widget' );
         /* Google Analytics Dashboard & Widget */
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'google_analytics_dashboard' );
         $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'google_analytics_widget' );

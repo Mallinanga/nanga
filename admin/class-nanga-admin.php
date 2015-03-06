@@ -16,7 +16,7 @@ class Nanga_Admin {
     }
 
     public function google_analytics_dashboard() {
-        if ( current_user_can( 'edit_pages' ) ) {
+        if ( current_user_can( 'edit_pages' ) && current_theme_supports( 'nanga-analytics' ) ) {
             add_dashboard_page( 'Google Analytics', 'Google Analytics', 'read', 'nanga-google-analytics-dashboard', array( $this, 'google_analytics_dashboard_page' ) );
         }
     }
@@ -26,7 +26,7 @@ class Nanga_Admin {
     }
 
     public function google_analytics_widget() {
-        if ( current_user_can( 'edit_pages' ) ) {
+        if ( current_user_can( 'edit_pages' ) && current_theme_supports( 'nanga-analytics' ) ) {
             add_meta_box( 'google_analytics_widget', 'Google Analytics', array( $this, 'google_analytics_widget_content' ), 'dashboard', 'side', 'low' );
         }
     }
@@ -183,7 +183,7 @@ class Nanga_Admin {
         ) );
         if ( 'toplevel_page_nanga-settings' === $hook ) {
         }
-        if ( 'index.php' === $hook && current_theme_supports( 'support-request' ) ) {
+        if ( 'index.php' === $hook && current_theme_supports( 'nanga-support-request' ) ) {
             wp_enqueue_script( $this->nanga . '-support-request', plugin_dir_url( __FILE__ ) . 'js/nanga-support-form.js', array( 'jquery' ), $this->version, true );
             wp_localize_script( $this->nanga . '-support-request', $this->nanga . '_support_request', array(
                 'msg_success' => __( 'Thank you! Your request has been sent. We will get back at you as soon as possible.', 'vg' ),
@@ -217,7 +217,7 @@ class Nanga_Admin {
         remove_submenu_page( 'plugins.php', 'plugin-install.php' );
         remove_submenu_page( 'upload.php', 'media-new.php' );
         remove_submenu_page( 'users.php', 'user-new.php' );
-        if ( current_theme_supports( 'disable-posts' ) ) {
+        if ( current_theme_supports( 'nanga-disable-posts' ) ) {
             remove_menu_page( 'edit.php' );
         }
         if ( ! current_user_can( 'manage_options' ) ) {
@@ -312,8 +312,13 @@ class Nanga_Admin {
             'Webmaster Tools'   => 'https://www.google.com/webmasters/tools/dashboard?hl=en&siteUrl=' . get_site_url(),
             'Twitter Reactions' => 'http://search.twitter.com/search?q=' . get_site_url(),
         );
+        if ( current_theme_supports( 'nanga-analytics' ) ) {
+            $analytics_page = admin_url( 'index.php?page=nanga-google-analytics-dashboard' );
+        } else {
+            $analytics_page = false;
+        }
         $wp_toolbar->add_menu( array(
-            'href'   => admin_url( 'index.php?page=nanga-google-analytics-dashboard' ),
+            'href'   => $analytics_page,
             'id'     => 'nanga-links',
             'parent' => 'top-secondary',
             'title'  => __( 'Analytics', $this->nanga ),
@@ -663,7 +668,9 @@ class Nanga_Admin {
     }
 
     public function support_request_widget() {
-        add_meta_box( 'support_request_widget', __( 'Create a Support Request', $this->nanga ), array( $this, 'support_request_form' ), 'dashboard', 'side', 'high' );
+        if ( current_theme_supports( 'nanga-support-request' ) ) {
+            add_meta_box( 'support_request_widget', __( 'Create a Support Request', $this->nanga ), array( $this, 'support_request_form' ), 'dashboard', 'normal', 'low' );
+        }
     }
 
     public function support_request_form() {
