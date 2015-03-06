@@ -51,9 +51,8 @@ if (!window.location.origin) {
         }
     });
     $(window).load(function () {
-        //if (vg_app.environment === 'development') {
-        //console.log(vg_app);
-        //console.log(WURFL);
-        //}
+        if (nanga.environment === 'development') {
+            console.log(nanga);
+        }
     });
 })(jQuery);

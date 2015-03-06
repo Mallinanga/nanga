@@ -175,6 +175,12 @@ class Nanga_Admin {
 
     public function enqueue_scripts( $hook ) {
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-admin.js', array( 'jquery' ), $this->version, true );
+        wp_localize_script( $this->nanga, $this->nanga, array(
+            'locale'       => get_locale(),
+            'current_user' => get_current_user_id(),
+            'environment'  => WP_ENV,
+            'gaid'         => get_field( 'vg_google_analytics_id' ),
+        ) );
         if ( 'toplevel_page_nanga-settings' === $hook ) {
         }
         if ( 'index.php' === $hook && current_theme_supports( 'support-request' ) ) {
