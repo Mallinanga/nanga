@@ -54,10 +54,10 @@ class Nanga_Activator {
             update_option( 'mailserver_port', 0 );
             update_option( 'mailserver_url', '' );
             update_option( 'medium_crop', 1 );
-            update_option( 'medium_size_h', 100 );
-            update_option( 'medium_size_h', 100 );
-            update_option( 'medium_size_w', 100 );
-            update_option( 'medium_size_w', 100 );
+            update_option( 'medium_size_h', 150 );
+            update_option( 'medium_size_h', 150 );
+            update_option( 'medium_size_w', 150 );
+            update_option( 'medium_size_w', 150 );
             update_option( 'moderation_notify', 0 );
             update_option( 'posts_per_page', 5 );
             update_option( 'posts_per_rss', 1 );

@@ -1,28 +1,13 @@
-@import url(http://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,greek);
-/*
-@font-face{
-    font-family:'FS Albert Pro Web';
-    src:url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
-}
-@font-face{
-    font-family:'FS Albert Pro Web Bold';
-    src:url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
-}
-*/
+@import url(http://fonts.googleapis.com/css?family=Fira+Sans:400,700,400italic,700italic&subset=latin,greek);
 body{
     font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 }
 #login{
-    width:250px;
+    width:300px;
+    padding:5% 0 0;
 }
 .login h1{
     display:none;
-}
-.login h1 a{
-    /*background-image:url("/favicon.ico");*/
-    /*background-size:170px;*/
-    /*height:170px;*/
-    /*width:auto;*/
 }
 .login form input,
 .login form input:active,
@@ -75,6 +60,7 @@ body{
     text-align:center;
     text-decoration:none;
     font-size:13px;
+    cursor:pointer;
 }
 #login form p.submit input[type="submit"]:hover{
     background-color:#1d1c1c;

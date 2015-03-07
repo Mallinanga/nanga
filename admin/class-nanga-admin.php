@@ -9,6 +9,10 @@ class Nanga_Admin {
         $this->version = $version;
     }
 
+    public function disable_shake() {
+        remove_action( 'login_head', 'wp_shake_js', 12 );
+    }
+
     public function admin_post_thumbnail_html( $html ) {
         global $content_width;
 
@@ -40,7 +44,8 @@ class Nanga_Admin {
     }
 
     public function login_errors( $error ) {
-        return '<strong>ERROR: ' . __( 'Try again...', 'vg' ) . '</strong>';
+        //return '<strong>ERROR: ' . __( 'Try again...', 'vg' ) . '</strong>';
+        return $error;
     }
 
     public function plugin_settings_menu() {
@@ -149,15 +154,11 @@ class Nanga_Admin {
         wp_register_style( 'dashicons', false );
         wp_deregister_style( 'buttons' );
         wp_register_style( 'buttons', false );
-        //wp_deregister_style( 'login' );
-        //wp_register_style( 'login', false );
     }
 
     public function enqueue_login_styles() {
         wp_register_style( $this->nanga . '-login', plugin_dir_url( __FILE__ ) . 'css/nanga-login.css', array(), $this->version, 'all' );
         wp_print_styles( $this->nanga . '-login' );
-        //wp_register_style( $this->nanga . '-login-style', get_template_directory_uri() . '/assets/css/app.css', array(), $this->version, 'all' );
-        //wp_print_styles( $this->nanga . '-login-style' );
     }
 
     public function enqueue_password_hash() {
@@ -174,6 +175,7 @@ class Nanga_Admin {
     }
 
     public function enqueue_scripts( $hook ) {
+        echo '<script> WebFontConfig = {classes: false, google: {families: [\'Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic:latin,greek\']}}; (function () { var s; var wf = document.createElement(\'script\'); wf.src = (\'https:\' == document.location.protocol ? \'https\' : \'http\') + \'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js\'; wf.type = \'text/javascript\'; wf.async = \'true\'; s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(wf, s); })(); </script>';
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-admin.js', array( 'jquery' ), $this->version, true );
         wp_localize_script( $this->nanga, $this->nanga, array(
             'locale'       => get_locale(),
@@ -470,7 +472,9 @@ class Nanga_Admin {
     }
 
     public function all_options_page() {
-        //add_submenu_page( 'nanga-settings.php', 'Debug Settings', 'Debug Settings', 'manage_options', 'options.php' );
+        if ( current_theme_supports( 'nanga-settings' ) ) {
+            add_submenu_page( 'options-general.php', 'WP Options', 'WP Options', 'manage_options', 'options.php' );
+        }
     }
 
     public function columns_users( $columns ) {

@@ -1,19 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,greek);
-/*
-@font-face{
-    font-family:"FS Albert Pro Web";
-    src:url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
-}
-@font-face{
-    font-family:"FS Albert Pro Web Bold";
-    src:url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
-}
-*/
 body{
     font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
-}
-strong{
-    /*font-family:"FS Albert Pro Web Bold";*/
 }
 a:active,
 a:focus{
@@ -26,7 +12,6 @@ a:focus{
     display:none;
 }
 [for="wp_welcome_panel-hide"]{
-    /*display:none !important;*/
 }
 #icl_div .icl_cyan_box{
     display:none !important;
@@ -57,10 +42,8 @@ a:focus{
     content:'\f488';
 }
 .tablenav .bulkactions{
-    /*padding:0;*/
 }
 .tablenav .alignleft.actions{
-    /*display:none;*/
 }
 .js .postbox .hndle,
 .js .widget .widget-top{

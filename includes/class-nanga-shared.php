@@ -19,7 +19,6 @@ class Nanga_Shared {
         add_filter( 'the_generator', '__return_false' );
         add_filter( 'use_default_gallery_style', '__return_false' );
         add_filter( 'widget_text', 'do_shortcode' );
-        remove_action( 'login_head', 'wp_shake_js', 12 );
         remove_action( 'set_comment_cookies', 'wp_set_comment_cookies' );
         remove_action( 'welcome_panel', 'wp_welcome_panel' );
         remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
@@ -365,16 +364,11 @@ class Nanga_Shared {
     public function features_yoast_seo() {
         if ( class_exists( 'WPSEO_Frontend' ) ) {
             add_filter( 'wpseo_use_page_analysis', '__return_false' );
+            //add_filter( 'wpseo_bulk_edit_roles', function ( $roles ) { return array( 'administrator' ); }, 999999 );
             add_action( 'admin_init', function () {
                 global $wpseo_admin;
-                remove_action( 'show_user_profile', array(
-                    $wpseo_admin,
-                    'user_profile'
-                ) );
-                remove_action( 'edit_user_profile', array(
-                    $wpseo_admin,
-                    'user_profile'
-                ) );
+                remove_action( 'show_user_profile', array( $wpseo_admin, 'user_profile' ) );
+                remove_action( 'edit_user_profile', array( $wpseo_admin, 'user_profile' ) );
             } );
         }
     }

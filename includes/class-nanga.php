@@ -112,6 +112,8 @@ class Nanga {
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
         $this->loader->add_filter( 'page_row_actions', $plugin_admin, 'row_actions', 10, 2 );
         $this->loader->add_filter( 'post_row_actions', $plugin_admin, 'row_actions', 10, 2 );
+        /* Disable shake from login screens */
+        $this->loader->add_action( 'login_head', $plugin_admin, 'disable_shake' );
         //$this->loader->add_filter( 'posts_fields', $plugin_admin, 'limit_post_fields', 0, 2 );
         $this->loader->add_filter( 'update_footer', $plugin_admin, 'footer_right', 999 );
         $this->loader->add_filter( 'upload_mimes', $plugin_admin, 'mime_types' );
