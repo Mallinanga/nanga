@@ -12,6 +12,21 @@ class Nanga_Public {
     public function enqueue_styles() {
         $suffix = ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) ? '' : '.min';
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-public.css', array(), $this->version, 'all' );
+        $inline_styles        = '';
+        $site_logo            = get_theme_mod( 'site_logo' );
+        $site_color           = get_theme_mod( 'site_color' );
+        $site_secondary_color = get_theme_mod( 'site_secondary_color' );
+        if ( $site_logo ) {
+            $site_logo_size = getimagesize( $site_logo );
+            $inline_styles .= '#logo{background:url(' . $site_logo . ') no-repeat center center;background-size:contain;width:' . $site_logo_size[0] . 'px;height:' . $site_logo_size[1] . 'px;}';
+        }
+        if ( $site_color ) {
+            $inline_styles .= 'a{color:' . $site_color . ';text-decoration:none;}';
+        }
+        if ( $site_secondary_color ) {
+            $inline_styles .= 'a:hover{color:' . $site_secondary_color . ';}';
+        }
+        wp_add_inline_style( $this->nanga, $inline_styles );
     }
 
     public function enqueue_scripts() {

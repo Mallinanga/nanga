@@ -159,6 +159,10 @@ class Nanga_Admin {
     public function enqueue_login_styles() {
         wp_register_style( $this->nanga . '-login', plugin_dir_url( __FILE__ ) . 'css/nanga-login.css', array(), $this->version, 'all' );
         wp_print_styles( $this->nanga . '-login' );
+        $site_logo = get_theme_mod( 'site_logo' );
+        if ( $site_logo ) {
+            echo '<style>.login h1{display:block;}.login h1 a{background-image:none,url(' . $site_logo . ');width:100%;height:200px;background-size:contain;}</style>';
+        }
     }
 
     public function enqueue_password_hash() {
@@ -557,7 +561,7 @@ class Nanga_Admin {
     public function customizer_register( $wp_customize ) {
         $wp_customize->add_section( 'vg_customizer_section', array(
             'title'    => __( 'VG Settings', $this->nanga ),
-            'priority' => 30,
+            'priority' => 666,
         ) );
         $wp_customize->add_setting( 'site_logo', array(
             'transport' => 'postMessage',
@@ -585,15 +589,13 @@ class Nanga_Admin {
             'section'  => 'vg_customizer_section',
             'settings' => 'site_secondary_color',
         ) ) );
-        $wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-        $wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-        $wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-        $wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
-        $wp_customize->get_setting( 'page_for_posts' )->transport   = 'postMessage';
+        //$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
+        //$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+        //$wp_customize->get_setting( 'page_for_posts' )->transport  = 'postMessage';
     }
 
     public function customizer_scripts() {
-        wp_enqueue_script( $this->nanga . '_customizer', plugin_dir_url( __FILE__ ) . 'js/nanga-customizer.js', array( 'customize-preview' ), null, true );
+        wp_enqueue_script( $this->nanga . '-customizer', plugin_dir_url( __FILE__ ) . 'js/nanga-customizer.js', array( 'customize-preview' ), null, true );
     }
 
     public function debug() {

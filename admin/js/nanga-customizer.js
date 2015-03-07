@@ -9,20 +9,19 @@
             $('.site-description').text(to);
         });
     });
-    wp.customize('header_textcolor', function (value) {
+    wp.customize('site_color', function (value) {
         value.bind(function (to) {
-            if ('blank' === to) {
-                $('.site-title, .site-description').css({
-                    'clip': 'rect(1px, 1px, 1px, 1px)',
-                    'position': 'absolute'
-                });
-            } else {
-                $('.site-title, .site-description').css({
-                    'clip': 'auto',
-                    'color': to,
-                    'position': 'relative'
-                });
-            }
+            $('a').css({
+                'color': to,
+                'text-decoration': 'none'
+            });
+        });
+    });
+    wp.customize('site_secondary_color', function (value) {
+        value.bind(function (to) {
+            $('a:hover').css({
+                'color': to
+            });
         });
     });
 })(jQuery);
