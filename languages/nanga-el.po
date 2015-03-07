@@ -1,0 +1,252 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: VG web things\n"
+"POT-Creation-Date: 2015-03-07 20:45+0200\n"
+"PO-Revision-Date: 2015-03-07 20:45+0200\n"
+"Last-Translator: \n"
+"Language-Team: VG web things <info@vgwebthings.com>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: includes/nanga-extras.php\n"
+
+#: admin/class-nanga-admin.php:19
+msgid ""
+"<p>Click above to add an image to be displayed at the top of the content."
+"<br><strong>The width of the image should be "
+msgstr ""
+
+#: admin/class-nanga-admin.php:42
+#, php-format
+msgid "Please insert a valid Google Analytics UA Code in %1$s."
+msgstr "Παρακαλώ εισάγετε έναν έγκυρο κώδικα του Google Analytics στις %1$s."
+
+#: admin/class-nanga-admin.php:53 admin/partials/nanga-settings-page.php:2
+msgid "The Settings"
+msgstr "Οι Ρυθμίσεις"
+
+#: admin/class-nanga-admin.php:195
+msgid ""
+"Thank you! Your request has been sent. We will get back at you as soon as "
+"possible."
+msgstr ""
+"Ευχαριστούμε! Το αίτημά σας εστάλη. Θα επικοινωνήσουμε μαζί σας το "
+"συντομότερο δυνατό."
+
+#: admin/class-nanga-admin.php:196
+msgid "Oops! Something went wrong and we couldn't send your message."
+msgstr "Ωχ! Κάτι πήγε στραβά και δεν μπορέσαμε να στείλουμε το μήνυμά σας."
+
+#: admin/class-nanga-admin.php:202 admin/class-nanga-admin.php:274
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: admin/class-nanga-admin.php:273
+msgid "General Settings"
+msgstr "Γενικές Ρυθμίσεις"
+
+#: admin/class-nanga-admin.php:281 admin/class-nanga-admin.php:282
+msgid "Advanced Settings"
+msgstr "Προχωρημένες ρυθμίσεις"
+
+#: admin/class-nanga-admin.php:294
+msgid "Logout"
+msgstr "Αποσύνδεση"
+
+#: admin/class-nanga-admin.php:300
+msgid "Get Support"
+msgstr "Λάβετε υποστήριξη"
+
+#: admin/class-nanga-admin.php:306
+msgid "Email Support"
+msgstr "Υποστήριξη μέσω ηλεκτρονικού ταχυδρομείου"
+
+#: admin/class-nanga-admin.php:313
+msgid "Create Support Request"
+msgstr "Δημιουργήστε αίτημα υποστήριξης"
+
+#: admin/class-nanga-admin.php:330
+msgid "Analytics"
+msgstr "Στατιστικά"
+
+#: admin/class-nanga-admin.php:347
+msgid "Tools"
+msgstr "Εργαλεία"
+
+#: admin/class-nanga-admin.php:360
+msgid "View Public Side of the Site"
+msgstr "Δημόσια προβολή του ιστότοπου"
+
+#: admin/class-nanga-admin.php:563
+msgid "VG Settings"
+msgstr "VG Ρυθμίσεις"
+
+#: admin/class-nanga-admin.php:578
+msgid "Site Logo"
+msgstr "Λογότυπο"
+
+#: admin/class-nanga-admin.php:583
+msgid "Site Main Color"
+msgstr "Κύριο χρώμα του site"
+
+#: admin/class-nanga-admin.php:588
+msgid "Site Secondary Color"
+msgstr "Δευτεροβάθμιο χρώμα"
+
+#: admin/class-nanga-admin.php:663
+msgid "Photo License"
+msgstr "Δικαιώματα Φωτογραφίας"
+
+#: admin/class-nanga-admin.php:678
+msgid "Create a Support Request"
+msgstr "Δημιουργήστε ένα αίτημα υποστήριξης"
+
+#: admin/class-nanga-admin.php:683
+msgid "Your email"
+msgstr "Το email σας"
+
+#: admin/class-nanga-admin.php:683
+msgid "Your name"
+msgstr "Το όνομά σας"
+
+#: admin/class-nanga-admin.php:683
+msgid "Your message"
+msgstr "Το μήνυμά σας"
+
+#: admin/class-nanga-admin.php:683
+msgid "Send Support Request"
+msgstr "Στείλτε αίτημα υποστήριξης"
+
+#: admin/class-nanga-admin.php:744
+msgid "Install Required Plugins"
+msgstr "Εγκατάσταση Plugins"
+
+#: admin/class-nanga-admin.php:745
+msgid "Install Plugins"
+msgstr "Εγκατάσταση Plugins"
+
+#: admin/class-nanga-admin.php:746
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr "Εγκατάσταση Plugin: %s"
+
+#: admin/class-nanga-admin.php:748
+#, php-format
+msgid "This plugin requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:749
+#, php-format
+msgid "This plugin recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:750
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to install the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"installed."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to install the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:751
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:752
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:753
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugin. Contact the administrator of this site for help on getting the "
+"plugin activated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to activate the %s "
+"plugins. Contact the administrator of this site for help on getting the "
+"plugins activated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:754
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:755
+#, php-format
+msgid ""
+"Sorry, but you do not have the correct permissions to update the %s plugin. "
+"Contact the administrator of this site for help on getting the plugin "
+"updated."
+msgid_plural ""
+"Sorry, but you do not have the correct permissions to update the %s plugins. "
+"Contact the administrator of this site for help on getting the plugins "
+"updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:756
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] "Ξεκινήστε την εγκατάσταση του plugin"
+msgstr[1] ""
+
+#: admin/class-nanga-admin.php:757
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] "Αρχίστε την ενεργοποίηση plugin"
+msgstr[1] ""
+
+#: includes/class-nanga-shared.php:224
+msgid "Primary Menu"
+msgstr "﻿Κύριο μενού"
+
+#: includes/class-nanga-shared.php:225
+msgid "Footer Menu"
+msgstr "Δευτερεύον μενού"
+
+#: public/class-nanga-public.php:104
+msgid "View"
+msgstr "Προβολή"
+
+#: public/class-nanga-public.php:204
+msgid "Your comment"
+msgstr "Το σχόλιό σας"
+
+#: public/class-nanga-public.php:210
+msgid "Cancel"
+msgstr "Ακύρωση"
