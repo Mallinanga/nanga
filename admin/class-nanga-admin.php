@@ -270,16 +270,16 @@ class Nanga_Admin {
     public function settings_page() {
         if ( function_exists( 'acf_add_options_page' ) ) {
             acf_add_options_page( array(
-                'page_title' => 'General Settings',
-                'menu_title' => 'Settings',
+                'page_title' => __( 'General Settings', $this->nanga ),
+                'menu_title' => __( 'Settings', $this->nanga ),
                 'menu_slug'  => 'general-settings',
                 'redirect'   => false,
                 'position'   => false,
                 'icon_url'   => 'dashicons-forms'
             ) );
             acf_add_options_sub_page( array(
-                'page_title'  => 'Advanced Settings',
-                'menu_title'  => 'Advanced Settings',
+                'page_title'  => __( 'Advanced Settings', $this->nanga ),
+                'menu_title'  => __( 'Advanced Settings', $this->nanga ),
                 'menu_slug'   => 'advanced-settings',
                 'parent_slug' => 'general-settings',
                 'capability'  => 'manage_options'
@@ -680,7 +680,7 @@ class Nanga_Admin {
     }
 
     public function support_request_form() {
-        echo '<div class="support-request-container vg-container"> <div class="support-request-container__messages"></div> <form id="support-request-form" accept-charset="UTF-8" action="https://formkeep.com/f/36041913c4c7" method="POST"><input type="hidden" name="utf8" value="✓"> <p><input type="email" name="email" placeholder="Your email" value="' . get_the_author_meta( 'user_email', get_current_user_id() ) . '" class="widefat" required></p> <p><input type="text" name="name" placeholder="Your name" value="' . get_the_author_meta( 'display_name', get_current_user_id() ) . '" class="widefat" required></p> <p><textarea name="message" placeholder="Your message" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . get_site_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="Send Support Request"> </form> </div>';
+        echo '<div class="support-request-container vg-container"> <div class="support-request-container__messages"></div> <form id="support-request-form" accept-charset="UTF-8" action="https://formkeep.com/f/36041913c4c7" method="POST"><input type="hidden" name="utf8" value="✓"> <p><input type="email" name="email" placeholder="' . __( 'Your email', $this->nanga ) . '" value="' . get_the_author_meta( 'user_email', get_current_user_id() ) . '" class="widefat" required></p> <p><input type="text" name="name" placeholder="' . __( 'Your name', $this->nanga ) . '" value="' . get_the_author_meta( 'display_name', get_current_user_id() ) . '" class="widefat" required></p> <p><textarea name="message" placeholder="' . __( 'Your message', $this->nanga ) . '" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . get_site_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="' . __( 'Send Support Request', $this->nanga ) . '"> </form> </div>';
     }
 
     public function required_plugins() {
@@ -741,9 +741,9 @@ class Nanga_Admin {
             'is_automatic' => true,
             'message'      => false,
             'strings'      => array(
-                'page_title'                      => 'Install Required Plugins',
-                'menu_title'                      => 'Install Plugins',
-                'installing'                      => 'Installing Plugin: %s',
+                'page_title'                      => __( 'Install Required Plugins', $this->nanga ),
+                'menu_title'                      => __( 'Install Plugins', $this->nanga ),
+                'installing'                      => __( 'Installing Plugin: %s', $this->nanga ),
                 'oops'                            => 'Something went wrong with the Plugin API.',
                 'notice_can_install_required'     => _n_noop( 'This plugin requires the following plugin: %1$s.', 'This theme requires the following plugins: %1$s.' ),
                 'notice_can_install_recommended'  => _n_noop( 'This plugin recommends the following plugin: %1$s.', 'This theme recommends the following plugins: %1$s.' ),
