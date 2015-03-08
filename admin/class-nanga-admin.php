@@ -668,6 +668,14 @@ class Nanga_Admin {
         return $actions;
     }
 
+    public function default_editor() {
+        if ( current_user_can( 'manage_options' ) ) {
+            return 'html';
+        }
+
+        return 'tinymce';
+    }
+
     public function image_license_field( $form_fields, $post ) {
         $field_value            = get_post_meta( $post->ID, 'license', true );
         $form_fields['license'] = array(
