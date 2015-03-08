@@ -11,6 +11,8 @@ class Nanga_Public {
 
     public function enqueue_styles() {
         $suffix = ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) ? '' : '.min';
+        wp_deregister_style( 'open-sans' );
+        wp_register_style( 'open-sans', false );
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-public.css', array(), $this->version, 'all' );
         $inline_styles        = '';
         $site_logo            = get_theme_mod( 'site_logo' );
@@ -18,7 +20,7 @@ class Nanga_Public {
         $site_secondary_color = get_theme_mod( 'site_secondary_color' );
         if ( $site_logo ) {
             $site_logo_size = getimagesize( $site_logo );
-            $inline_styles .= '#logo{background:url(' . $site_logo . ') no-repeat center center;background-size:contain;width:' . $site_logo_size[0] . 'px;height:' . $site_logo_size[1] . 'px;}';
+            $inline_styles .= '#logo{background:url(' . $site_logo . ') no-repeat center center;background-size:contain;width:' . $site_logo_size[0] . 'px;height:' . $site_logo_size[1] . 'px;display:inline-block;}';
         }
         if ( $site_color ) {
             $inline_styles .= 'a{color:' . $site_color . ';text-decoration:none;}';
@@ -112,12 +114,14 @@ class Nanga_Public {
     }
 
     public function analytics() {
-        $google_analytics_ua = get_field( 'vg_google_analytics', 'options' );
-        if ( ! empty( $google_analytics_ua ) && get_option( 'blog_public' ) ) {
-            echo '<script type="text/javascript">var _gaq = _gaq || []; _gaq.push([\'_setAccount\', \'' . $google_analytics_ua . '\']); _gaq.push([\'_trackPageview\']); (function () { var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true; ga.src = (\'https:\' == document.location.protocol ? \'https://ssl\' : \'http://www\') + \'.google-analytics.com/ga.js\'; var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s); })();</script>';
-        }
-        if ( get_field( 'vg_google_analytics_events', 'options', true ) ) {
-            echo '<script type="text/javascript">(function (tos) { window.setInterval(function () { tos = (function (t) { return t[0] == 50 ? (parseInt(t[1]) + 1) + \':00\' : (t[1] || \'0\') + \':\' + (parseInt(t[0]) + 10); })(tos.split(\':\').reverse()); window.pageTracker ? pageTracker._trackEvent(\'Time\', \'Log\', tos) : _gaq.push([\'_trackEvent\', \'Time\', \'Log\', tos]); }, 10000); })(\'00\');</script>';
+        if ( ! current_user_can( 'manage_options' ) ) {
+            $google_analytics_ua = get_field( 'vg_google_analytics', 'options' );
+            if ( ! empty( $google_analytics_ua ) && get_option( 'blog_public' ) ) {
+                echo '<script type="text/javascript">var _gaq = _gaq || []; _gaq.push([\'_setAccount\', \'' . $google_analytics_ua . '\']); _gaq.push([\'_trackPageview\']); (function () { var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true; ga.src = (\'https:\' == document.location.protocol ? \'https://ssl\' : \'http://www\') + \'.google-analytics.com/ga.js\'; var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s); })();</script>';
+            }
+            if ( get_field( 'vg_google_analytics_events', 'options', true ) ) {
+                echo '<script type="text/javascript">(function (tos) { window.setInterval(function () { tos = (function (t) { return t[0] == 50 ? (parseInt(t[1]) + 1) + \':00\' : (t[1] || \'0\') + \':\' + (parseInt(t[0]) + 10); })(tos.split(\':\').reverse()); window.pageTracker ? pageTracker._trackEvent(\'Time\', \'Log\', tos) : _gaq.push([\'_trackEvent\', \'Time\', \'Log\', tos]); }, 10000); })(\'00\');</script>';
+            }
         }
     }
 
@@ -220,7 +224,12 @@ class Nanga_Public {
         }
     }
 
-    //@todo
+    public function disable_adminbar() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            show_admin_bar( false );
+        }
+    }
+
     public function change_locale_on_the_fly( $locale ) {
         if ( isset( $_GET['language'] ) && 'el' == $_GET['language'] ) {
             return 'el';

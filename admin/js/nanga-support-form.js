@@ -5,21 +5,6 @@
         var form;
         form = $('#support-request-form');
         formMessages = $('.support-request-container__messages');
-        /*
-        @todo
-        $.ajax({
-            type: 'GET',
-            url: ''
-        }).done(function (data) {
-            var items;
-            items = [];
-            $.each(data, function (key, val) {
-                console.log(val);
-                items.push("<div id='support-request-no" + key + "'>" + val.post_title + "</div>");
-            });
-            formMessages.append(items);
-        });
-        */
         $(form).submit(function (event) {
             var container;
             var formData;

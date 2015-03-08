@@ -236,19 +236,19 @@ class Nanga_Admin {
     }
 
     public function disable_widgets() {
-        //unregister_widget( 'WP_Nav_Menu_Widget' );
-        //unregister_widget( 'WP_Widget_Archives' );
-        //unregister_widget( 'WP_Widget_Calendar' );
-        //unregister_widget( 'WP_Widget_Categories' );
-        //unregister_widget( 'WP_Widget_Links' );
-        //unregister_widget( 'WP_Widget_Pages' );
-        //unregister_widget( 'WP_Widget_Recent_Comments' );
-        //unregister_widget( 'WP_Widget_Recent_Posts' );
-        //unregister_widget( 'WP_Widget_Search' );
-        //unregister_widget( 'WP_Widget_Tag_Cloud' );
-        //unregister_widget( 'WP_Widget_Text' );
+        unregister_widget( 'WP_Nav_Menu_Widget' );
+        unregister_widget( 'WP_Widget_Archives' );
+        unregister_widget( 'WP_Widget_Calendar' );
+        unregister_widget( 'WP_Widget_Categories' );
+        unregister_widget( 'WP_Widget_Links' );
         unregister_widget( 'WP_Widget_Meta' );
+        unregister_widget( 'WP_Widget_Pages' );
+        unregister_widget( 'WP_Widget_Recent_Comments' );
+        unregister_widget( 'WP_Widget_Recent_Posts' );
         unregister_widget( 'WP_Widget_RSS' );
+        unregister_widget( 'WP_Widget_Search' );
+        unregister_widget( 'WP_Widget_Tag_Cloud' );
+        unregister_widget( 'WP_Widget_Text' );
     }
 
     public function force_dashboard_locale( $locale ) {
@@ -288,78 +288,90 @@ class Nanga_Admin {
     }
 
     public function admin_bar( $wp_toolbar ) {
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_comments_menu', 60 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_edit_menu', 80 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_my_account_item', 7 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_my_account_menu', 0 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_new_content_menu', 70 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_search_menu', 0 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_search_menu', 4 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_site_menu', 30 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_updates_menu', 40 );
+        remove_action( 'admin_bar_menu', 'wp_admin_bar_wp_menu', 10 );
         $wp_toolbar->add_node( array(
             'id'     => 'nanga-logout',
             'parent' => 'top-secondary',
             'title'  => __( 'Logout', $this->nanga ),
             'href'   => wp_logout_url(),
         ) );
-        $wp_toolbar->add_node( array(
-            'id'     => 'get-help',
-            'parent' => 'top-secondary',
-            'title'  => __( 'Get Support', $this->nanga ),
-        ) );
-        $wp_toolbar->add_node( array(
-            'href'   => 'mailto:info@vgwebthings.com?subject=Support%20Request',
-            'id'     => 'get-support',
-            'parent' => 'get-help',
-            'title'  => __( 'Email Support', $this->nanga ),
-        ) );
-        if ( current_theme_supports( 'nanga-support-request' ) ) {
+        if ( is_admin() ) {
             $wp_toolbar->add_node( array(
-                'href'   => get_admin_url(),
-                'id'     => 'get-support-request',
-                'parent' => 'get-help',
-                'title'  => __( 'Create Support Request', $this->nanga ),
-            ) );
-        }
-        $links = array(
-            'Google Analytics'  => 'https://www.google.com/analytics/',
-            'Webmaster Tools'   => 'https://www.google.com/webmasters/tools/dashboard?hl=en&siteUrl=' . get_site_url(),
-            'Twitter Reactions' => 'https://twitter.com/search?q=' . $_SERVER['SERVER_NAME'],
-        );
-        if ( current_theme_supports( 'nanga-analytics' ) ) {
-            $analytics_page = admin_url( 'index.php?page=nanga-google-analytics-dashboard' );
-        } else {
-            $analytics_page = false;
-        }
-        $wp_toolbar->add_menu( array(
-            'href'   => $analytics_page,
-            'id'     => 'nanga-links',
-            'parent' => 'top-secondary',
-            'title'  => __( 'Analytics', $this->nanga ),
-        ) );
-        $count = 1;
-        foreach ( $links as $label => $url ) {
-            $wp_toolbar->add_node( array(
-                'href'   => $url,
-                'id'     => 'nanga-link_' . $count ++,
-                'meta'   => array( 'target' => '_blank' ),
-                'parent' => 'nanga-links',
-                'title'  => $label,
-            ) );
-        }
-        if ( current_user_can( 'manage_options' ) ) {
-            $wp_toolbar->add_menu( array(
-                'href'   => false,
-                'id'     => 'nanga-tools',
+                'id'     => 'get-help',
                 'parent' => 'top-secondary',
-                'title'  => __( 'Tools', $this->nanga ),
+                'title'  => __( 'Get Support', $this->nanga ),
+            ) );
+            $wp_toolbar->add_node( array(
+                'href'   => 'mailto:info@vgwebthings.com?subject=Support%20Request',
+                'id'     => 'get-support',
+                'parent' => 'get-help',
+                'title'  => __( 'Email Support', $this->nanga ),
+            ) );
+            if ( current_theme_supports( 'nanga-support-request' ) ) {
+                $wp_toolbar->add_node( array(
+                    'href'   => get_admin_url(),
+                    'id'     => 'get-support-request',
+                    'parent' => 'get-help',
+                    'title'  => __( 'Create Support Request', $this->nanga ),
+                ) );
+            }
+            $links = array(
+                'Google Analytics'  => 'https://www.google.com/analytics/',
+                'Webmaster Tools'   => 'https://www.google.com/webmasters/tools/dashboard?hl=en&siteUrl=' . get_site_url(),
+                'Twitter Reactions' => 'https://twitter.com/search?q=' . $_SERVER['SERVER_NAME'],
+            );
+            if ( current_theme_supports( 'nanga-analytics' ) ) {
+                $analytics_page = admin_url( 'index.php?page=nanga-google-analytics-dashboard' );
+            } else {
+                $analytics_page = false;
+            }
+            $wp_toolbar->add_menu( array(
+                'href'   => $analytics_page,
+                'id'     => 'nanga-links',
+                'parent' => 'top-secondary',
+                'title'  => __( 'Analytics', $this->nanga ),
+            ) );
+            $count = 1;
+            foreach ( $links as $label => $url ) {
+                $wp_toolbar->add_node( array(
+                    'href'   => $url,
+                    'id'     => 'nanga-link_' . $count ++,
+                    'meta'   => array( 'target' => '_blank' ),
+                    'parent' => 'nanga-links',
+                    'title'  => $label,
+                ) );
+            }
+            if ( current_user_can( 'manage_options' ) ) {
+                $wp_toolbar->add_menu( array(
+                    'href'   => false,
+                    'id'     => 'nanga-tools',
+                    'parent' => 'top-secondary',
+                    'title'  => __( 'Tools', $this->nanga ),
+                ) );
+            }
+            /*
+            $wp_toolbar->add_node( array(
+                'id'    => 'site-name',
+                'title' => false,
+                'meta'  => array( 'target' => '_blank' )
+            ) );
+            */
+            $wp_toolbar->add_node( array(
+                'id'    => 'nanga-visit-site',
+                'href'  => get_site_url(),
+                'title' => __( 'View Public Side of the Site', $this->nanga ),
+                'meta'  => array( 'target' => '_blank' )
             ) );
         }
-        /*
-        $wp_toolbar->add_node( array(
-            'id'    => 'site-name',
-            'title' => false,
-            'meta'  => array( 'target' => '_blank' )
-        ) );
-        */
-        $wp_toolbar->add_node( array(
-            'id'    => 'nanga-visit-site',
-            'href'  => get_site_url(),
-            'title' => __( 'View Public Side of the Site', $this->nanga ),
-            'meta'  => array( 'target' => '_blank' )
-        ) );
         $wp_toolbar->remove_node( 'about' );
         $wp_toolbar->remove_node( 'appearance' );
         $wp_toolbar->remove_node( 'comments' );
@@ -713,24 +725,11 @@ class Nanga_Admin {
                 'force_activation' => false,
             ),
             array(
-                'name'             => 'Help',
-                'slug'             => 'wp-help',
-                'required'         => false,
-                'force_activation' => false,
-            ),
-            array(
                 'name'             => 'Jigsaw',
                 'slug'             => 'jigsaw',
                 'required'         => true,
                 'force_activation' => true,
             ),
-            array(
-                'name'               => 'SEO Yoast',
-                'slug'               => 'wordpress-seo',
-                'required'           => false,
-                'force_activation'   => false,
-                'force_deactivation' => false
-            )
         );
         $config  = array(
             'default_path' => '',

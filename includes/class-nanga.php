@@ -95,7 +95,6 @@ class Nanga {
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'disable_menus', 999 );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'plugin_settings_menu' );
         $this->loader->add_action( 'after_setup_theme', $plugin_admin, 'add_editor_style' );
-        $this->loader->add_action( 'edit_attachment', $plugin_admin, 'image_license_save' );
         $this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_login_styles' );
         $this->loader->add_action( 'login_init', $plugin_admin, 'dequeue_login_styles' );
         $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'jigsaw' );
@@ -105,7 +104,6 @@ class Nanga {
         $this->loader->add_action( 'wp_ajax_clear_debug_log', $plugin_admin, 'clear_debug_log' );
         $this->loader->add_action( 'wp_dashboard_setup', $plugin_admin, 'disable_metaboxes' );
         $this->loader->add_filter( 'acf/settings/show_admin', $plugin_admin, 'acf_settings_show_admin' );
-        $this->loader->add_filter( 'attachment_fields_to_edit', $plugin_admin, 'image_license_field', 10, 2 );
         $this->loader->add_filter( 'jpeg_quality', $plugin_admin, 'image_quality' );
         $this->loader->add_filter( 'login_errors', $plugin_admin, 'login_errors' );
         $this->loader->add_filter( 'login_headertitle', $plugin_admin, 'login_headertitle' );
@@ -113,6 +111,9 @@ class Nanga {
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
         $this->loader->add_filter( 'page_row_actions', $plugin_admin, 'row_actions', 10, 2 );
         $this->loader->add_filter( 'post_row_actions', $plugin_admin, 'row_actions', 10, 2 );
+        /* Image license */
+        //$this->loader->add_action( 'edit_attachment', $plugin_admin, 'image_license_save' );
+        //$this->loader->add_filter( 'attachment_fields_to_edit', $plugin_admin, 'image_license_field', 10, 2 );
         /* Disable shake from login screens */
         $this->loader->add_action( 'login_head', $plugin_admin, 'disable_shake' );
         //$this->loader->add_filter( 'posts_fields', $plugin_admin, 'limit_post_fields', 0, 2 );

@@ -32,6 +32,7 @@ a:focus{
 #wpadminbar #wp-admin-bar-nanga-links > .ab-item:before{
     content:'\f239';
 }
+#wpadminbar #wp-admin-bar-logout > .ab-item:before,
 #wpadminbar #wp-admin-bar-nanga-logout > .ab-item:before{
     content:'\f160';
 }

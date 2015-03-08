@@ -1,1 +1,7 @@
 /*@import url('//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css');*/
+.jp-carousel-wrap{
+    overflow-y:hidden !important;
+}
+.jp-carousel-image-meta{
+    display:none!important;
+}
