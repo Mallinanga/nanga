@@ -693,6 +693,17 @@ class Nanga_Admin {
         }
     }
 
+    public function force_image_attributes() {
+        $image_link_type = get_option( 'image_default_link_type' );
+        if ( 'none' !== $image_link_type ) {
+            update_option( 'image_default_link_type', 'none' );
+        }
+        $image_align = get_option( 'image_default_align' );
+        if ( 'none' !== $image_align ) {
+            update_option( 'image_default_align', 'none' );
+        }
+    }
+
     public function support_request_widget() {
         if ( current_theme_supports( 'nanga-support-request' ) ) {
             add_meta_box( 'support_request_widget', __( 'Create a Support Request', $this->nanga ), array( $this, 'support_request_form' ), 'dashboard', 'normal', 'low' );

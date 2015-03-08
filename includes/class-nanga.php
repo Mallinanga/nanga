@@ -115,6 +115,8 @@ class Nanga {
         $this->loader->add_filter( 'post_row_actions', $plugin_admin, 'row_actions', 10, 2 );
         /* Default editor depending on user */
         $this->loader->add_filter( 'wp_default_editor', $plugin_admin, 'default_editor' );
+        /* Force image attributes */
+        $this->loader->add_action( 'admin_init', $plugin_admin, 'force_image_attributes' );
         /* Image license */
         //$this->loader->add_action( 'edit_attachment', $plugin_admin, 'image_license_save' );
         //$this->loader->add_filter( 'attachment_fields_to_edit', $plugin_admin, 'image_license_field', 10, 2 );
