@@ -276,6 +276,10 @@ class Nanga_Public {
         }
     }
 
+    public function remove_paragraphs_from_images( $content ) {
+        return preg_replace( '/<p>\s*(<a .*>)?\s*(<img .* \/>)\s*(<\/a>)?\s*<\/p>/iU', '\1\2\3', $content );
+    }
+
     public function change_locale_on_the_fly( $locale ) {
         if ( ! is_admin() ) {
             if ( isset( $_GET['language'] ) ) {

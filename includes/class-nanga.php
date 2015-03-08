@@ -162,6 +162,8 @@ class Nanga {
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
         /* Change locale on the fly */
         $this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
+        /* Remove paragraphs from images in content */
+        $this->loader->add_filter( 'the_content', $plugin_public, 'remove_paragraphs_from_images' );
         /* Random post */
         $this->loader->add_action( 'init', $plugin_public, 'random_post_rewrite' );
         $this->loader->add_action( 'template_redirect', $plugin_public, 'random_post_redirect', 666 );
