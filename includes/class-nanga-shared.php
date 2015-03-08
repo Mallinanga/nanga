@@ -459,5 +459,11 @@ class Nanga_Shared {
         return $query_vars;
     }
 
+    public function robots( $output, $public ) {
+        $output .= "Disallow: /console/\n";
+        $output .= "Disallow: /vendor/\n";
+        $output .= "Disallow: /wp-includes/\n";
+
+        return $output;
     }
 }

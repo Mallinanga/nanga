@@ -57,6 +57,8 @@ class Nanga {
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
         $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
         $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
+        /* Robots */
+        $this->loader->add_filter( 'robots_txt', $plugin_shared, 'robots', 10, 2 );
         /* Disable Trackbacks and Pingbacks */
         $this->loader->add_action( 'xmlrpc_call', $plugin_shared, 'xmlrpc_call' );
         $this->loader->add_filter( 'bloginfo_url', $plugin_shared, 'bloginfo_url', 10, 2 );
