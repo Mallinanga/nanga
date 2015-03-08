@@ -253,6 +253,29 @@ class Nanga_Public {
         }
     }
 
+    public function random_post_rewrite() {
+        add_rewrite_rule( 'random/?$', 'index.php?random=1', 'top' );
+    }
+
+    public function random_post_query_var( $public_query_vars ) {
+        $public_query_vars[] = 'random';
+
+        return $public_query_vars;
+    }
+
+    public function random_post_redirect() {
+        if ( 1 == get_query_var( 'random' ) ) {
+            $random_posts = get_posts( 'post_type=post&orderby=rand&numberposts=1' );
+            if ( $random_posts ) {
+                foreach ( $random_posts as $random_post ) {
+                    $random_post_link = get_permalink( $random_post );
+                }
+                wp_redirect( $random_post_link, 307 );
+                exit;
+            }
+        }
+    }
+
     public function change_locale_on_the_fly( $locale ) {
         if ( ! is_admin() ) {
             if ( isset( $_GET['language'] ) ) {
