@@ -21,7 +21,11 @@ class Nanga_Plugin_Control {
     public function do_disabling( $plugins ) {
         if ( count( $this->disabled ) ) {
             foreach ( (array) $this->disabled as $plugin ) {
-                $key = array_search( $plugin, $plugins );
+                if ( 'option_active_plugins' == current_filter() ) {
+                    $key = array_search( $plugin, $plugins );
+                } else {
+                    $key = ! empty( $plugins[ $plugin ] ) ? $plugin : false;
+                }
                 if ( false !== $key ) {
                     unset( $plugins[ $key ] );
                 }

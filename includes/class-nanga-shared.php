@@ -508,20 +508,5 @@ class Nanga_Shared {
         return $query_vars;
     }
 
-    private function run_plugin_control() {
-        /*
-         * @todo
-         */
-        /*
-        $plugin_control = new Nanga_Plugin_Control( array( 'core-control.php' ) );
-        $plugin_control = new Nanga_Plugin_Control();
-        if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
-            $plugin_control->disable( 'core-control.php' );
-            $plugin_control->disable( 'underConstruction.php' );
-        }
-        if ( defined( 'WP_ENV' ) && 'development' !== WP_ENV ) {
-            $plugin_control->disable( 'core-control.php' );
-        }
-        */
     }
 }
