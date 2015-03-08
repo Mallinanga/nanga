@@ -19,6 +19,7 @@ class Nanga_Shared {
         add_filter( 'the_generator', '__return_false' );
         add_filter( 'use_default_gallery_style', '__return_false' );
         add_filter( 'widget_text', 'do_shortcode' );
+        remove_action( 'init', 'smilies_init', 5 );
         remove_action( 'set_comment_cookies', 'wp_set_comment_cookies' );
         remove_action( 'welcome_panel', 'wp_welcome_panel' );
         remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10 );
@@ -34,8 +35,22 @@ class Nanga_Shared {
         remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
         remove_all_filters( 'comment_flood_filter' );
         remove_filter( 'comment_text', 'capital_P_dangit', 31 );
+        remove_filter( 'comment_text', 'make_clickable', 9 );
+        remove_filter( 'comments_open', '_close_comments_for_old_post', 10, 2 );
+        remove_filter( 'pings_open', '_close_comments_for_old_post', 10, 2 );
+        remove_filter( 'template_redirect', 'redirect_canonical' );
+        remove_filter( 'template_redirect', 'wp_old_slug_redirect' );
+        remove_filter( 'template_redirect', 'wp_redirect_admin_locations', 1000 );
+        remove_filter( 'template_redirect', 'wp_shortlink_header', 11 );
         remove_filter( 'the_content', 'capital_P_dangit', 11 );
+        remove_filter( 'the_content', 'convert_smilies' );
+        remove_filter( 'the_content', 'wptexturize' );
+        remove_filter( 'the_excerpt', 'convert_smilies' );
+        remove_filter( 'the_excerpt', 'wptexturize' );
         remove_filter( 'the_title', 'capital_P_dangit', 11 );
+        remove_filter( 'the_title', 'wptexturize' );
+        remove_filter( 'wp_title', 'capital_P_dangit', 11 );
+        remove_filter( 'wp_title', 'wptexturize' );
     }
 
     private function run_search_visibility() {

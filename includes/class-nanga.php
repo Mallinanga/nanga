@@ -172,6 +172,8 @@ class Nanga {
         $this->loader->add_filter( 'body_class', $plugin_public, 'body_class' );
         $this->loader->add_filter( 'get_image_tag_class', $plugin_public, 'attachment_class', 10, 4 );
         $this->loader->add_filter( 'post_class', $plugin_public, 'post_class', 10, 3 );
+        /* Disable adminbar */
+        $this->loader->add_action( 'after_setup_theme', $plugin_public, 'disable_adminbar' );
         /* Move all scripts to footer */
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'js_to_footer' );
         /* Comment Form */
