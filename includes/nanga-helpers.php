@@ -1,4 +1,115 @@
 <?php
+if ( ! function_exists( 'nanga_paging_nav' ) ) {
+    function nanga_paging_nav() {
+        if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
+            return;
+        }
+        ?>
+        <nav class="navigation paging-navigation" role="navigation">
+            <div class="nav-links">
+                <?php if ( get_next_posts_link() ) : ?>
+                    <div class="nav-previous"><?php next_posts_link( '<span class="meta-nav">&larr;</span>' ); ?></div>
+                <?php endif; ?>
+                <?php if ( get_previous_posts_link() ) : ?>
+                    <div class="nav-next"><?php previous_posts_link( '<span class="meta-nav">&rarr;</span>' ); ?></div>
+                <?php endif; ?>
+            </div>
+        </nav>
+    <?php
+    }
+}
+if ( ! function_exists( 'nanga_post_nav' ) ) {
+    function nanga_post_nav() {
+        $previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
+        $next     = get_adjacent_post( false, '', false );
+        if ( ! $next && ! $previous ) {
+            return;
+        }
+        ?>
+        <nav class="navigation post-navigation" role="navigation">
+            <div class="nav-links">
+                <?php
+                previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'vg' ) );
+                next_post_link( '<div class="nav-next">%link</div>', _x( '%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'vg' ) );
+                ?>
+            </div>
+        </nav>
+    <?php
+    }
+}
+if ( ! function_exists( 'nanga_posted_on' ) ) {
+    function nanga_posted_on() {
+        $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time>';
+        if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+            $time_string .= '<time class="updated" datetime="%3$s">%4$s</time>';
+        }
+        $time_string = sprintf( $time_string, esc_attr( get_the_date( 'c' ) ), esc_html( get_the_date() ), esc_attr( get_the_modified_date( 'c' ) ), esc_html( get_the_modified_date() ) );
+        printf( '<span class="posted-on">%1$s</span><span class="byline">%2$s</span>', sprintf( '<a href="%1$s" rel="bookmark">%2$s</a>', esc_url( get_permalink() ), $time_string ), sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s">%2$s</a></span>', esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ), esc_html( get_the_author() ) ) );
+    }
+}
+if ( ! function_exists( 'nanga_post_tweet_count' ) ) {
+    function nanga_post_tweet_count( $post_id ) {
+        if ( ! ( $count = get_transient( 'nanga_post_tweet_count_' . $post_id ) ) ) {
+            $response = wp_remote_retrieve_body( wp_remote_get( 'https://cdn.api.twitter.com/1/urls/count.json?url=' . urlencode( get_permalink( $post_id ) ) ) );
+            if ( is_wp_error( $response ) ) {
+                return '0';
+            }
+            $json  = json_decode( $response );
+            $count = absint( $json->count );
+            set_transient( 'nanga_post_tweet_count_' . $post_id, absint( $count ), 30 * MINUTE_IN_SECONDS );
+        }
+
+        return absint( $count );
+    }
+}
+if ( ! function_exists( 'nanga_post_like_count' ) ) {
+    function nanga_post_like_count( $post_id ) {
+        if ( ! ( $count = get_transient( 'nanga_post_like_count_' . $post_id ) ) ) {
+            $fql = 'SELECT url, ';
+            //$fql .= 'share_count, like_count, comment_count';
+            $fql .= 'total_count ';
+            $fql .= "FROM link_stat WHERE url = '" . get_permalink( $post_id ) . "'";
+            $response = wp_remote_retrieve_body( wp_remote_get( 'https://api.facebook.com/method/fql.query?format=json&query=' . urlencode( $fql ) ) );
+            if ( is_wp_error( $response ) ) {
+                return '0';
+            }
+            $json  = json_decode( $response );
+            $count = absint( $json[0]->total_count );
+            set_transient( 'nanga_post_like_count_' . $post_id, absint( $count ), 30 * MINUTE_IN_SECONDS );
+        }
+
+        return absint( $count );
+    }
+}
+if ( ! function_exists( 'nanga_post_pageview_count' ) ) {
+    function nanga_post_pageview_count( $post_id ) {
+        if ( ! ( $count = get_transient( 'nanga_post_pageview_count_' . $post_id ) ) ) {
+            if ( function_exists( 'stats_get_csv' ) ) {
+                $response = stats_get_csv( 'postviews', 'post_id=' . $post_id . '&period=month&limit=1' );
+                $count    = absint( $response[0]['views'] );
+            } else {
+                return '0';
+            }
+            set_transient( 'nanga_post_pageview_count_' . $post_id, absint( $count ), 30 * MINUTE_IN_SECONDS );
+        }
+
+        return absint( $count );
+    }
+}
+if ( ! function_exists( 'nanga_post_comment_count' ) ) {
+    function nanga_post_comment_count( $post_id ) {
+        if ( ! ( $count = get_transient( 'nanga_post_comment_count_' . $post_id ) ) ) {
+            if ( comments_open() ) {
+                $count = absint( get_comments_number( $post_id ) );
+            } else {
+                return '0';
+            }
+            set_transient( 'nanga_post_comment_count_' . $post_id, absint( $count ), 30 * MINUTE_IN_SECONDS );
+        }
+
+        return absint( $count );
+    }
+}
 if ( ! function_exists( 'wp_is_mobile_phone' ) ) {
     function wp_is_mobile_phone() {
         $useragent = $_SERVER['HTTP_USER_AGENT'];
@@ -42,5 +153,88 @@ if ( ! function_exists( 'grab_dump' ) ) {
         print_r( $var );
 
         return ob_get_clean();
+    }
+}
+if ( ! function_exists( 'nanga_get_current_url' ) ) {
+    function nanga_get_current_url() {
+        global $wp;
+
+        return home_url( add_query_arg( array(), $wp->request ) );
+    }
+}
+if ( ! function_exists( 'nanga_check_user_role' ) ) {
+    function nanga_check_user_role( $role, $user_id = null ) {
+        if ( is_numeric( $user_id ) ) {
+            $user = get_userdata( $user_id );
+        } else {
+            $user = wp_get_current_user();
+        }
+        if ( empty( $user ) ) {
+            return false;
+        }
+
+        return in_array( $role, (array) $user->roles );
+    }
+}
+if ( ! function_exists( 'nanga_estimated_reading_time' ) ) {
+    function nanga_estimated_reading_time() {
+        $post_object = get_post();
+        $words       = str_word_count( strip_tags( $post_object->post_content ) );
+        $minutes     = floor( $words / 120 );
+        $seconds     = floor( $words % 120 / ( 120 / 60 ) );
+        if ( 1 <= $minutes ) {
+            $estimated_time = $minutes . ' minute' . ( $minutes == 1 ? '' : 's' ) . ', ' . $seconds . ' second' . ( $seconds == 1 ? '' : 's' );
+        } else {
+            $estimated_time = $seconds . ' second' . ( $seconds == 1 ? '' : 's' );
+        }
+
+        return $estimated_time;
+    }
+}
+if ( ! function_exists( 'nanga_related_posts' ) ) {
+    function nanga_related_posts() {
+        global $post;
+        $tags = wp_get_post_tags( $post->ID );
+        if ( $tags ) {
+            $first_tag = $tags[0]->term_id;
+            $my_query  = new WP_Query( array(
+                'tag__in'          => array( $first_tag ),
+                'post__not_in'     => array( $post->ID ),
+                'showposts'        => 5,
+                'caller_get_posts' => 1
+            ) );
+            if ( $my_query->have_posts() ) {
+                echo '<h3>Related Posts</h3>';
+                while ( $my_query->have_posts() ) {
+                    $my_query->the_post();
+                    ?>
+                    <p>
+                        <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+                    </p>
+                <?php
+                }
+                wp_reset_postdata();
+            }
+        }
+    }
+}
+if ( ! function_exists( 'nanga_cache_fragment_output' ) ) {
+    /**
+     * Usage: cache_fragment_output( 'unique-key', 3600, function () { functions_that_do_stuff_live(); these_should_echo(); });
+     *
+     * @param $key
+     * @param $ttl
+     * @param $function
+     */
+    function nanga_cache_fragment_output( $key, $ttl, $function ) {
+        $group  = 'nanga-cache';
+        $output = wp_cache_get( $key, $group );
+        if ( empty( $output ) ) {
+            ob_start();
+            call_user_func( $function );
+            $output = ob_get_clean();
+            wp_cache_add( $key, $output, $group, $ttl );
+        }
+        echo $output;
     }
 }
