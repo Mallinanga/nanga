@@ -231,10 +231,12 @@ class Nanga_Public {
     }
 
     public function change_locale_on_the_fly( $locale ) {
-        if ( isset( $_GET['language'] ) && 'el' == $_GET['language'] ) {
-            return 'el';
-        } else {
-            return $locale;
+        if ( ! is_admin() ) {
+            if ( isset( $_GET['language'] ) ) {
+                return $_GET['language'];
+            } else {
+                return $locale;
+            }
         }
     }
 }

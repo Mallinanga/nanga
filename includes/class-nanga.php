@@ -155,6 +155,8 @@ class Nanga {
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
         $this->loader->add_filter( 'body_class', $plugin_public, 'body_class' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
+        /* Change locale on the fly */
+        $this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
         /* Move all scripts to footer */
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'js_to_footer' );
         /* Comment Form */
@@ -167,7 +169,6 @@ class Nanga {
         //$this->loader->add_action( 'wp_head', $plugin_public, 'customizer_output' );
         //$this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );
         //$this->loader->add_filter( 'get_avatar', $plugin_public, 'remove_self_closing_tags' );
-        //$this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
         //$this->loader->add_filter( 'post_thumbnail_html', $plugin_public, 'remove_self_closing_tags' );
     }
 
