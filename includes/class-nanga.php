@@ -157,10 +157,13 @@ class Nanga {
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
-        $this->loader->add_filter( 'body_class', $plugin_public, 'body_class' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
         /* Change locale on the fly */
         $this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
+        /* Body, Post and Attachment classes */
+        $this->loader->add_filter( 'body_class', $plugin_public, 'body_class' );
+        $this->loader->add_filter( 'get_image_tag_class', $plugin_public, 'attachment_class', 10, 4 );
+        $this->loader->add_filter( 'post_class', $plugin_public, 'post_class', 10, 3 );
         /* Move all scripts to footer */
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'js_to_footer' );
         /* Comment Form */
