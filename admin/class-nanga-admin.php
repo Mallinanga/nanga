@@ -108,12 +108,18 @@ class Nanga_Admin {
                         Jigsaw::show_notice( 'Twig Cache has been <strong>flushed</strong>', 'updated' );
                     }, 'nanga-tools' );
                 }
-                Jigsaw::add_toolbar_item( 'Flush Rewrite Rules', function () {
-                    flush_rewrite_rules();
-                    Jigsaw::show_notice( 'Rewrite Rules have been <strong>flushed</strong>', 'updated' );
+                Jigsaw::add_toolbar_item( 'Clear Update Cache', function () {
+                    if ( function_exists( 'wp_clean_update_cache' ) ) {
+                        wp_clean_update_cache();
+                    }
+                    Jigsaw::show_notice( 'Update Cache has been <strong>flushed</strong>', 'updated' );
                 }, 'nanga-tools' );
                 Jigsaw::add_toolbar_item( 'Force Updates', function () {
                     wp_maybe_auto_update();
+                }, 'nanga-tools' );
+                Jigsaw::add_toolbar_item( 'Flush Rewrite Rules', function () {
+                    flush_rewrite_rules();
+                    Jigsaw::show_notice( 'Rewrite Rules have been <strong>flushed</strong>', 'updated' );
                 }, 'nanga-tools' );
                 $maintenance_status = get_option( 'nanga_maintenance_mode' ) ? 'ON' : 'OFF';
                 Jigsaw::add_toolbar_item( 'Under Construction <strong>' . $maintenance_status . '</strong>', function () {
@@ -298,13 +304,13 @@ class Nanga_Admin {
         remove_action( 'admin_bar_menu', 'wp_admin_bar_site_menu', 30 );
         remove_action( 'admin_bar_menu', 'wp_admin_bar_updates_menu', 40 );
         remove_action( 'admin_bar_menu', 'wp_admin_bar_wp_menu', 10 );
-        $wp_toolbar->add_node( array(
-            'id'     => 'nanga-logout',
-            'parent' => 'top-secondary',
-            'title'  => __( 'Logout', $this->nanga ),
-            'href'   => wp_logout_url(),
-        ) );
         if ( is_admin() ) {
+            $wp_toolbar->add_node( array(
+                'id'     => 'nanga-logout',
+                'parent' => 'top-secondary',
+                'title'  => __( 'Logout', $this->nanga ),
+                'href'   => wp_logout_url(),
+            ) );
             $wp_toolbar->add_node( array(
                 'id'     => 'get-help',
                 'parent' => 'top-secondary',
