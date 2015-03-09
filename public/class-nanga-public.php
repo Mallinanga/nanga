@@ -15,13 +15,16 @@ class Nanga_Public {
         wp_register_style( 'open-sans', false );
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-public.css', array(), $this->version, 'all' );
         $inline_styles        = '';
-        $site_logo            = get_theme_mod( 'site_logo' );
+        //@todo
+        //$site_logo          = get_theme_mod( 'site_logo' );
         $site_color           = get_theme_mod( 'site_color' );
         $site_secondary_color = get_theme_mod( 'site_secondary_color' );
+        /*
         if ( $site_logo ) {
             $site_logo_size = getimagesize( $site_logo );
             $inline_styles .= '#logo{background:url(' . $site_logo . ') no-repeat center center;background-size:contain;width:' . $site_logo_size[0] . 'px;height:' . $site_logo_size[1] . 'px;display:inline-block;}';
         }
+        */
         if ( $site_color ) {
             $inline_styles .= 'a{color:' . $site_color . ';text-decoration:none;}';
         }
@@ -34,8 +37,9 @@ class Nanga_Public {
     public function enqueue_scripts() {
         global $wp_styles;
         global $is_IE;
-        $mobile_check = wp_is_mobile_phone() ? 'true' : 'false';
-        $tablet_check = wp_is_mobile() ? 'true' : 'false';
+        //@todo
+        //$mobile_check = wp_is_mobile_phone() ? 'true' : 'false';
+        //$tablet_check = wp_is_mobile() ? 'true' : 'false';
         //wp_enqueue_script( 'modernizr', plugin_dir_url( __FILE__ ) . 'js/_modernizr.js', array(), null, false );
         if ( ! is_admin() ) {
             wp_deregister_script( 'jquery' );
@@ -53,8 +57,8 @@ class Nanga_Public {
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-public.js', array( 'jquery' ), $this->version, true );
         wp_localize_script( $this->nanga, $this->nanga, array(
             'ajax_url'     => admin_url( 'admin-ajax.php' ),
-            'is_mobile'    => $mobile_check,
-            'is_tablet'    => $tablet_check,
+            //'is_mobile'  => $mobile_check,
+            //'is_tablet'  => $tablet_check,
             'locale'       => get_locale(),
             'current_user' => get_current_user_id(),
             'environment'  => WP_ENV,

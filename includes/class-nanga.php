@@ -7,7 +7,7 @@ class Nanga {
 
     public function __construct() {
         $this->nanga   = 'nanga';
-        $this->version = '1.1.2';
+        $this->version = '1.1.3';
         $this->load_dependencies();
         $this->set_locale();
         $this->define_shared_hooks();
@@ -161,7 +161,8 @@ class Nanga {
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
         /* Change locale on the fly */
-        $this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
+        //@todo
+        //$this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
         /* Remove paragraphs from images in content */
         $this->loader->add_filter( 'the_content', $plugin_public, 'remove_paragraphs_from_images' );
         /* Random post */
