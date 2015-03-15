@@ -217,8 +217,11 @@ class Nanga_Public {
     }
 
     public function maintenance_mode() {
-        if ( defined( 'WP_ENV' ) && 'production' === WP_ENV && true === get_option( 'nanga_maintenance_mode' ) ) {
-            //include plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/nanga-maintenance-mode.php';
+        if ( get_option( 'nanga_maintenance_mode' ) && ! current_user_can( 'manage_options' ) ) {
+            header( 'HTTP/1.1 503 Service Unavailable', true, 503 );
+            header( 'Retry-After: 600' );
+            require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/nanga-maintenance-mode.php';
+            die();
         }
     }
 

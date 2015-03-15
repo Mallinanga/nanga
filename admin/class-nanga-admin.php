@@ -87,7 +87,7 @@ class Nanga_Admin {
     public function jigsaw() {
         if ( class_exists( 'Jigsaw' ) ) {
             if ( get_option( 'nanga_maintenance_mode' ) ) {
-                Jigsaw::show_notice( 'Site is in maintenance mode', 'error' );
+                Jigsaw::show_notice( '<strong>' . __( 'Site is in maintenance mode!', $this->nanga ) . '</strong>', 'error' );
             }
             Jigsaw::remove_column( 'page', 'author' );
             Jigsaw::remove_column( 'post', 'categories' );
@@ -120,12 +120,13 @@ class Nanga_Admin {
                     flush_rewrite_rules();
                     Jigsaw::show_notice( 'Rewrite Rules have been <strong>flushed</strong>', 'updated' );
                 }, 'nanga-tools' );
-                $maintenance_status = get_option( 'nanga_maintenance_mode' ) ? 'ON' : 'OFF';
-                Jigsaw::add_toolbar_item( 'Under Construction <strong>' . $maintenance_status . '</strong>', function () {
+                Jigsaw::add_toolbar_item( 'Toggle Maintenance Mode', function () {
                     if ( get_option( 'nanga_maintenance_mode' ) ) {
                         update_option( 'nanga_maintenance_mode', 0 );
+                        Jigsaw::show_notice( __( 'Site is now live!', $this->nanga ), 'updated' );
                     } else {
                         update_option( 'nanga_maintenance_mode', 1 );
+                        Jigsaw::show_notice( '<strong>' . __( 'Site is in maintenance mode!', $this->nanga ) . '</strong>', 'error' );
                     }
                 }, 'nanga-tools' );
             }

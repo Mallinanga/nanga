@@ -162,6 +162,8 @@ class Nanga {
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
+        /* Maintenance Mode */
+        $this->loader->add_action( 'template_redirect', $plugin_public, 'maintenance_mode' );
         /* Cache Busting */
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'asset_cachebusting', 100 );
         /* Change locale on the fly */
