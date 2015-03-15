@@ -164,10 +164,22 @@ class Nanga_Admin {
     public function enqueue_login_styles() {
         wp_register_style( $this->nanga . '-login', plugin_dir_url( __FILE__ ) . 'css/nanga-login.css', array(), $this->version, 'all' );
         wp_print_styles( $this->nanga . '-login' );
+        //@todo
+        /*
         $site_logo = get_theme_mod( 'site_logo' );
-        if ( $site_logo ) {
-            echo '<style>.login h1{display:block;}.login h1 a{background-image:none,url(' . $site_logo . ');width:100%;height:200px;background-size:contain;}</style>';
+        $handle    = @fopen( 'http://local.playground.paganis.net/media/2015/03/favicon.pn', 'r' );
+        if ( ! $handle ) {
+            write_log( 'No' );
+            remove_theme_mod( 'site-logo' );
         }
+        if ( $site_logo ) {
+            if ( fopen( $site_logo, 'r' ) ) {
+                echo '<style>.login h1{display:block;}.login h1 a{background-image:none,url(' . $site_logo . ');width:100%;height:200px;background-size:contain;}</style>';
+            } else {
+                remove_theme_mod( 'site-logo' );
+            }
+        }
+        */
     }
 
     public function enqueue_password_hash() {
