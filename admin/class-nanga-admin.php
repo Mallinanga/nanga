@@ -242,7 +242,6 @@ class Nanga_Admin {
 
     public function disable_widgets() {
         unregister_widget( 'WP_Nav_Menu_Widget' );
-        unregister_widget( 'WP_Widget_Archives' );
         unregister_widget( 'WP_Widget_Calendar' );
         unregister_widget( 'WP_Widget_Categories' );
         unregister_widget( 'WP_Widget_Links' );
@@ -253,7 +252,6 @@ class Nanga_Admin {
         unregister_widget( 'WP_Widget_RSS' );
         unregister_widget( 'WP_Widget_Search' );
         unregister_widget( 'WP_Widget_Tag_Cloud' );
-        unregister_widget( 'WP_Widget_Text' );
     }
 
     public function force_dashboard_locale( $locale ) {
