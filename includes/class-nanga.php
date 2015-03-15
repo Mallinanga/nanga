@@ -155,14 +155,14 @@ class Nanga {
     private function define_public_hooks() {
         $plugin_public = new Nanga_Public( $this->get_nanga(), $this->get_version() );
         $this->loader->add_action( 'template_redirect', $plugin_public, 'nice_search' );
-        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'asset_cachebusting', 100 );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_head', $plugin_public, 'analytics' );
         $this->loader->add_filter( 'the_password_form', $plugin_public, 'the_password_form' );
+        /* Cache Busting */
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'asset_cachebusting', 100 );
         /* Change locale on the fly */
-        //@todo
-        //$this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
+        $this->loader->add_filter( 'locale', $plugin_public, 'change_locale_on_the_fly' );
         /* Remove paragraphs from images in content */
         $this->loader->add_filter( 'the_content', $plugin_public, 'remove_paragraphs_from_images' );
         /* Random post */
@@ -199,12 +199,12 @@ class Nanga {
         $plugin_control = new Nanga_Plugin_Control();
         if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
             $plugin_control->disable( 'google-analytics-for-wordpress/googleanalytics.php' );
+            $plugin_control->disable( 'underconstruction/underConstruction.php' );
             $plugin_control->disable( 'w3-total-cache/w3-total-cache.php' );
         }
         if ( defined( 'WP_ENV' ) && 'development' !== WP_ENV ) {
             $plugin_control->disable( 'debug-bar-timber/debug-bar-timber.php' );
             $plugin_control->disable( 'debug-bar/debug-bar.php' );
-            $plugin_control->disable( 'underconstruction/underConstruction.php' );
         }
     }
 

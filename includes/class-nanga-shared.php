@@ -69,7 +69,6 @@ class Nanga_Shared {
     }
 
     private function run_updates() {
-        //add_filter( 'auto_core_update_send_email', '__return_false' );
         add_filter( 'auto_core_update_email', function ( $email ) {
             $email['to'] = 'mallinanga+wp@gmail.com';
 
@@ -110,12 +109,12 @@ class Nanga_Shared {
     }
 
     public function disable_core_functionality() {
-        // title editor author thumbnail excerpt trackbacks custom-fields comments revisions page-attributes
         remove_post_type_support( 'attachment', 'comments' );
         remove_post_type_support( 'page', 'comments' );
         remove_post_type_support( 'page', 'custom-fields' );
         remove_post_type_support( 'page', 'revisions' );
         remove_post_type_support( 'page', 'thumbnail' );
+        remove_post_type_support( 'page', 'trackbacks' );
         remove_post_type_support( 'post', 'custom-fields' );
         remove_post_type_support( 'post', 'excerpt' );
         remove_post_type_support( 'post', 'post-formats' );
@@ -143,8 +142,8 @@ class Nanga_Shared {
 
     public function disable_post_types() {
         if ( current_theme_supports( 'nanga-disable-posts' ) ) {
-            //global $wp_post_types;
-            //unset( $wp_post_types['post'] );
+            global $wp_post_types;
+            unset( $wp_post_types['post'] );
         }
     }
 
@@ -302,6 +301,9 @@ class Nanga_Shared {
     public function features_woocommerce() {
         if ( class_exists( 'WooCommerce' ) ) {
             remove_action( 'wp_head', 'wc_generator_tag' );
+            add_action( 'init', function () {
+                remove_post_type_support( 'product', 'custom-fields' );
+            } );
             add_action( 'admin_menu', function () {
                 remove_menu_page( 'separator-woocommerce' );
                 if ( ! current_user_can( 'manage_woocommerce' ) ) {
@@ -446,15 +448,15 @@ class Nanga_Shared {
     }
 
     public function mail_from() {
-        $from = 'info@' . $_SERVER['SERVER_NAME'];
+        $from = 'info@' . preg_replace( '/^www\./', '', $_SERVER['SERVER_NAME'] );
 
-        return apply_filters( 'vg_mail_from', $from );
+        return apply_filters( $this->nanga . '_mail_from', $from );
     }
 
     public function mail_from_name() {
         $from_name = get_bloginfo();
 
-        return apply_filters( 'vg_mail_from_name', $from_name );
+        return apply_filters( $this->nanga . '_mail_from_name', $from_name );
     }
 
     public function dump_queries() {

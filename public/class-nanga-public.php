@@ -37,14 +37,19 @@ class Nanga_Public {
     public function enqueue_scripts() {
         global $wp_styles;
         global $is_IE;
-        //@todo
-        //$mobile_check = wp_is_mobile_phone() ? 'true' : 'false';
-        //$tablet_check = wp_is_mobile() ? 'true' : 'false';
-        //wp_enqueue_script( 'modernizr', plugin_dir_url( __FILE__ ) . 'js/_modernizr.js', array(), null, false );
+        $script_options = array(
+            'ajax_url'     => admin_url( 'admin-ajax.php' ),
+            'locale'       => get_locale(),
+            'current_user' => get_current_user_id(),
+            'environment'  => WP_ENV,
+            'nonce'        => wp_create_nonce(),
+        );
+        if ( current_theme_supports( 'nanga-modernizr' ) ) {
+            wp_enqueue_script( 'modernizr', plugin_dir_url( __FILE__ ) . 'js/_modernizr.js', array(), null, false );
+        }
         if ( ! is_admin() ) {
             wp_deregister_script( 'jquery' );
             if ( current_theme_supports( 'nanga-cdn-assets' ) ) {
-                //wp_register_script( 'jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js', array(), null, false );
                 wp_register_script( 'jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', array(), null, false );
             } else {
                 wp_register_script( 'jquery', plugin_dir_url( __FILE__ ) . 'js/jquery.min.js', array(), null, false );
@@ -52,18 +57,12 @@ class Nanga_Public {
             wp_enqueue_script( 'jquery' );
         }
         if ( current_theme_supports( 'nanga-mobile-check' ) ) {
+            $script_options['is_mobile'] = wp_is_mobile_phone() ? 'true' : 'false';
+            $script_options['is_tablet'] = wp_is_mobile() ? 'true' : 'false';
             wp_enqueue_script( 'wurfl', '//wurfl.io/wurfl.js', array(), null, false );
         }
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-public.js', array( 'jquery' ), $this->version, true );
-        wp_localize_script( $this->nanga, $this->nanga, array(
-            'ajax_url'     => admin_url( 'admin-ajax.php' ),
-            //'is_mobile'  => $mobile_check,
-            //'is_tablet'  => $tablet_check,
-            'locale'       => get_locale(),
-            'current_user' => get_current_user_id(),
-            'environment'  => WP_ENV,
-            'nonce'        => wp_create_nonce()
-        ) );
+        wp_localize_script( $this->nanga, $this->nanga, $script_options );
         if ( current_theme_supports( 'nanga-debug-assets' ) ) {
             if ( current_theme_supports( 'nanga-cdn-assets' ) ) {
                 wp_enqueue_script( 'html-inspector', '//cdnjs.cloudflare.com/ajax/libs/html-inspector/0.8.1/html-inspector.js', array(), null, true );
@@ -78,33 +77,35 @@ class Nanga_Public {
     }
 
     public function asset_cachebusting() {
-        global $wp_styles, $wp_scripts;
-        $wp_dir         = str_replace( home_url(), '', site_url() );
-        $site_root_path = str_replace( $wp_dir, '', ABSPATH );
-        foreach (
-            array(
-                'wp_styles',
-                'wp_scripts'
-            ) as $resource
-        ) {
-            foreach ( (array) $$resource->queue as $name ) {
-                if ( empty( $$resource->registered[ $name ] ) ) {
-                    continue;
+        if ( current_theme_supports( 'nanga-asset-cachebusting' ) ) {
+            global $wp_styles, $wp_scripts;
+            $wp_dir         = str_replace( home_url(), '', site_url() );
+            $site_root_path = str_replace( $wp_dir, '', ABSPATH );
+            foreach (
+                array(
+                    'wp_styles',
+                    'wp_scripts'
+                ) as $resource
+            ) {
+                foreach ( (array) $$resource->queue as $name ) {
+                    if ( empty( $$resource->registered[ $name ] ) ) {
+                        continue;
+                    }
+                    $src = $$resource->registered[ $name ]->src;
+                    if ( 0 === strpos( $src, '/' ) ) {
+                        $src = site_url( $src );
+                    }
+                    if ( false === strpos( $src, home_url() ) ) {
+                        continue;
+                    }
+                    $file = str_replace( home_url( '/' ), $site_root_path, $src );
+                    if ( ! file_exists( $file ) ) {
+                        continue;
+                    }
+                    $mtime = filectime( $file );
+                    //$$resource->registered[ $name ]->ver = $$resource->registered[ $name ]->ver . '-' . $mtime;
+                    $$resource->registered[ $name ]->ver = $mtime;
                 }
-                $src = $$resource->registered[ $name ]->src;
-                if ( 0 === strpos( $src, '/' ) ) {
-                    $src = site_url( $src );
-                }
-                if ( false === strpos( $src, home_url() ) ) {
-                    continue;
-                }
-                $file = str_replace( home_url( '/' ), $site_root_path, $src );
-                if ( ! file_exists( $file ) ) {
-                    continue;
-                }
-                $mtime = filectime( $file );
-                //$$resource->registered[ $name ]->ver = $$resource->registered[ $name ]->ver . '-' . $mtime;
-                $$resource->registered[ $name ]->ver = $mtime;
             }
         }
     }
@@ -291,11 +292,13 @@ class Nanga_Public {
 
     public function change_locale_on_the_fly( $locale ) {
         if ( ! is_admin() ) {
-            if ( isset( $_GET['language'] ) ) {
-                return $_GET['language'];
+            if ( isset( $_GET['l'] ) ) {
+                return $_GET['l'];
             } else {
                 return $locale;
             }
         }
+
+        return $locale;
     }
 }

@@ -314,7 +314,7 @@ class Nanga_Admin {
                 'title'  => __( 'Get Support', $this->nanga ),
             ) );
             $wp_toolbar->add_node( array(
-                'href'   => 'mailto:info@vgwebthings.com?subject=Support%20Request',
+                'href'   => 'mailto:info@vgwebthings.com?subject=' . __( 'Support Request', $this->nanga ),
                 'id'     => 'get-support',
                 'parent' => 'get-help',
                 'title'  => __( 'Email Support', $this->nanga ),
@@ -361,13 +361,6 @@ class Nanga_Admin {
                     'title'  => __( 'Tools', $this->nanga ),
                 ) );
             }
-            /*
-            $wp_toolbar->add_node( array(
-                'id'    => 'site-name',
-                'title' => false,
-                'meta'  => array( 'target' => '_blank' )
-            ) );
-            */
             $wp_toolbar->add_node( array(
                 'id'    => 'nanga-visit-site',
                 'href'  => get_site_url(),
@@ -432,14 +425,10 @@ class Nanga_Admin {
         remove_meta_box( 'authordiv', 'attachment', 'normal' );
         remove_meta_box( 'authordiv', 'page', 'normal' );
         remove_meta_box( 'authordiv', 'post', 'normal' );
-        //remove_meta_box( 'slugdiv', 'attachment', 'normal' );
-        //remove_meta_box( 'slugdiv', 'page', 'normal' );
-        //remove_meta_box( 'slugdiv', 'post', 'normal' );
         $post_types = get_post_types( array( '_builtin' => false, 'public' => true ) );
         foreach ( $post_types as $post_type ) {
             remove_meta_box( 'authordiv', $post_type, 'normal' );
             remove_meta_box( 'sharing_meta', $post_type, 'advanced' );
-            //remove_meta_box( 'slugdiv', $post_type, 'normal' );
         }
     }
 
@@ -497,7 +486,6 @@ class Nanga_Admin {
     }
 
     public function columns_users( $columns ) {
-        //unset( $columns['cb'] );
         unset( $columns['posts'] );
         unset( $columns['role'] );
         unset( $columns['ure_roles'] );
@@ -506,7 +494,6 @@ class Nanga_Admin {
     }
 
     public function columns_media( $columns ) {
-        //unset( $columns['cb'] );
         unset( $columns['author'] );
         unset( $columns['icon'] );
         unset( $columns['parent'] );
@@ -515,19 +502,15 @@ class Nanga_Admin {
     }
 
     public function columns_plugins( $columns ) {
-        //unset( $columns['cb'] );
-
         return $columns;
     }
 
     public function columns_posts( $columns, $post_type ) {
-        //@todo
         //$post_types = get_post_types( array( 'public' => true ), 'names' );
         //if ( in_array( $post_type, $post_types, true ) ) { unset( $columns['cb'] ); }
-        //if ( post_type_supports( $post_type, 'thumbnail' ) && 'product' != $post_type ) {
-        //$columns = array( 'icon' => false ) + $columns;
-        //array_splice( $columns, 1, 0, array( 'icon' => false ) );
-        //}
+        if ( post_type_supports( $post_type, 'thumbnail' ) && 'product' != $post_type ) {
+            $columns = array( 'icon' => false ) + $columns;
+        }
 
         return $columns;
     }
@@ -545,10 +528,9 @@ class Nanga_Admin {
     }
 
     public function columns_pages( $columns ) {
-        //unset( $columns['cb'] );
-        //if ( post_type_supports( 'page', 'thumbnail' ) ) {
-        //$columns = array( 'icon' => false ) + $columns;
-        //}
+        if ( post_type_supports( 'page', 'thumbnail' ) ) {
+            $columns = array( 'icon' => false ) + $columns;
+        }
 
         return $columns;
     }
@@ -604,9 +586,6 @@ class Nanga_Admin {
             'section'  => 'vg_customizer_section',
             'settings' => 'site_secondary_color',
         ) ) );
-        //$wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
-        //$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
-        //$wp_customize->get_setting( 'page_for_posts' )->transport  = 'postMessage';
     }
 
     public function customizer_scripts() {
