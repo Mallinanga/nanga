@@ -44,8 +44,7 @@ class Nanga_Admin {
     }
 
     public function login_errors( $error ) {
-        //return '<strong>ERROR: ' . __( 'Try again...', 'vg' ) . '</strong>';
-        return $error;
+        return __( '<strong>ERROR:</strong> Please try again...', 'vg' );
     }
 
     public function plugin_settings_menu() {
