@@ -69,6 +69,7 @@ class Nanga {
         /* Theme */
         $this->loader->add_action( 'after_setup_theme', $plugin_shared, 'setup_theme' );
         /* Third-party */
+        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_akismet' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_easy_digital_downloads' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_gravity_forms' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_jetpack' );

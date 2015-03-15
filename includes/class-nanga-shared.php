@@ -260,6 +260,12 @@ class Nanga_Shared {
         }
     }
 
+    public function features_akismet() {
+        if ( class_exists( 'Akismet' ) ) {
+            add_filter( 'akismet_debug_log', '__return_false' );
+        }
+    }
+
     public function features_help() {
         if ( class_exists( 'CWS_WP_Help_Plugin' ) ) {
             //add_filter( 'cws_wp_help_option_defaults', array( 'menu_location' => 'below-dashboard', ) );
