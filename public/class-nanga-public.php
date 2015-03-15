@@ -14,15 +14,16 @@ class Nanga_Public {
         wp_deregister_style( 'open-sans' );
         wp_register_style( 'open-sans', false );
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-public.css', array(), $this->version, 'all' );
-        $inline_styles        = '';
+        $inline_styles = '';
         //@todo
         //$site_logo          = get_theme_mod( 'site_logo' );
         $site_color           = get_theme_mod( 'site_color' );
         $site_secondary_color = get_theme_mod( 'site_secondary_color' );
         /*
         if ( $site_logo ) {
-            $site_logo_size = getimagesize( $site_logo );
-            $inline_styles .= '#logo{background:url(' . $site_logo . ') no-repeat center center;background-size:contain;width:' . $site_logo_size[0] . 'px;height:' . $site_logo_size[1] . 'px;display:inline-block;}';
+            //$site_logo_size = @getimagesize( $site_logo );
+            //$inline_styles .= '#logo{background:url(' . $site_logo . ') no-repeat center center;background-size:contain;width:' . $site_logo_size[0] . 'px;height:' . $site_logo_size[1] . 'px;display:inline-block;}';
+            $inline_styles .= '#logo{background:url(' . $site_logo . ') no-repeat center center;background-size:contain;display:inline-block;}';
         }
         */
         if ( $site_color ) {
