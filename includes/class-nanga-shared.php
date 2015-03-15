@@ -483,4 +483,10 @@ class Nanga_Shared {
 
         return $output;
     }
+
+    public function heartbeat( $settings ) {
+        $settings['interval'] = 15;
+
+        return $settings;
+    }
 }
