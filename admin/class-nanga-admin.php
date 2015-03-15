@@ -736,11 +736,6 @@ class Nanga_Admin {
                 'external_url'     => 'https://github.com/afragen/github-updater'
             ),
             array(
-                'name'     => 'Timber',
-                'slug'     => 'timber-library',
-                'required' => false,
-            ),
-            array(
                 'name'             => 'Image Sanity',
                 'slug'             => 'imsanity',
                 'required'         => false,
@@ -753,7 +748,14 @@ class Nanga_Admin {
                 'force_activation' => true,
             ),
         );
-        $config  = array(
+        if ( 'vg-twig' == get_option( 'template' ) ) {
+            $plugins[] = array(
+                'name'     => 'Timber',
+                'slug'     => 'timber-library',
+                'required' => false,
+            );
+        }
+        $config = array(
             'default_path' => '',
             'menu'         => 'nanga-install-plugins',
             'has_notices'  => true,
