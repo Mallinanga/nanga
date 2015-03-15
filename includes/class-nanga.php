@@ -188,9 +188,10 @@ class Nanga {
         //$this->loader->add_filter( 'style_loader_src', $plugin_public, 'relative_urls' );
         /* Customizer Output */
         //$this->loader->add_action( 'wp_head', $plugin_public, 'customizer_output' );
-        //$this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );
-        //$this->loader->add_filter( 'get_avatar', $plugin_public, 'remove_self_closing_tags' );
-        //$this->loader->add_filter( 'post_thumbnail_html', $plugin_public, 'remove_self_closing_tags' );
+        /* Remove self closing tags */
+        $this->loader->add_filter( 'comment_id_fields', $plugin_public, 'remove_self_closing_tags' );
+        $this->loader->add_filter( 'get_avatar', $plugin_public, 'remove_self_closing_tags' );
+        $this->loader->add_filter( 'post_thumbnail_html', $plugin_public, 'remove_self_closing_tags' );
     }
 
     private function define_shortcodes() {
