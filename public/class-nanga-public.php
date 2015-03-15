@@ -138,22 +138,29 @@ class Nanga_Public {
 
     public function body_class( $classes ) {
         global $wp_query;
-        $no_classes = '';
+        $no_classes = array();
         if ( is_page() ) {
-            $page_id    = $wp_query->get_queried_object_id();
-            $no_classes = 'page-id-' . $page_id;
+            $page_id      = $wp_query->get_queried_object_id();
+            $no_classes[] = 'page-id-' . $page_id;
+            $ancestors    = get_ancestors( get_queried_object_id(), 'page' );
+            if ( ! empty ( $ancestors ) ) {
+                foreach ( $ancestors as $ancestor ) {
+                    $no_classes[] = 'parent-pageid-' . $ancestor;
+                }
+            }
+            $classes[] = str_replace( '.php', '', basename( get_page_template() ) );
         }
         if ( is_single() ) {
-            $post_id    = $wp_query->get_queried_object_id();
-            $no_classes = 'postid-' . $post_id;
+            $post_id      = $wp_query->get_queried_object_id();
+            $no_classes[] = 'postid-' . $post_id;
         }
         if ( is_author() ) {
-            $author_id  = $wp_query->get_queried_object_id();
-            $no_classes = 'author-' . $author_id;
+            $author_id    = $wp_query->get_queried_object_id();
+            $no_classes[] = 'author-' . $author_id;
         }
         if ( is_category() ) {
-            $cat_id     = $wp_query->get_queried_object_id();
-            $no_classes = 'category-' . $cat_id;
+            $cat_id       = $wp_query->get_queried_object_id();
+            $no_classes[] = 'category-' . $cat_id;
         }
         if ( is_tax() ) {
             $ancestors = get_ancestors( get_queried_object_id(), get_queried_object()->taxonomy );
@@ -165,15 +172,11 @@ class Nanga_Public {
             }
         }
         if ( is_single() || is_page() && ! is_front_page() ) {
-            $classes[] = basename( get_permalink() );
+            $classes[] = 'slug-' . basename( get_permalink() );
         }
-        $home_id_class  = 'page-id-' . get_option( 'page_on_front' );
-        $remove_classes = array(
-            'page-template-default',
-            $home_id_class,
-            $no_classes
-        );
-        $classes        = array_diff( $classes, $remove_classes );
+        $no_classes[] = 'page-template-default';
+        $no_classes[] = 'page-id-' . get_option( 'page_on_front' );
+        $classes      = array_diff( $classes, $no_classes );
 
         return $classes;
     }
