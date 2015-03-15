@@ -648,14 +648,14 @@ class Nanga_Admin {
                 'title'   => 'Debug Screen',
                 'content' => '<pre>' . grab_dump( $screen ) . '</pre>',
             ) );
-            /*
-            global $wpdb;
-            $screen->add_help_tab( array(
-                'id'      => 'queries_info',
-                'title'   => 'Queries Info',
-                'content' => '<pre>' . grab_dump( $wpdb->queries ) . '</pre>',
-            ) );
-            */
+            if ( defined( 'SAVEQUERIES' ) ) {
+                global $wpdb;
+                $screen->add_help_tab( array(
+                    'id'      => 'debug_queries',
+                    'title'   => 'Debug Queries',
+                    'content' => '<pre>' . grab_dump( $wpdb->queries ) . '</pre>',
+                ) );
+            }
         }
     }
 
