@@ -154,8 +154,8 @@ class Nanga_Admin {
     }
 
     public function dequeue_login_styles() {
-        wp_deregister_style( 'open-sans' );
-        wp_register_style( 'open-sans', false );
+        //wp_deregister_style( 'open-sans' );
+        //wp_register_style( 'open-sans', false );
         wp_deregister_style( 'dashicons' );
         wp_register_style( 'dashicons', false );
         wp_deregister_style( 'buttons' );
@@ -188,8 +188,8 @@ class Nanga_Admin {
     }
 
     public function enqueue_styles( $hook ) {
-        wp_deregister_style( 'open-sans' );
-        wp_register_style( 'open-sans', false );
+        //wp_deregister_style( 'open-sans' );
+        //wp_register_style( 'open-sans', false );
         wp_enqueue_style( $this->nanga, plugin_dir_url( __FILE__ ) . 'css/nanga-admin.css', array(), $this->version, 'all' );
         if ( 'toplevel_page_nanga-settings' === $hook ) {
             wp_enqueue_style( $this->nanga . '-settings', plugin_dir_url( __FILE__ ) . 'css/nanga-settings.css', array(), $this->version, 'all' );
@@ -197,7 +197,7 @@ class Nanga_Admin {
     }
 
     public function enqueue_scripts( $hook ) {
-        echo '<script> WebFontConfig = {classes: false, google: {families: [\'Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic:latin,greek\']}}; (function () { var s; var wf = document.createElement(\'script\'); wf.src = (\'https:\' == document.location.protocol ? \'https\' : \'http\') + \'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js\'; wf.type = \'text/javascript\'; wf.async = \'true\'; s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(wf, s); })(); </script>';
+        //echo '<script> WebFontConfig = {classes: false, google: {families: [\'Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic:latin,greek\']}}; (function () { var s; var wf = document.createElement(\'script\'); wf.src = (\'https:\' == document.location.protocol ? \'https\' : \'http\') + \'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js\'; wf.type = \'text/javascript\'; wf.async = \'true\'; s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(wf, s); })(); </script>';
         wp_enqueue_script( $this->nanga, plugin_dir_url( __FILE__ ) . 'js/nanga-admin.js', array( 'jquery' ), $this->version, true );
         wp_localize_script( $this->nanga, $this->nanga, array(
             'locale'       => get_locale(),

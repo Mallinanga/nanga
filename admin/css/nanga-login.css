@@ -1,6 +1,6 @@
-@import url(http://fonts.googleapis.com/css?family=Fira+Sans:400,700,400italic,700italic&subset=latin,greek);
+/*@import url(http://fonts.googleapis.com/css?family=Fira+Sans:400,700,400italic,700italic&subset=latin,greek);*/
 body{
-    font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    /*font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;*/
 }
 #login{
     width:300px;

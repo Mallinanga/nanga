@@ -1,5 +1,5 @@
 body{
-    font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    /*font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;*/
 }
 a:active,
 a:focus{
@@ -17,7 +17,7 @@ a:focus{
     display:none !important;
 }
 #wpadminbar *{
-    font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+    /*font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;*/
 }
 #collapse-menu{
     display:none;
@@ -27,20 +27,23 @@ a:focus{
     top:auto;
 }
 #wpadminbar #wp-admin-bar-nanga-visit-site > .ab-item:before{
-    content:'\f177';
+    content:'\f177' !important;
 }
 #wpadminbar #wp-admin-bar-nanga-links > .ab-item:before{
-    content:'\f239';
+    content:'\f239' !important;
 }
 #wpadminbar #wp-admin-bar-logout > .ab-item:before,
 #wpadminbar #wp-admin-bar-nanga-logout > .ab-item:before{
-    content:'\f160';
+    content:'\f160' !important;
 }
 #wpadminbar #wp-admin-bar-nanga-tools > .ab-item:before{
-    content:'\f511';
+    content:'\f511' !important;
 }
 #wpadminbar #wp-admin-bar-get-help > .ab-item:before{
-    content:'\f488';
+    content:'\f488' !important;
+}
+#wpadminbar .bbl_lang > .ab-item:before{
+    content:'\f326' !important;
 }
 .tablenav .bulkactions{
 }
