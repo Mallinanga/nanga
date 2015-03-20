@@ -21,12 +21,14 @@ class Nanga_Activator {
             }
         }
         */
+        /*
         add_action( 'after_setup_theme', function () {
             if ( ! get_option( 'nanga_cleared_widgets' ) ) {
                 update_option( 'sidebars_widgets', array() );
                 update_option( 'nanga_cleared_widgets', true );
             }
         } );
+        */
         if ( ! get_option( 'nanga_plugin_activated' ) ) {
             update_option( 'avatar_default', 'blank' );
             update_option( 'blog_public', 0 );
