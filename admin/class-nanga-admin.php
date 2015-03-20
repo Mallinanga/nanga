@@ -736,12 +736,6 @@ class Nanga_Admin {
                 'external_url'     => 'https://github.com/afragen/github-updater'
             ),
             array(
-                'name'             => 'Image Sanity',
-                'slug'             => 'imsanity',
-                'required'         => false,
-                'force_activation' => false,
-            ),
-            array(
                 'name'             => 'Jigsaw',
                 'slug'             => 'jigsaw',
                 'required'         => true,
@@ -753,6 +747,14 @@ class Nanga_Admin {
                 'name'     => 'Timber',
                 'slug'     => 'timber-library',
                 'required' => false,
+            );
+        }
+        if ( current_theme_supports( 'nanga-sanity' ) ) {
+            $plugins[] = array(
+                'name'             => 'Image Sanity',
+                'slug'             => 'imsanity',
+                'required'         => true,
+                'force_activation' => true,
             );
         }
         $config = array(
