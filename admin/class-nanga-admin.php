@@ -709,6 +709,14 @@ class Nanga_Admin {
         echo '<div class="support-request-container vg-container"> <div class="support-request-container__messages"></div> <form id="support-request-form" accept-charset="UTF-8" action="https://formkeep.com/f/36041913c4c7" method="POST"><input type="hidden" name="utf8" value="✓"> <p><input type="email" name="email" placeholder="' . __( 'Your email', $this->nanga ) . '" value="' . get_the_author_meta( 'user_email', get_current_user_id() ) . '" class="widefat" required></p> <p><input type="text" name="name" placeholder="' . __( 'Your name', $this->nanga ) . '" value="' . get_the_author_meta( 'display_name', get_current_user_id() ) . '" class="widefat" required></p> <p><textarea name="message" placeholder="' . __( 'Your message', $this->nanga ) . '" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . get_site_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="' . __( 'Send Support Request', $this->nanga ) . '"> </form> </div>';
     }
 
+    public function user_contact( $user_contact ) {
+        unset( $user_contact['facebook'] );
+        unset( $user_contact['googleplus'] );
+        unset( $user_contact['twitter'] );
+
+        return $user_contact;
+    }
+
     public function required_plugins() {
         $plugins = array(
             array(

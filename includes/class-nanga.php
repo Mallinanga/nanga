@@ -7,7 +7,7 @@ class Nanga {
 
     public function __construct() {
         $this->nanga   = 'nanga';
-        $this->version = '1.1.3';
+        $this->version = '1.1.4';
         $this->load_dependencies();
         $this->set_locale();
         $this->define_shared_hooks();
@@ -116,6 +116,8 @@ class Nanga {
         $this->loader->add_filter( 'mce_buttons', $plugin_admin, 'mce_buttons' );
         $this->loader->add_filter( 'page_row_actions', $plugin_admin, 'row_actions', 10, 2 );
         $this->loader->add_filter( 'post_row_actions', $plugin_admin, 'row_actions', 10, 2 );
+        /* User Contact Methods */
+        $this->loader->add_filter( 'user_contactmethods', $plugin_admin, 'user_contact', 666 );
         /* Default editor depending on user */
         $this->loader->add_filter( 'wp_default_editor', $plugin_admin, 'default_editor' );
         /* Force image attributes */
