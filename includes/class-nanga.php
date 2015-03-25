@@ -134,7 +134,8 @@ class Nanga {
         $this->loader->add_filter( 'upload_mimes', $plugin_admin, 'mime_types' );
         $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
         /* Columns */
-        $this->loader->add_action( 'manage_posts_custom_column', $plugin_admin, 'manage_posts_custom_column', 5, 2 );
+        $this->loader->add_action( 'manage_pages_custom_column', $plugin_admin, 'featured_image_column', 5, 2 );
+        $this->loader->add_action( 'manage_posts_custom_column', $plugin_admin, 'featured_image_column', 5, 2 );
         $this->loader->add_filter( 'manage_media_columns', $plugin_admin, 'columns_media' );
         $this->loader->add_filter( 'manage_pages_columns', $plugin_admin, 'columns_pages' );
         $this->loader->add_filter( 'manage_plugins_columns', $plugin_admin, 'columns_plugins' );

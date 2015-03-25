@@ -529,7 +529,7 @@ class Nanga_Admin {
         return $columns;
     }
 
-    public function manage_posts_custom_column( $column_name, $post_id ) {
+    public function featured_image_column( $column_name, $post_id ) {
         switch ( $column_name ) {
             case 'icon':
                 if ( function_exists( 'the_post_thumbnail' ) && '' != get_the_post_thumbnail() ) {

@@ -114,7 +114,6 @@ class Nanga_Shared {
         remove_post_type_support( 'attachment', 'comments' );
         remove_post_type_support( 'page', 'comments' );
         remove_post_type_support( 'page', 'custom-fields' );
-        remove_post_type_support( 'page', 'thumbnail' );
         remove_post_type_support( 'page', 'trackbacks' );
         remove_post_type_support( 'post', 'custom-fields' );
         remove_post_type_support( 'post', 'excerpt' );
