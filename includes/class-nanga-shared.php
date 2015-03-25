@@ -122,6 +122,10 @@ class Nanga_Shared {
         remove_post_type_support( 'post', 'trackbacks' );
     }
 
+    public function disable_comments() {
+        remove_post_type_support( 'post', 'comments' );
+    }
+
     public function disable_feeds() {
         wp_die( 'Nothing to see here...' );
     }

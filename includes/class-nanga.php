@@ -55,6 +55,8 @@ class Nanga {
         $this->loader->add_action( 'shutdown', $plugin_shared, 'dump_queries', 999 );
         $this->loader->add_filter( 'request', $plugin_shared, 'empty_search' );
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
+        /* Disable Comments */
+        $this->loader->add_action( 'init', $plugin_shared, 'disable_comments' );
         /* Heartbeat */
         $this->loader->add_filter( 'heartbeat_settings', $plugin_shared, 'heartbeat' );
         $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
