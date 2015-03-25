@@ -203,7 +203,8 @@ class Nanga_Admin {
             'locale'       => get_locale(),
             'current_user' => get_current_user_id(),
             'environment'  => WP_ENV,
-            'gaid'         => get_field( 'vg_google_analytics_id' ),
+            //@todo
+            //'gaid'         => get_field( 'vg_google_analytics_id' ),
         ) );
         if ( 'toplevel_page_nanga-settings' === $hook ) {
         }
