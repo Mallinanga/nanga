@@ -104,6 +104,57 @@
             "placeholder": ""
         },
         {
+            "key": "field_5513030bbb44e",
+            "label": "LinkedIn",
+            "name": "linkedin",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_55130317bb44f",
+            "label": "YouTube",
+            "name": "youtube",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_55130320bb450",
+            "label": "Vimeo",
+            "name": "vimeo",
+            "prefix": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
             "key": "field_547641aa98cc4",
             "label": "Map",
             "name": "",
@@ -239,5 +290,5 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "modified": 1425411851
+    "modified": 1427309354
 }
