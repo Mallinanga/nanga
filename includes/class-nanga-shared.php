@@ -298,6 +298,7 @@ class Nanga_Shared {
                 return $content;
             } );
             remove_action( 'install_plugins_pre_plugin-information', array( 'GFLogging', 'display_changelog' ) );
+            remove_action( 'widgets_init', 'gf_register_widget' );
             remove_filter( 'site_transient_update_plugins', array( 'GFForms', 'check_update', ) );
             remove_filter( 'site_transient_update_plugins', array( 'GFLogging', 'check_update', ) );
             remove_filter( 'site_transient_update_plugins', array( 'RGForms', 'check_update', ) );
