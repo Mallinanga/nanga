@@ -287,6 +287,8 @@ class Nanga_Shared {
             add_filter( 'gform_confirmation_anchor', '__return_false' );
             add_filter( 'gform_enable_shortcode_notification_message', '__return_false' );
             add_filter( 'gform_init_scripts_footer', '__return_true' );
+            //@todo
+            /*
             add_filter( 'gform_cdata_open', function ( $content = '' ) {
                 $content = 'document.addEventListener( "DOMContentLoaded", function() { ';
 
@@ -297,6 +299,7 @@ class Nanga_Shared {
 
                 return $content;
             } );
+            */
             remove_action( 'install_plugins_pre_plugin-information', array( 'GFLogging', 'display_changelog' ) );
             remove_action( 'widgets_init', 'gf_register_widget' );
             remove_filter( 'site_transient_update_plugins', array( 'GFForms', 'check_update', ) );
