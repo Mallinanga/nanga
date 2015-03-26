@@ -421,7 +421,7 @@ class Nanga_Shared {
             add_action( 'wp_enqueue_scripts', function () {
                 //wp_dequeue_style( 'jetpack_related-posts' );
                 //wp_dequeue_style( 'jetpack_likes' );
-                //wp_dequeue_script( 'devicepx' );
+                wp_dequeue_script( 'devicepx' );
             }, 20 );
             //add_filter( 'jetpack_photon_reject_https', '__return_false' );
             add_filter( 'jetpack_disable_twitter_cards', '__return_true', 99 );
