@@ -98,23 +98,23 @@
     },
     {
         "name": "tgm/plugin-activation",
-        "version": "v2.4.0",
-        "version_normalized": "2.4.0.0",
+        "version": "2.5.0",
+        "version_normalized": "2.5.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/thomasgriffin/TGM-Plugin-Activation.git",
-            "reference": "374285ef50f233453b1275912471d4ab9bd53220"
+            "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
+            "reference": "0904ac2073c64aa453170de77dcb6a365b103d6d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thomasgriffin/TGM-Plugin-Activation/zipball/374285ef50f233453b1275912471d4ab9bd53220",
-            "reference": "374285ef50f233453b1275912471d4ab9bd53220",
+            "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/0904ac2073c64aa453170de77dcb6a365b103d6d",
+            "reference": "0904ac2073c64aa453170de77dcb6a365b103d6d",
             "shasum": ""
         },
         "require": {
             "php": ">=5.2"
         },
-        "time": "2014-03-17 15:23:47",
+        "time": "2015-07-03 21:08:04",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -136,6 +136,11 @@
                 "name": "Gary Jones",
                 "homepage": "https://github.com/GaryJones",
                 "role": "Developer"
+            },
+            {
+                "name": "Juliette Reinders Folmer",
+                "homepage": "https://github.com/jrfnl",
+                "role": "Developer"
             }
         ],
         "description": "TGM Plugin Activation is a PHP library that allows you to easily require or recommend plugins for your WordPress themes (and plugins).",
@@ -146,7 +151,8 @@
             "plugins",
             "theme",
             "wordpress"
-        ]
+        ],
+        "abandoned": "tgmpa/tgm-plugin-activation"
     },
     {
         "name": "zamoose/themehookalliance",
@@ -155,15 +161,15 @@
         "source": {
             "type": "git",
             "url": "https://github.com/zamoose/themehookalliance.git",
-            "reference": "c66f3a7aa17d3f409d875d08e76cb344f2de6683"
+            "reference": "9765ec46eb5e0144cbd46e8cf5f5c427a1e7555c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/zamoose/themehookalliance/zipball/c66f3a7aa17d3f409d875d08e76cb344f2de6683",
-            "reference": "c66f3a7aa17d3f409d875d08e76cb344f2de6683",
+            "url": "https://api.github.com/repos/zamoose/themehookalliance/zipball/9765ec46eb5e0144cbd46e8cf5f5c427a1e7555c",
+            "reference": "9765ec46eb5e0144cbd46e8cf5f5c427a1e7555c",
             "shasum": ""
         },
-        "time": "2014-11-06 04:22:41",
+        "time": "2015-06-09 01:05:54",
         "type": "library",
         "installation-source": "source",
         "notification-url": "https://packagist.org/downloads/",
