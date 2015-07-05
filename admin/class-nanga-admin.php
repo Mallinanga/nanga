@@ -732,22 +732,23 @@ class Nanga_Admin {
                 'name'             => 'GitHub Updater',
                 'slug'             => 'github-updater',
                 'source'           => 'https://github.com/afragen/github-updater/archive/develop.zip',
-                'required'         => true,
-                'force_activation' => true,
+                'required'         => false,
+                'force_activation' => false,
                 'external_url'     => 'https://github.com/afragen/github-updater'
             ),
             array(
                 'name'             => 'Jigsaw',
                 'slug'             => 'jigsaw',
-                'required'         => true,
-                'force_activation' => true,
+                'required'         => false,
+                'force_activation' => false,
             ),
         );
         if ( 'vg-twig' == get_option( 'template' ) ) {
             $plugins[] = array(
-                'name'     => 'Timber',
-                'slug'     => 'timber-library',
-                'required' => false,
+                'name'             => 'Timber',
+                'slug'             => 'timber-library',
+                'required'         => true,
+                'force_activation' => true,
             );
         }
         if ( current_theme_supports( 'nanga-sanity' ) ) {
