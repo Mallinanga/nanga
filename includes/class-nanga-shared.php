@@ -410,11 +410,6 @@ class Nanga_Shared {
         if ( class_exists( 'WPSEO_Frontend' ) ) {
             add_filter( 'wpseo_use_page_analysis', '__return_false' );
             //add_filter( 'wpseo_bulk_edit_roles', function ( $roles ) { return array( 'administrator' ); }, 999999 );
-            add_action( 'admin_init', function () {
-                global $wpseo_admin;
-                remove_action( 'show_user_profile', array( $wpseo_admin, 'user_profile' ) );
-                remove_action( 'edit_user_profile', array( $wpseo_admin, 'user_profile' ) );
-            } );
         }
     }
 
