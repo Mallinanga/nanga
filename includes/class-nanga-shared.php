@@ -133,10 +133,9 @@ class Nanga_Shared {
         remove_post_type_support( 'post', 'post-formats' );
         remove_post_type_support( 'post', 'revisions' );
         remove_post_type_support( 'post', 'trackbacks' );
-    }
-
-    public function disable_comments() {
-        remove_post_type_support( 'post', 'comments' );
+        if ( current_theme_supports( 'nanga-disable-comments' ) ) {
+            remove_post_type_support( 'post', 'comments' );
+        }
     }
 
     public function disable_feeds() {
