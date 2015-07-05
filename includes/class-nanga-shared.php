@@ -111,13 +111,7 @@ class Nanga_Shared {
                 return false;
             }, 20, 2 );
         }
-        //@todo
         add_filter( 'auto_update_theme', function ( $update, $item ) {
-            write_log( $update );
-            write_log( $item );
-            //$allowed_themes = array( 'vg-base' );
-            //if ( in_array( $item->slug, $allowed_themes ) ) {}
-
             return false;
         }, 20, 2 );
     }
