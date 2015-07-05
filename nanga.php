@@ -16,6 +16,9 @@
 if ( ! defined( 'WPINC' ) ) {
     die;
 }
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+    include plugin_dir_path( __FILE__ ) . 'includes/class-nanga-cli.php';
+}
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
     require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
 }
