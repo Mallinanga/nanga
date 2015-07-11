@@ -759,6 +759,15 @@ class Nanga_Admin {
                 'force_activation' => true,
             );
         }
+        if ( current_theme_supports( 'nanga-deploy' ) ) {
+            $plugins[] = array(
+                'name'             => 'VG web things Deployer',
+                'slug'             => 'nanga-deploy',
+                'source'           => 'https://github.com/Mallinanga/nanga-deploy/archive/master.zip',
+                'required'         => false,
+                'force_activation' => false,
+            );
+        }
         $config = array(
             'default_path' => '',
             'menu'         => 'nanga-install-plugins',
