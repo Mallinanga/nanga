@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Nanga wp-cli integration.
+ */
 class Nanga_CLI extends WP_CLI_Command {
     /**
      * Prints a greeting.
