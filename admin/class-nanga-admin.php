@@ -523,7 +523,7 @@ class Nanga_Admin {
         //$post_types = get_post_types( array( 'public' => true ), 'names' );
         //if ( in_array( $post_type, $post_types, true ) ) { unset( $columns['cb'] ); }
         if ( post_type_supports( $post_type, 'thumbnail' ) && 'product' != $post_type ) {
-            $columns = array( 'icon' => __( 'Featured', $this->nanga ) ) + $columns;
+            $columns = $columns + array( 'icon' => __( 'Featured', $this->nanga ) );
         }
 
         return $columns;
@@ -543,7 +543,7 @@ class Nanga_Admin {
 
     public function columns_pages( $columns ) {
         if ( post_type_supports( 'page', 'thumbnail' ) ) {
-            $columns = array( 'icon' => __( 'Featured', $this->nanga ) ) + $columns;
+            $columns = $columns + array( 'icon' => __( 'Featured', $this->nanga ) );
         }
 
         return $columns;
