@@ -729,14 +729,6 @@ class Nanga_Admin {
                 'external_url'     => 'http://www.advancedcustomfields.com/pro'
             ),
             array(
-                'name'             => 'GitHub Updater',
-                'slug'             => 'github-updater',
-                'source'           => 'https://github.com/afragen/github-updater/archive/develop.zip',
-                'required'         => false,
-                'force_activation' => false,
-                'external_url'     => 'https://github.com/afragen/github-updater'
-            ),
-            array(
                 'name'             => 'Jigsaw',
                 'slug'             => 'jigsaw',
                 'required'         => false,

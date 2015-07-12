@@ -16,6 +16,7 @@ class Nanga {
         $this->define_shortcodes();
         //$this->define_cron();
         //$this->define_rewrites();
+        $this->define_updates();
         //$this->plugin_control();
     }
 
@@ -30,6 +31,7 @@ class Nanga {
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cron.php';
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-rewrites.php';
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-updates.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-cpts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-taxos.php';
         $this->loader = new Nanga_Loader();
@@ -209,5 +211,10 @@ class Nanga {
 
     private function define_rewrites() {
         //$plugin_rewrites = new Nanga_Rewrites( $this->get_nanga(), $this->get_version() );
+    private function define_updates() {
+        $plugin_updates = new Nanga_Updates( $this->get_nanga(), $this->get_version() );
+        $this->loader->add_filter( 'plugins_api', $plugin_updates, 'inject_info', 10, 3 );
+        $this->loader->add_filter( 'pre_set_site_transient_update_plugins', $plugin_updates, 'inject_update' );
+        $this->loader->add_filter( 'upgrader_post_install', $plugin_updates, 'post_install', 10, 3 );
     }
 }

@@ -103,7 +103,7 @@ class Nanga_Shared {
             }, 20, 2 );
         } else {
             add_filter( 'auto_update_plugin', function ( $update, $item ) {
-                $allowed_plugins = array( 'nanga', 'advanced-custom-fields-pro', 'github-updater', 'jigsaw', 'timber-library', 'user-role-editor', 'wordpress-seo' );
+                $allowed_plugins = array( 'nanga', 'nanga-deploy', 'advanced-custom-fields-pro', 'jigsaw', 'timber-library', 'user-role-editor', 'wordpress-seo' );
                 if ( in_array( $item->slug, $allowed_plugins ) ) {
                     return true;
                 }
