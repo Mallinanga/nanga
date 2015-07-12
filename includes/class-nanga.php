@@ -7,7 +7,7 @@ class Nanga {
 
     public function __construct() {
         $this->nanga   = 'nanga';
-        $this->version = '1.1.5';
+        $this->version = '1.1.6';
         $this->load_dependencies();
         $this->set_locale();
         $this->define_shared_hooks();
