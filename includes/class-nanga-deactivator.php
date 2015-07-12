@@ -6,8 +6,6 @@ class Nanga_Deactivator {
             wp_clear_scheduled_hook( 'nanga_maybe_purge_transients' );
         }
         delete_option( 'nanga_maintenance_mode' );
-        //$playground = get_page_by_title( 'Playground' );
-        //wp_delete_post( $playground->ID, true );
         flush_rewrite_rules();
     }
 }
