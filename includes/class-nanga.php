@@ -27,9 +27,9 @@ class Nanga {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nanga-public.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cache.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shortcodes.php';
-        //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cron.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-updates.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-cpts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-taxos.php';
         $this->loader = new Nanga_Loader();
@@ -190,11 +190,9 @@ class Nanga {
     }
 
     private function plugin_control() {
-        //$plugin_control = new Nanga_Plugin_Control( array( 'debug-bar-timber/debug-bar-timber.php' ) );
         $plugin_control = new Nanga_Plugin_Control();
         if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
-            $plugin_control->disable( 'google-analytics-for-wordpress/googleanalytics.php' );
-            $plugin_control->disable( 'underconstruction/underConstruction.php' );
+            $plugin_control->disable( 'jigsaw/jigsaw.php' );
             $plugin_control->disable( 'w3-total-cache/w3-total-cache.php' );
         }
         if ( defined( 'WP_ENV' ) && 'development' !== WP_ENV ) {
