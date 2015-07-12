@@ -204,6 +204,7 @@ class Nanga {
     private function define_cron() {
         $plugin_cron = new Nanga_Cron( $this->get_nanga(), $this->get_version() );
         $this->loader->add_action( 'nanga_maybe_purge_transients', $plugin_cron, 'maybe_purge_transients' );
+        $this->loader->add_filter( 'cron_schedules', $plugin_cron, 'intervals' );
     }
 
     private function define_updates() {

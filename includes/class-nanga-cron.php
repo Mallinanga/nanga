@@ -9,6 +9,19 @@ class Nanga_Cron {
         $this->version = $version;
     }
 
+    public function intervals( $schedules ) {
+        $schedules['weekly']  = array(
+            'interval' => 604800,
+            'display'  => __( 'Once Weekly', $this->nanga ),
+        );
+        $schedules['monthly'] = array(
+            'interval' => 2635200,
+            'display'  => __( 'Once Monthly', $this->nanga ),
+        );
+
+        return $schedules;
+    }
+
     public function maybe_purge_transients( $older_than = '15 minutes', $safemode = true ) {
         global $wpdb;
         $older_than_time = strtotime( '-' . $older_than );
