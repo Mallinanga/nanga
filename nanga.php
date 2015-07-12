@@ -39,9 +39,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-nanga.php';
 if ( file_exists( plugin_dir_path( __FILE__ ) . 'includes/nanga-limbo.php' ) ) {
     require plugin_dir_path( __FILE__ ) . 'includes/nanga-limbo.php';
 }
-if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/zamoose/themehookalliance/tha-theme-hooks.php' ) ) {
-    require plugin_dir_path( __FILE__ ) . 'vendor/zamoose/themehookalliance/tha-theme-hooks.php';
-}
 function run_nanga() {
     $plugin = new Nanga();
     $plugin->run();

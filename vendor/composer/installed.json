@@ -97,7 +97,7 @@
         ]
     },
     {
-        "name": "tgm/plugin-activation",
+        "name": "tgmpa/tgm-plugin-activation",
         "version": "2.5.0",
         "version_normalized": "2.5.0.0",
         "source": {
@@ -150,41 +150,6 @@
             "library",
             "plugins",
             "theme",
-            "wordpress"
-        ],
-        "abandoned": "tgmpa/tgm-plugin-activation"
-    },
-    {
-        "name": "zamoose/themehookalliance",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zamoose/themehookalliance.git",
-            "reference": "9765ec46eb5e0144cbd46e8cf5f5c427a1e7555c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/zamoose/themehookalliance/zipball/9765ec46eb5e0144cbd46e8cf5f5c427a1e7555c",
-            "reference": "9765ec46eb5e0144cbd46e8cf5f5c427a1e7555c",
-            "shasum": ""
-        },
-        "time": "2015-06-09 01:05:54",
-        "type": "library",
-        "installation-source": "source",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Doug Stewart",
-                "homepage": "http://literalbarrage.org"
-            }
-        ],
-        "description": "Theme Hook Alliance",
-        "homepage": "https://github.com/zamoose/themehookalliance",
-        "keywords": [
             "wordpress"
         ]
     }

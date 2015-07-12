@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    $vendorDir . '/tgm/plugin-activation/class-tgm-plugin-activation.php',
+    $vendorDir . '/tgmpa/tgm-plugin-activation/class-tgm-plugin-activation.php',
 );
