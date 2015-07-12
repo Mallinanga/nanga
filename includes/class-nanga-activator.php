@@ -29,6 +29,9 @@ class Nanga_Activator {
             }
         } );
         */
+        if ( ! wp_next_scheduled( 'nanga_maybe_purge_transients' ) ) {
+            wp_schedule_event( time(), 'daily', 'nanga_maybe_purge_transients' );
+        }
         if ( ! get_option( 'nanga_plugin_activated' ) ) {
             update_option( 'avatar_default', 'blank' );
             update_option( 'blog_public', 0 );

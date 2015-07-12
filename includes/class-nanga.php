@@ -14,8 +14,8 @@ class Nanga {
         $this->define_admin_hooks();
         $this->define_public_hooks();
         $this->define_shortcodes();
-        //$this->define_cron();
         //$this->define_rewrites();
+        $this->define_cron();
         $this->define_updates();
         //$this->plugin_control();
     }
@@ -28,9 +28,9 @@ class Nanga {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-nanga-public.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cache.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shortcodes.php';
-        //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cron.php';
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-rewrites.php';
         //require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cron.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-updates.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-cpts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-taxos.php';
@@ -206,7 +206,8 @@ class Nanga {
     }
 
     private function define_cron() {
-        //$plugin_cron = new Nanga_Cron( $this->get_nanga(), $this->get_version() );
+        $plugin_cron = new Nanga_Cron( $this->get_nanga(), $this->get_version() );
+        $this->loader->add_action( 'nanga_maybe_purge_transients', $plugin_cron, 'maybe_purge_transients' );
     }
 
     private function define_rewrites() {

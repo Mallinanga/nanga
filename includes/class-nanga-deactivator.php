@@ -2,9 +2,9 @@
 
 class Nanga_Deactivator {
     public static function deactivate() {
-        wp_clear_scheduled_hook( 'nanga_task_1' );
-        wp_clear_scheduled_hook( 'nanga_task_2' );
-        wp_clear_scheduled_hook( 'nanga_task_3' );
+        if ( wp_next_scheduled( 'nanga_maybe_purge_transients' ) ) {
+            wp_clear_scheduled_hook( 'nanga_maybe_purge_transients' );
+        }
         delete_option( 'nanga_maintenance_mode' );
         //$playground = get_page_by_title( 'Playground' );
         //wp_delete_post( $playground->ID, true );
