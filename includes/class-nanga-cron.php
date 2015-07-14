@@ -22,7 +22,7 @@ class Nanga_Cron {
         return $schedules;
     }
 
-    public function maybe_purge_transients( $older_than = '15 minutes', $safemode = true ) {
+    public function maybe_purge_transients( $older_than = '1 week', $safemode = true ) {
         global $wpdb;
         $older_than_time = strtotime( '-' . $older_than );
         if ( $older_than_time > time() || $older_than_time < 1 ) {
@@ -34,11 +34,11 @@ class Nanga_Cron {
         if ( $safemode ) {
             foreach ( $site_transients as $site_transient ) {
                 write_log( $site_transient );
-                //delete_site_transient( $site_transient );
+                delete_site_transient( $site_transient );
             }
             foreach ( $transients as $transient ) {
                 write_log( $transient );
-                //delete_transient( $transient );
+                delete_transient( $transient );
             }
         }
 
