@@ -63,7 +63,7 @@ class Nanga_Activator {
             update_option( 'imsanity_max_width', 1200 );
             update_option( 'imsanity_max_width_library', 1200 );
             update_option( 'imsanity_max_width_other', 0 );
-            update_option( 'imsanity_quality', 90 );
+            update_option( 'imsanity_quality', 100 );
             update_option( 'large_crop', 1 );
             update_option( 'large_size_h', 0 );
             update_option( 'mailserver_login', '' );
