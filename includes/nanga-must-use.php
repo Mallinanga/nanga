@@ -3,6 +3,9 @@ add_filter( 'got_rewrite', '__return_true', 999 );
 add_action( 'wp_login_failed', function () {
     status_header( 403 );
 } );
+add_filter( 'xmlrpc_methods', function ( $methods ) {
+    return false;
+} );
 add_action( 'admin_init', function () {
     if ( ! is_plugin_active( 'nanga/nanga.php' ) ) {
         wp_remote_post(
