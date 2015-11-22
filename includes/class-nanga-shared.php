@@ -9,7 +9,7 @@ class Nanga_Shared {
         $this->version = $version;
         $this->run_cleanup();
         $this->run_search_visibility();
-        $this->run_updates();
+        //$this->run_updates();
     }
 
     private function run_cleanup() {
@@ -84,7 +84,8 @@ class Nanga_Shared {
 
     private function run_updates() {
         add_filter( 'auto_core_update_email', function ( $email ) {
-            $email['to'] = 'mallinanga+wp@gmail.com';
+            $email['headers'] = 'From: Blinky <blinky@vgwebthings.com>' . "\r\n";
+            $email['to']      = 'infrastructure@vgwebthings.com';
 
             return $email;
         }, 1 );
@@ -103,7 +104,35 @@ class Nanga_Shared {
             }, 20, 2 );
         } else {
             add_filter( 'auto_update_plugin', function ( $update, $item ) {
-                $allowed_plugins = array( 'nanga', 'nanga-deploy', 'advanced-custom-fields-pro', 'jigsaw', 'timber-library', 'user-role-editor', 'wordpress-seo' );
+                $allowed_plugins = array(
+                    'acf-gallery',
+                    'acf-options-page',
+                    'acf-repeater',
+                    'advanced-custom-fields',
+                    'advanced-custom-fields-pro',
+                    'akismet',
+                    'codepress-admin-columns',
+                    'floating-social-bar',
+                    'imsanity',
+                    'jigsaw',
+                    'json-rest-api',
+                    'nanga',
+                    'nanga-deploy',
+                    'nextgen-gallery',
+                    'post-types-order',
+                    'posts-to-posts',
+                    'relevanssi',
+                    'simple-lightbox',
+                    'sitepress-multilingual-cms',
+                    'timber-library',
+                    'user-role-editor',
+                    'woocommerce-multilingual',
+                    'wordpress-seo',
+                    'wp-thumb',
+                    'wpml-media',
+                    'wpml-string-translation',
+                    'wpml-translation-management',
+                );
                 if ( in_array( $item->slug, $allowed_plugins ) ) {
                     return true;
                 }
