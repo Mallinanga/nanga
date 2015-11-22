@@ -432,7 +432,9 @@ class Nanga_Admin {
         remove_meta_box( 'woocommerce_dashboard_recent_reviews', 'dashboard', 'normal' );
         remove_meta_box( 'woocommerce_dashboard_right_now', 'dashboard', 'normal' );
         remove_meta_box( 'woocommerce_dashboard_sales', 'dashboard', 'normal' );
+        remove_meta_box( 'woocommerce_dashboard_status', 'dashboard', 'normal' );
         remove_meta_box( 'wp_cube', 'dashboard', 'normal' );
+        remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'normal' );
     }
 
     public function disable_postboxes() {
