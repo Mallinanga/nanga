@@ -73,7 +73,7 @@ class Nanga {
         $this->loader->add_filter( 'rewrite_rules_array', $plugin_shared, 'filter_rewrites' );
         $this->loader->add_filter( 'robots_txt', $plugin_shared, 'robots', 10, 2 );
         $this->loader->add_filter( 'wp_headers', $plugin_shared, 'wp_headers' );
-        $this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
+        //$this->loader->add_filter( 'wp_mail_from', $plugin_shared, 'mail_from' );
         $this->loader->add_filter( 'wp_mail_from_name', $plugin_shared, 'mail_from_name' );
         $this->loader->add_filter( 'xmlrpc_methods', $plugin_shared, 'xmlrpc_methods' );
     }
