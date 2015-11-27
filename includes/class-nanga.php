@@ -10,11 +10,12 @@ class Nanga {
         $this->version = '1.1.7';
         $this->load_dependencies();
         $this->set_locale();
-        $this->define_shared_hooks();
         $this->define_admin_hooks();
-        $this->define_public_hooks();
-        $this->define_shortcodes();
         $this->define_cron();
+        $this->define_public_hooks();
+        $this->define_shared_hooks();
+        $this->define_shortcodes();
+        $this->define_third_party();
         $this->define_updates();
     }
 
@@ -28,6 +29,7 @@ class Nanga {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shortcodes.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cron.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-updates.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-third-party.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-cpts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-taxos.php';
         $this->loader = new Nanga_Loader();
@@ -56,15 +58,6 @@ class Nanga {
         $this->loader->add_action( 'init', $plugin_shared, 'disable_taxonomies' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'acf_load_point' );
         $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'acf_save_point' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_akismet' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_easy_digital_downloads' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_gravity_forms' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_jetpack' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_json_api' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_woocommerce' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wordpress_social_login' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_wpml' );
-        $this->loader->add_action( 'plugins_loaded', $plugin_shared, 'features_yoast_seo' );
         $this->loader->add_action( 'shutdown', $plugin_shared, 'dump_queries', 999 );
         $this->loader->add_action( 'xmlrpc_call', $plugin_shared, 'xmlrpc_call' );
         $this->loader->add_filter( 'bloginfo_url', $plugin_shared, 'bloginfo_url', 10, 2 );
@@ -177,6 +170,19 @@ class Nanga {
 
     private function define_shortcodes() {
         $plugin_shortcodes = new Nanga_Shortcodes( $this->get_nanga(), $this->get_version() );
+    }
+
+    private function define_third_party() {
+        $plugin_third_party = new NangaThirdParty( $this->get_nanga(), $this->get_version() );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_akismet' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_easy_digital_downloads' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_gravity_forms' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_jetpack' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_json_api' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_woocommerce' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_wordpress_social_login' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_wpml' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_yoast_seo' );
     }
 
     public function run() {
