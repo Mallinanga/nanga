@@ -16,7 +16,6 @@ class Nanga {
         $this->define_shortcodes();
         $this->define_cron();
         $this->define_updates();
-        //$this->plugin_control();
     }
 
     private function load_dependencies() {
@@ -29,7 +28,6 @@ class Nanga {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-shortcodes.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-cron.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-updates.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-nanga-plugin-control.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-cpts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/cpt/extended-taxos.php';
         $this->loader = new Nanga_Loader();
@@ -187,18 +185,6 @@ class Nanga {
 
     public function get_loader() {
         return $this->loader;
-    }
-
-    private function plugin_control() {
-        $plugin_control = new Nanga_Plugin_Control();
-        if ( defined( 'WP_ENV' ) && 'development' === WP_ENV ) {
-            $plugin_control->disable( 'jigsaw/jigsaw.php' );
-            $plugin_control->disable( 'w3-total-cache/w3-total-cache.php' );
-        }
-        if ( defined( 'WP_ENV' ) && 'development' !== WP_ENV ) {
-            $plugin_control->disable( 'debug-bar-timber/debug-bar-timber.php' );
-            $plugin_control->disable( 'debug-bar/debug-bar.php' );
-        }
     }
 
     private function define_cron() {
