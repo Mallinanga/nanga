@@ -202,4 +202,12 @@ class NangaThirdParty {
             } );
         }
     }
+
+    public function features_timber() {
+        if ( class_exists( 'Timber' ) ) {
+            add_filter( 'timber/cache/location', function () {
+                return WP_CONTENT_DIR . '/cache/timber';
+            } );
+        }
+    }
 }

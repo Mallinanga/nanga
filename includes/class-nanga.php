@@ -179,6 +179,7 @@ class Nanga {
         $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_gravity_forms' );
         $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_jetpack' );
         $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_json_api' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_timber' );
         $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_woocommerce' );
         $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_wordpress_social_login' );
         $this->loader->add_action( 'plugins_loaded', $plugin_third_party, 'features_wpml' );
