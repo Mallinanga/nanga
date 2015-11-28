@@ -208,6 +208,9 @@ class NangaThirdParty {
             add_filter( 'timber/cache/location', function () {
                 return WP_CONTENT_DIR . '/cache/timber';
             } );
+            if ( defined( 'WP_ENV' ) && 'production' === WP_ENV ) {
+                Timber::$cache = true;
+            }
         }
     }
 }
