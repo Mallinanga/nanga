@@ -300,7 +300,11 @@ class Nanga_Shared {
     }
 
     public function mail_from() {
-        $from = 'info@' . preg_replace( '/^www\./', '', $_SERVER['SERVER_NAME'] );
+        $sitename = strtolower( $_SERVER['SERVER_NAME'] );
+        if ( substr( $sitename, 0, 4 ) == 'www.' ) {
+            $sitename = substr( $sitename, 4 );
+        }
+        $from = 'info@' . $sitename;
 
         return apply_filters( $this->nanga . '_mail_from', $from );
     }
