@@ -330,6 +330,7 @@ class Nanga_Shared {
 
     public function robots( $output, $public ) {
         $output .= "Disallow: /_files/\n";
+        $output .= "Disallow: /_newsletter/\n";
         $output .= "Disallow: /console/\n";
         $output .= "Disallow: /newsletter/\n";
         $output .= "Disallow: /vendor/\n";
