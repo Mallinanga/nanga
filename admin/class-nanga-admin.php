@@ -140,7 +140,7 @@ class Nanga_Admin {
     }
 
     public function login_headerurl() {
-        return get_site_url();
+        return home_url();
     }
 
     public function login_headertitle() {
@@ -349,7 +349,7 @@ class Nanga_Admin {
             }
             $links = array(
                 'Google Analytics'  => 'https://www.google.com/analytics/',
-                'Webmaster Tools'   => 'https://www.google.com/webmasters/tools/dashboard?hl=en&siteUrl=' . get_site_url(),
+                'Webmaster Tools'   => 'https://www.google.com/webmasters/tools/dashboard?hl=en&siteUrl=' . home_url(),
                 'Twitter Reactions' => 'https://twitter.com/search?q=' . $_SERVER['SERVER_NAME'],
             );
             if ( current_theme_supports( 'nanga-analytics' ) ) {
@@ -383,7 +383,7 @@ class Nanga_Admin {
             }
             $wp_toolbar->add_node( array(
                 'id'    => 'nanga-visit-site',
-                'href'  => get_site_url(),
+                'href'  => home_url(),
                 'title' => __( 'View Public Side of the Site', $this->nanga ),
                 'meta'  => array( 'target' => '_blank' )
             ) );
@@ -715,7 +715,7 @@ class Nanga_Admin {
     }
 
     public function support_request_form() {
-        echo '<div class="support-request-container vg-container"> <div class="support-request-container__messages"></div> <form id="support-request-form" accept-charset="UTF-8" action="https://formkeep.com/f/36041913c4c7" method="POST"><input type="hidden" name="utf8" value="✓"> <p><input type="email" name="email" placeholder="' . __( 'Your email', $this->nanga ) . '" value="' . get_the_author_meta( 'user_email', get_current_user_id() ) . '" class="widefat" required></p> <p><input type="text" name="name" placeholder="' . __( 'Your name', $this->nanga ) . '" value="' . get_the_author_meta( 'display_name', get_current_user_id() ) . '" class="widefat" required></p> <p><textarea name="message" placeholder="' . __( 'Your message', $this->nanga ) . '" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . get_site_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="' . __( 'Send Support Request', $this->nanga ) . '"> </form> </div>';
+        echo '<div class="support-request-container vg-container"> <div class="support-request-container__messages"></div> <form id="support-request-form" accept-charset="UTF-8" action="https://formkeep.com/f/36041913c4c7" method="POST"><input type="hidden" name="utf8" value="✓"> <p><input type="email" name="email" placeholder="' . __( 'Your email', $this->nanga ) . '" value="' . get_the_author_meta( 'user_email', get_current_user_id() ) . '" class="widefat" required></p> <p><input type="text" name="name" placeholder="' . __( 'Your name', $this->nanga ) . '" value="' . get_the_author_meta( 'display_name', get_current_user_id() ) . '" class="widefat" required></p> <p><textarea name="message" placeholder="' . __( 'Your message', $this->nanga ) . '" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . home_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="' . __( 'Send Support Request', $this->nanga ) . '"> </form> </div>';
     }
 
     public function user_contact( $user_contact ) {
