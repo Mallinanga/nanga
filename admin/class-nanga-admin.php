@@ -44,7 +44,9 @@ class Nanga_Admin {
     }
 
     public function login_errors( $error ) {
-        return __( '<strong>ERROR:</strong> Please try again...', 'vg' );
+        if ( current_theme_supports( 'nanga-white-label-login' ) ) {
+            return __( '<strong>ERROR:</strong> Please try again...', 'vg' );
+        }
     }
 
     public function plugin_settings_menu() {
@@ -154,17 +156,21 @@ class Nanga_Admin {
     }
 
     public function dequeue_login_styles() {
-        //wp_deregister_style( 'open-sans' );
-        //wp_register_style( 'open-sans', false );
-        wp_deregister_style( 'dashicons' );
-        wp_register_style( 'dashicons', false );
-        wp_deregister_style( 'buttons' );
-        wp_register_style( 'buttons', false );
+        if ( current_theme_supports( 'nanga-white-label-login' ) ) {
+            //wp_deregister_style( 'open-sans' );
+            //wp_register_style( 'open-sans', false );
+            //wp_deregister_style( 'dashicons' );
+            //wp_register_style( 'dashicons', false );
+            wp_deregister_style( 'buttons' );
+            wp_register_style( 'buttons', false );
+        }
     }
 
     public function enqueue_login_styles() {
-        wp_register_style( $this->nanga . '-login', plugin_dir_url( __FILE__ ) . 'css/nanga-login.css', array(), $this->version, 'all' );
-        wp_print_styles( $this->nanga . '-login' );
+        if ( current_theme_supports( 'nanga-white-label-login' ) ) {
+            wp_register_style( $this->nanga . '-login', plugin_dir_url( __FILE__ ) . 'css/nanga-login.css', array(), $this->version, 'all' );
+            wp_print_styles( $this->nanga . '-login' );
+        }
         //@todo
         /*
         $site_logo = get_theme_mod( 'site_logo' );
