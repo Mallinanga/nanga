@@ -30,4 +30,5 @@ ratings:
   - "**.rb"
 exclude_paths:
 - includes/cpt/**/*
+- public/js/jquery.min.js
 - vendor/**/*
