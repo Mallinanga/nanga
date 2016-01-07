@@ -129,7 +129,6 @@ class Nanga {
         $this->loader->add_filter( 'wp_default_editor', $plugin_admin, 'default_editor' );
         $this->loader->add_filter( 'wp_editor_set_quality', $plugin_admin, 'image_quality' );
         //$this->loader->add_action( 'edit_attachment', $plugin_admin, 'image_license_save' );
-        //$this->loader->add_action( 'login_enqueue_scripts', $plugin_admin, 'enqueue_password_hash' );
         //$this->loader->add_filter( 'admin_post_thumbnail_html', $plugin_admin, 'admin_post_thumbnail_html' );
         //$this->loader->add_filter( 'attachment_fields_to_edit', $plugin_admin, 'image_license_field', 10, 2 );
         //$this->loader->add_filter( 'locale', $plugin_admin, 'force_dashboard_locale', 10 );
