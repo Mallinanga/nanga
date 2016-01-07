@@ -459,26 +459,20 @@ class Nanga_Admin {
             return '';
         } else {
             $wp_version        = str_ireplace( 'version', '', $wp_version );
-            $vg_version        = wp_get_theme( 'vg' )->get( 'Version' );
             $vg_twig_version   = wp_get_theme( 'vg-twig' )->get( 'Version' );
             $vg_plugin_version = ' | <strong>Plugin</strong> N/A';
-            $environment       = defined( 'WP_ENV' ) ? ' | <strong>Env</strong> ' . ucfirst( WP_ENV ) : ' | <strong>Env</strong> N/A';
-            if ( ! $vg_version ) {
-                $vg_version = ' | <strong>VG</strong> N/A';
-            } else {
-                $vg_version = ' | <strong>VG</strong> ' . $vg_version;
-            }
+            $environment       = defined( 'WP_ENV' ) ? ' | <strong>Environment</strong> ' . ucfirst( WP_ENV ) : ' | <strong>Env</strong> N/A';
             if ( ! $vg_twig_version ) {
-                $vg_twig_version = ' | <strong>Twig</strong> N/A';
+                $vg_twig_version = ' | <strong>Theme</strong> N/A';
             } else {
-                $vg_twig_version = ' | <strong>Twig</strong> ' . $vg_twig_version;
+                $vg_twig_version = ' | <strong>Theme</strong> ' . $vg_twig_version;
             }
             if ( is_plugin_active( 'nanga/nanga.php' ) ) {
                 $version           = get_plugin_data( WP_PLUGIN_DIR . '/nanga/nanga.php', false, false );
                 $vg_plugin_version = ' | <strong>Plugin</strong> ' . $version['Version'];
             }
 
-            return '<strong>WP</strong> ' . $wp_version . $vg_version . $vg_twig_version . $vg_plugin_version . $environment;
+            return '<strong>WP</strong> ' . $wp_version . $vg_twig_version . $vg_plugin_version . $environment;
         }
     }
 
