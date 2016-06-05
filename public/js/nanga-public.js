@@ -1,6 +1,9 @@
 if (!window.location.origin) {
     window.location.origin = window.location.protocol + "//" + window.location.hostname + (window.location.port ? ':' + window.location.port : '');
 }
+$(document).ajaxError(function (e, xhr, settings, error) {
+    console.log(error);
+});
 //(function ($) {
 //  $.fn.setPlaceholder = function () {
 //    return this.each(function () {

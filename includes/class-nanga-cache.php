@@ -12,20 +12,23 @@ if ( ! $frag->output() ) { // NOTE, testing for a return of false
 }
 */
 
-class Nanga_Cache {
+class Nanga_Cache
+{
 
     const GROUP = 'nanga-cache';
     var $key;
     var $ttl;
 
-    public function __construct( $key, $ttl ) {
+    public function __construct($key, $ttl)
+    {
         $this->key = $key;
         $this->ttl = $ttl;
     }
 
-    public function output() {
-        $output = wp_cache_get( $this->key, self::GROUP );
-        if ( ! empty( $output ) ) {
+    public function output()
+    {
+        $output = wp_cache_get($this->key, self::GROUP);
+        if ( ! empty($output)) {
             echo $output;
 
             return true;
@@ -36,8 +39,9 @@ class Nanga_Cache {
         }
     }
 
-    public function store() {
+    public function store()
+    {
         $output = ob_get_flush();
-        wp_cache_add( $this->key, $output, self::GROUP, $this->ttl );
+        wp_cache_add($this->key, $output, self::GROUP, $this->ttl);
     }
 }

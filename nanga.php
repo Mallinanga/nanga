@@ -11,33 +11,36 @@
  * Text Domain:       nanga
  * Domain Path:       /languages
  */
-if ( ! defined( 'WPINC' ) ) {
+if ( ! defined('WPINC')) {
     die;
 }
-if ( defined( 'WP_CLI' ) && WP_CLI ) {
-    include plugin_dir_path( __FILE__ ) . 'includes/class-nanga-cli.php';
+if (defined('WP_CLI') && WP_CLI) {
+    include plugin_dir_path(__FILE__) . 'includes/class-nanga-cli.php';
 }
-if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
-    require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
+if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+    require_once(dirname(__FILE__) . '/vendor/autoload.php');
 }
-function activate_nanga() {
-    require_once plugin_dir_path( __FILE__ ) . 'includes/class-nanga-activator.php';
+function activate_nanga()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-nanga-activator.php';
     Nanga_Activator::activate();
 }
 
-function deactivate_nanga() {
-    require_once plugin_dir_path( __FILE__ ) . 'includes/class-nanga-deactivator.php';
+function deactivate_nanga()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-nanga-deactivator.php';
     Nanga_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_nanga' );
-register_deactivation_hook( __FILE__, 'deactivate_nanga' );
-require plugin_dir_path( __FILE__ ) . 'includes/nanga-helpers.php';
-require plugin_dir_path( __FILE__ ) . 'includes/class-nanga.php';
-if ( file_exists( plugin_dir_path( __FILE__ ) . 'includes/nanga-limbo.php' ) ) {
-    require plugin_dir_path( __FILE__ ) . 'includes/nanga-limbo.php';
+register_activation_hook(__FILE__, 'activate_nanga');
+register_deactivation_hook(__FILE__, 'deactivate_nanga');
+require plugin_dir_path(__FILE__) . 'includes/nanga-helpers.php';
+require plugin_dir_path(__FILE__) . 'includes/class-nanga.php';
+if (file_exists(plugin_dir_path(__FILE__) . 'includes/nanga-limbo.php')) {
+    require plugin_dir_path(__FILE__) . 'includes/nanga-limbo.php';
 }
-function run_nanga() {
+function run_nanga()
+{
     $plugin = new Nanga();
     $plugin->run();
 }

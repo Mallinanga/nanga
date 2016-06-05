@@ -1,8 +1,8 @@
 <link rel="stylesheet" href="https://ga-dev-tools.appspot.com/public/css/main.css" media="all">
 <style>
-    .Dashboard-header{
-        margin:0 0 2em 0;
-        padding:2em 0;
+    .Dashboard-header {
+        margin: 0 0 2em 0;
+        padding: 2em 0;
     }
 </style>
 <script>

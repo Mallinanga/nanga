@@ -1,21 +1,21 @@
 [
     {
         "name": "composer/installers",
-        "version": "v1.0.22",
-        "version_normalized": "1.0.22.0",
+        "version": "v1.0.25",
+        "version_normalized": "1.0.25.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "bd9b14f094c89c8b5804a4e41edeb7853bb85046"
+            "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/bd9b14f094c89c8b5804a4e41edeb7853bb85046",
-            "reference": "bd9b14f094c89c8b5804a4e41edeb7853bb85046",
+            "url": "https://api.github.com/repos/composer/installers/zipball/36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
+            "reference": "36e5b5843203d7f1cf6ffb0305a97e014387bd8e",
             "shasum": ""
         },
         "require": {
-            "composer-plugin-api": "1.0.0"
+            "composer-plugin-api": "^1.0"
         },
         "replace": {
             "roundcube/plugin-installer": "*",
@@ -25,7 +25,7 @@
             "composer/composer": "1.0.*@dev",
             "phpunit/phpunit": "4.1.*"
         },
-        "time": "2015-10-29 23:28:48",
+        "time": "2016-04-13 19:46:30",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",
@@ -35,8 +35,8 @@
         },
         "installation-source": "dist",
         "autoload": {
-            "psr-0": {
-                "Composer\\Installers\\": "src/"
+            "psr-4": {
+                "Composer\\Installers\\": "src/Composer/Installers"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -51,12 +51,14 @@
             }
         ],
         "description": "A multi-framework Composer library installer",
-        "homepage": "http://composer.github.com/installers/",
+        "homepage": "https://composer.github.io/installers/",
         "keywords": [
             "Craft",
             "Dolibarr",
             "Hurad",
+            "ImageCMS",
             "MODX Evo",
+            "Mautic",
             "OXID",
             "SMF",
             "Thelia",
@@ -101,23 +103,23 @@
     },
     {
         "name": "tgmpa/tgm-plugin-activation",
-        "version": "2.5.2",
-        "version_normalized": "2.5.2.0",
+        "version": "2.6.1",
+        "version_normalized": "2.6.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/TGMPA/TGM-Plugin-Activation.git",
-            "reference": "ba41c10e821a10d3d6c3b8e468a16716bb03f125"
+            "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/ba41c10e821a10d3d6c3b8e468a16716bb03f125",
-            "reference": "ba41c10e821a10d3d6c3b8e468a16716bb03f125",
+            "url": "https://api.github.com/repos/TGMPA/TGM-Plugin-Activation/zipball/c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
+            "reference": "c626d0d91fc8ef24916e809c7b79eeafab1c1cac",
             "shasum": ""
         },
         "require": {
             "php": ">=5.2"
         },
-        "time": "2015-07-16 08:59:11",
+        "time": "2016-05-19 15:46:51",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

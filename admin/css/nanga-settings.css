@@ -1,52 +1,63 @@
-@font-face{
-    font-family:'FS Albert Pro Web';
-    src:url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
+@font-face {
+    font-family: 'FS Albert Pro Web';
+    src: url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
 }
-@font-face{
-    font-family:'FS Albert Pro Web Bold';
-    src:url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
+
+@font-face {
+    font-family: 'FS Albert Pro Web Bold';
+    src: url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
 }
-.wrap{
-    font-family:'FS Albert Pro Web', sans-serif;
-    color:white;
-    text-align:center;
+
+.wrap {
+    font-family: 'FS Albert Pro Web', sans-serif;
+    color: white;
+    text-align: center;
 }
-.wrap strong{
-    font-family:'FS Albert Pro Web Bold', sans-serif;
+
+.wrap strong {
+    font-family: 'FS Albert Pro Web Bold', sans-serif;
 }
-.hero{
-    font-family:'FS Albert Pro Web Bold', sans-serif;
-    font-size:56px;
-    letter-spacing:-2px;
-    line-height:56px;
-    margin-top:5%;
-    text-shadow:0 0 5px #000;
+
+.hero {
+    font-family: 'FS Albert Pro Web Bold', sans-serif;
+    font-size: 56px;
+    letter-spacing: -2px;
+    line-height: 56px;
+    margin-top: 5%;
+    text-shadow: 0 0 5px #000;
 }
-html{
-    background-image:url(../img/polygons.jpg);
-    background-repeat:no-repeat;
-    background-size:cover;
+
+html {
+    background-image: url(../img/polygons.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.acf-field{
-    height:200px;
+
+.acf-field {
+    height: 200px;
     /*padding:105px 20px 50px 20px !important;*/
 }
-#post-body.columns-2 #postbox-container-1{
-    float:none;
-    margin-right:0;
-    width:100%;
+
+#post-body.columns-2 #postbox-container-1 {
+    float: none;
+    margin-right: 0;
+    width: 100%;
 }
-#poststuff #post-body.columns-2 #side-sortables{
-    width:100%;
+
+#poststuff #post-body.columns-2 #side-sortables {
+    width: 100%;
 }
-#post-body-content{
-    float:none;
+
+#post-body-content {
+    float: none;
 }
-#poststuff #post-body.columns-2{
-    margin-right:0;
+
+#poststuff #post-body.columns-2 {
+    margin-right: 0;
 }
+
 #screen-meta,
 #screen-meta-links,
-#wpfooter{
-    display:none;
+#wpfooter {
+    display: none;
 }

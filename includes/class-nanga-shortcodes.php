@@ -1,25 +1,29 @@
 <?php
 
-class Nanga_Shortcodes {
+class Nanga_Shortcodes
+{
+
     private $nanga;
     private $version;
 
-    public function __construct( $nanga, $version ) {
+    public function __construct($nanga, $version)
+    {
         $this->nanga   = $nanga;
         $this->version = $version;
-        add_shortcode( 'antispambot', array( $this, 'antispambot' ) );
-        add_shortcode( 'childpages', array( $this, 'childpages' ) );
-        add_shortcode( 'paypal', array( $this, 'paypal' ) );
+        add_shortcode('antispambot', [$this, 'antispambot']);
+        add_shortcode('childpages', [$this, 'childpages']);
+        add_shortcode('paypal', [$this, 'paypal']);
     }
 
-    private function paypal( $atts ) {
-        $atts = shortcode_atts( array(
+    private function paypal($atts)
+    {
+        $atts = shortcode_atts([
             'account'  => false,
             'amount'   => '50',
             'currency' => 'EUR',
-            'size'     => 'LG'
-        ), $atts );
-        extract( $atts );
+            'size'     => 'LG',
+        ], $atts);
+        extract($atts);
 
         return '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="paypal-button">
                 <input type="hidden" name="cmd" value="_xclick">
@@ -32,21 +36,23 @@ class Nanga_Shortcodes {
             </form>';
     }
 
-    private function antispambot( $atts ) {
+    private function antispambot($atts)
+    {
         // Usage: [antispambot email="email@address.com"]
-        extract( shortcode_atts( array( 'email' => '' ), $atts ) );
+        extract(shortcode_atts(['email' => ''], $atts));
 
-        return antispambot( $email );
+        return antispambot($email);
     }
 
-    private function childpages() {
+    private function childpages()
+    {
         global $post;
-        if ( is_page() && $post->post_parent ) {
-            $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
+        if (is_page() && $post->post_parent) {
+            $childpages = wp_list_pages('sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0');
         } else {
-            $childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
+            $childpages = wp_list_pages('sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0');
         }
-        if ( $childpages ) {
+        if ($childpages) {
             $string = '<ul>' . $childpages . '</ul>';
         }
 

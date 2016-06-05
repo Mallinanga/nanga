@@ -3,7 +3,9 @@
 /**
  * Nanga wp-cli integration.
  */
-class Nanga_CLI extends WP_CLI_Command {
+class Nanga_CLI extends WP_CLI_Command
+{
+
     /**
      * Prints a greeting.
      *
@@ -21,9 +23,10 @@ class Nanga_CLI extends WP_CLI_Command {
      * @param $args
      * @param $assoc_args
      */
-    function hello( $args, $assoc_args ) {
-        list( $name ) = $args;
-        WP_CLI::success( "Hello, $name!" );
+    function hello($args, $assoc_args)
+    {
+        list($name) = $args;
+        WP_CLI::success("Hello, $name!");
     }
 
     /**
@@ -43,7 +46,8 @@ class Nanga_CLI extends WP_CLI_Command {
      * @param $args
      * @param $assoc_args
      */
-    function chore( $args, $assoc_args ) {
+    function chore($args, $assoc_args)
+    {
         //wp_cache_flush();
         //if ( class_exists( 'TimberLoader' ) ) {
         //TimberCommand::clear_cache_timber();
@@ -52,8 +56,8 @@ class Nanga_CLI extends WP_CLI_Command {
         //WP_CLI::line( 'Line' );
         //WP_CLI::log( 'Log' );
         //WP_CLI::confirm( 'Are you really sure you wanna do this?' );
-        $command = WP_CLI::launch( 'git push origin master', true, true );
-        WP_CLI::line( $command );
+        $command = WP_CLI::launch('git push origin master', true, true);
+        WP_CLI::line($command);
         //write_log( shell_exec( 'git lg' ) );
         //write_log( $args );
         //write_log( $assoc_args );
@@ -61,4 +65,4 @@ class Nanga_CLI extends WP_CLI_Command {
     }
 }
 
-WP_CLI::add_command( 'nanga', 'Nanga_CLI' );
+WP_CLI::add_command('nanga', 'Nanga_CLI');
