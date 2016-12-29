@@ -2,22 +2,32 @@
 engines:
   csslint:
     enabled: true
+    checks:
+      read-error:
+        enabled: false
   duplication:
     enabled: true
     config:
       languages:
-      - ruby
       - javascript
-      - python
       - php
   eslint:
     enabled: true
   fixme:
     enabled: true
   phpcodesniffer:
-    enabled: true
+    enabled: false
   phpmd:
     enabled: true
+    checks:
+      CleanCode/StaticAccess:
+        enabled: false
+      Controversial/CamelCaseClassName:
+        enabled: false
+      Controversial/CamelCaseParameterName:
+        enabled: false
+      Controversial/Superglobals:
+        enabled: false
 ratings:
   paths:
   - "**.css"
