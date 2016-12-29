@@ -599,7 +599,6 @@ class Nanga_Admin
         $existing_mimes['ogg'] = 'video/ogg';
         $existing_mimes['ogv'] = 'video/ogv';
         unset($existing_mimes['bmp']);
-        unset($existing_mimes['gif']);
 
         return $existing_mimes;
     }
