@@ -65,9 +65,9 @@ class Nanga_Shared
         add_filter('tiny_mce_plugins', function ($plugins) {
             if (is_array($plugins)) {
                 return array_diff($plugins, ['wpemoji']);
-            } else {
-                return [];
             }
+
+            return [];
         });
     }
 

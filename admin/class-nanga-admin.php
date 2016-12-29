@@ -331,7 +331,7 @@ class Nanga_Admin
         }
     }
 
-    public function admin_bar($wp_toolbar)
+    public function admin_bar($wpToolbar)
     {
         remove_action('admin_bar_menu', 'wp_admin_bar_comments_menu', 60);
         remove_action('admin_bar_menu', 'wp_admin_bar_edit_menu', 80);
@@ -410,37 +410,37 @@ class Nanga_Admin
                 'meta'  => ['target' => '_blank'],
             ]);
         }
-        $wp_toolbar->remove_node('about');
-        $wp_toolbar->remove_node('appearance');
-        $wp_toolbar->remove_node('comments');
-        $wp_toolbar->remove_node('customize');
-        $wp_toolbar->remove_node('dashboard');
-        $wp_toolbar->remove_node('documentation');
-        $wp_toolbar->remove_node('edit');
-        $wp_toolbar->remove_node('edit-profile');
-        $wp_toolbar->remove_node('feedback');
-        $wp_toolbar->remove_node('logout');
-        $wp_toolbar->remove_node('menus');
-        $wp_toolbar->remove_node('my-account');
-        $wp_toolbar->remove_node('new-content');
-        $wp_toolbar->remove_node('new-link');
-        $wp_toolbar->remove_node('new-media');
-        $wp_toolbar->remove_node('new-page');
-        $wp_toolbar->remove_node('new-post');
-        $wp_toolbar->remove_node('new-user');
-        $wp_toolbar->remove_node('search');
-        $wp_toolbar->remove_node('site-name');
-        $wp_toolbar->remove_node('support-forums');
-        $wp_toolbar->remove_node('themes');
-        $wp_toolbar->remove_node('updates');
-        $wp_toolbar->remove_node('user-actions');
-        $wp_toolbar->remove_node('user-info');
-        $wp_toolbar->remove_node('view');
-        $wp_toolbar->remove_node('view-site');
-        $wp_toolbar->remove_node('wp-logo');
-        $wp_toolbar->remove_node('wp-logo-external');
-        $wp_toolbar->remove_node('wporg');
-        $wp_toolbar->remove_node('wpseo-menu');
+        $wpToolbar->remove_node('about');
+        $wpToolbar->remove_node('appearance');
+        $wpToolbar->remove_node('comments');
+        $wpToolbar->remove_node('customize');
+        $wpToolbar->remove_node('dashboard');
+        $wpToolbar->remove_node('documentation');
+        $wpToolbar->remove_node('edit');
+        $wpToolbar->remove_node('edit-profile');
+        $wpToolbar->remove_node('feedback');
+        $wpToolbar->remove_node('logout');
+        $wpToolbar->remove_node('menus');
+        $wpToolbar->remove_node('my-account');
+        $wpToolbar->remove_node('new-content');
+        $wpToolbar->remove_node('new-link');
+        $wpToolbar->remove_node('new-media');
+        $wpToolbar->remove_node('new-page');
+        $wpToolbar->remove_node('new-post');
+        $wpToolbar->remove_node('new-user');
+        $wpToolbar->remove_node('search');
+        $wpToolbar->remove_node('site-name');
+        $wpToolbar->remove_node('support-forums');
+        $wpToolbar->remove_node('themes');
+        $wpToolbar->remove_node('updates');
+        $wpToolbar->remove_node('user-actions');
+        $wpToolbar->remove_node('user-info');
+        $wpToolbar->remove_node('view');
+        $wpToolbar->remove_node('view-site');
+        $wpToolbar->remove_node('wp-logo');
+        $wpToolbar->remove_node('wp-logo-external');
+        $wpToolbar->remove_node('wporg');
+        $wpToolbar->remove_node('wpseo-menu');
     }
 
     public function disable_metaboxes()
@@ -468,9 +468,9 @@ class Nanga_Admin
     public function disable_postboxes()
     {
         remove_meta_box('authordiv', 'attachment', 'normal');
-        $post_types = get_post_types(['_builtin' => false, 'public' => true]);
-        foreach ($post_types as $post_type) {
-            remove_meta_box('sharing_meta', $post_type, 'advanced');
+        $postTypes = get_post_types(['_builtin' => false, 'public' => true]);
+        foreach ($postTypes as $postType) {
+            remove_meta_box('sharing_meta', $postType, 'advanced');
         }
     }
 
@@ -479,27 +479,27 @@ class Nanga_Admin
         return 'Developed by <a href="' . get_the_author_meta('user_url', 1) . '" target="_blank">' . get_the_author_meta('display_name', 1) . '</a>';
     }
 
-    public function footer_right($wp_version)
+    public function footer_right($wpVersion)
     {
         if ( ! current_user_can('manage_options')) {
             return '';
         } else {
-            $wp_version        = str_ireplace('version', '', $wp_version);
-            $vg_twig_version   = wp_get_theme('vg-twig')->get('Version');
-            $vg_plugin_version = ' | <strong>Plugin</strong> N/A';
-            $environment       = defined('WP_ENV') ? ' | <strong>Environment</strong> ' . ucfirst(WP_ENV) : ' | <strong>Env</strong> N/A';
-            $debug             = defined('WP_DEBUG') ? ' | <strong>Debug</strong> On' : ' | <strong>Debug</strong> Off';
-            if ( ! $vg_twig_version) {
-                $vg_twig_version = ' | <strong>Theme</strong> N/A';
+            $wpVersion       = str_ireplace('version', '', $wpVersion);
+            $vgTwigVersion   = wp_get_theme('vg-twig')->get('Version');
+            $vgPluginVersion = ' | <strong>Plugin</strong> N/A';
+            $environment     = defined('WP_ENV') ? ' | <strong>Environment</strong> ' . ucfirst(WP_ENV) : ' | <strong>Env</strong> N/A';
+            $debug           = defined('WP_DEBUG') ? ' | <strong>Debug</strong> On' : ' | <strong>Debug</strong> Off';
+            if ( ! $vgTwigVersion) {
+                $vgTwigVersion = ' | <strong>Theme</strong> N/A';
             } else {
-                $vg_twig_version = ' | <strong>Theme</strong> ' . $vg_twig_version;
+                $vgTwigVersion = ' | <strong>Theme</strong> ' . $vgTwigVersion;
             }
             if (is_plugin_active('nanga/nanga.php')) {
-                $version           = get_plugin_data(WP_PLUGIN_DIR . '/nanga/nanga.php', false, false);
-                $vg_plugin_version = ' | <strong>Plugin</strong> ' . $version['Version'];
+                $version         = get_plugin_data(WP_PLUGIN_DIR . '/nanga/nanga.php', false, false);
+                $vgPluginVersion = ' | <strong>Plugin</strong> ' . $version['Version'];
             }
 
-            return '<strong>WP</strong> ' . $wp_version . $vg_twig_version . $vg_plugin_version . $environment . $debug;
+            return '<strong>WP</strong> ' . $wpVersion . $vgTwigVersion . $vgPluginVersion . $environment . $debug;
         }
     }
 
@@ -508,16 +508,16 @@ class Nanga_Admin
         add_editor_style(plugin_dir_url(__FILE__) . 'css/nanga-editor-style.css');
     }
 
-    public function mce_buttons($mce_buttons)
+    public function mce_buttons($buttons)
     {
-        $pos = array_search('wp_more', $mce_buttons, true);
+        $pos = array_search('wp_more', $buttons, true);
         if (false !== $pos) {
-            $tmp_buttons   = array_slice($mce_buttons, 0, $pos + 1);
-            $tmp_buttons[] = 'wp_page';
-            $mce_buttons   = array_merge($tmp_buttons, array_slice($mce_buttons, $pos + 1));
+            $tempButtons   = array_slice($buttons, 0, $pos + 1);
+            $tempButtons[] = 'wp_page';
+            $buttons       = array_merge($tempButtons, array_slice($buttons, $pos + 1));
         }
 
-        return $mce_buttons;
+        return $buttons;
     }
 
     public function all_options_page()
@@ -550,20 +550,20 @@ class Nanga_Admin
         return $columns;
     }
 
-    public function columns_posts($columns, $post_type)
+    public function columns_posts($columns, $postType)
     {
-        //$post_types = get_post_types( array( 'public' => true ), 'names' );
-        //if ( in_array( $post_type, $post_types, true ) ) { unset( $columns['cb'] ); }
-        if (post_type_supports($post_type, 'thumbnail') && 'product' != $post_type) {
+        //$postTypes = get_post_types( array( 'public' => true ), 'names' );
+        //if ( in_array( $postType, $postTypes, true ) ) { unset( $columns['cb'] ); }
+        if (post_type_supports($postType, 'thumbnail') && 'product' != $postType) {
             $columns = $columns + ['icon' => __('Featured', $this->nanga)];
         }
 
         return $columns;
     }
 
-    public function featured_image_column($column_name, $post_id)
+    public function featured_image_column($columnName, $post_id)
     {
-        switch ($column_name) {
+        switch ($columnName) {
             case 'icon':
                 if (function_exists('the_post_thumbnail') && '' != get_the_post_thumbnail()) {
                     echo the_post_thumbnail('thumbnail', ['width' => '60', 'height' => 60, 'style' => 'width:60px;height:60px;']);
@@ -594,44 +594,44 @@ class Nanga_Admin
         //add_filter( 'screen_layout_columns', function ( $empty_columns, $screen_id, $screen ) { write_log( $screen ); }, 10, 3 );
     }
 
-    public function mime_types($existing_mimes)
+    public function mime_types($mimes)
     {
-        $existing_mimes['mp4'] = 'video/mp4';
-        $existing_mimes['ogg'] = 'video/ogg';
-        $existing_mimes['ogv'] = 'video/ogv';
-        unset($existing_mimes['bmp']);
+        $mimes['mp4'] = 'video/mp4';
+        $mimes['ogg'] = 'video/ogg';
+        $mimes['ogv'] = 'video/ogv';
+        unset($mimes['bmp']);
 
-        return $existing_mimes;
+        return $mimes;
     }
 
-    public function customizer_register($wp_customize)
+    public function customizer_register($customizer)
     {
-        $wp_customize->add_section('vg_customizer_section', [
+        $customizer->add_section('vg_customizer_section', [
             'title'    => __('VG Settings', $this->nanga),
             'priority' => 666,
         ]);
-        $wp_customize->add_setting('site_logo', [
+        $customizer->add_setting('site_logo', [
             'transport' => 'postMessage',
         ]);
-        $wp_customize->add_setting('site_color', [
+        $customizer->add_setting('site_color', [
             'default'   => '#0098ED',
             'transport' => 'postMessage',
         ]);
-        $wp_customize->add_setting('site_secondary_color', [
+        $customizer->add_setting('site_secondary_color', [
             'default'   => '#E1E1E1',
             'transport' => 'postMessage',
         ]);
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'site_logo', [
+        $customizer->add_control(new WP_Customize_Image_Control($customizer, 'site_logo', [
             'label'    => __('Site Logo', $this->nanga),
             'section'  => 'vg_customizer_section',
             'settings' => 'site_logo',
         ]));
-        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'site_color', [
+        $customizer->add_control(new WP_Customize_Color_Control($customizer, 'site_color', [
             'label'    => __('Site Main Color', $this->nanga),
             'section'  => 'vg_customizer_section',
             'settings' => 'site_color',
         ]));
-        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'site_secondary_color', [
+        $customizer->add_control(new WP_Customize_Color_Control($customizer, 'site_secondary_color', [
             'label'    => __('Site Secondary Color', $this->nanga),
             'section'  => 'vg_customizer_section',
             'settings' => 'site_secondary_color',
@@ -691,7 +691,7 @@ class Nanga_Admin
     {
         $handle = fopen(WP_CONTENT_DIR . '/debug.log', 'w');
         fclose($handle);
-        die();
+        wp_die();
     }
 
     public function row_actions($actions, $post)
@@ -710,33 +710,33 @@ class Nanga_Admin
         return 'tinymce';
     }
 
-    public function image_license_field($form_fields, $post)
+    public function image_license_field($fields, $post)
     {
-        $field_value            = get_post_meta($post->ID, 'license', true);
-        $form_fields['license'] = [
-            'value' => $field_value ? $field_value : '',
+        $fieldValue        = get_post_meta($post->ID, 'license', true);
+        $fields['license'] = [
+            'value' => $fieldValue ? $fieldValue : '',
             'label' => __('Photo License', $this->nanga),
         ];
 
-        return $form_fields;
+        return $fields;
     }
 
-    public function image_license_save($attachment_id)
+    public function image_license_save($attachmentId)
     {
-        $license = $_REQUEST['attachments'][$attachment_id]['license'];
+        $license = $_REQUEST['attachments'][$attachmentId]['license'];
         if (isset($license)) {
-            update_post_meta($attachment_id, 'license', $license);
+            update_post_meta($attachmentId, 'license', $license);
         }
     }
 
     public function force_image_attributes()
     {
-        $image_link_type = get_option('image_default_link_type');
-        if ('none' !== $image_link_type) {
+        $imageLinkType = get_option('image_default_link_type');
+        if ('none' !== $imageLinkType) {
             update_option('image_default_link_type', 'none');
         }
-        $image_align = get_option('image_default_align');
-        if ('none' !== $image_align) {
+        $imageAlignment = get_option('image_default_align');
+        if ('none' !== $imageAlignment) {
             update_option('image_default_align', 'none');
         }
     }
@@ -755,13 +755,13 @@ class Nanga_Admin
                 $this->nanga) . '" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . home_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="' . __('Send Support Request', $this->nanga) . '"> </form> </div>';
     }
 
-    public function user_contact($user_contact)
+    public function user_contact($userContactMethods)
     {
-        unset($user_contact['facebook']);
-        unset($user_contact['googleplus']);
-        unset($user_contact['twitter']);
+        unset($userContactMethods['facebook']);
+        unset($userContactMethods['googleplus']);
+        unset($userContactMethods['twitter']);
 
-        return $user_contact;
+        return $userContactMethods;
     }
 
     public function required_plugins()
