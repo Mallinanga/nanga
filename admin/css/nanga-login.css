@@ -1,8 +1,3 @@
-/*@import url(http://fonts.googleapis.com/css?family=Fira+Sans:400,700,400italic,700italic&subset=latin,greek);*/
-body {
-    /*font-family:'Fira Sans', 'FS Albert Pro Web', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;*/
-}
-
 #login {
     width: 300px;
     padding: 5% 0 0;
@@ -83,14 +78,6 @@ body {
 #login form p.submit input[type="submit"]:active {
     outline: 0;
     outline: none;
-}
-
-.login label {
-    /*font-size:0;*/
-}
-
-#login form p {
-    /*line-height:0;*/
 }
 
 .wp-social-login-connect-with {

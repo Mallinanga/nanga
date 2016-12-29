@@ -1,13 +1,3 @@
-@font-face {
-    font-family: 'FS Albert Pro Web';
-    src: url('../../assets/fonts/fs_albert_pro_web-regular.6.woff') format("woff");
-}
-
-@font-face {
-    font-family: 'FS Albert Pro Web Bold';
-    src: url('../../assets/fonts/fs_albert_pro_web-bold.6.woff') format("woff");
-}
-
 .wrap {
     font-family: 'FS Albert Pro Web', sans-serif;
     color: white;
@@ -25,12 +15,6 @@
     line-height: 56px;
     margin-top: 5%;
     text-shadow: 0 0 5px #000;
-}
-
-html {
-    background-image: url(../img/polygons.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 .acf-field {

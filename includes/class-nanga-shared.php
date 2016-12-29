@@ -204,18 +204,6 @@ class Nanga_Shared
 
     public function setup_theme()
     {
-        if ( ! isset($content_width)) {
-            if (function_exists('get_field')) {
-                $vg_content_width = get_field('vg_content_width', 'options');
-                if ($vg_content_width) {
-                    $content_width = $vg_content_width;
-                } else {
-                    $content_width = 800;
-                }
-            } else {
-                $content_width = 800;
-            }
-        }
         add_theme_support('menus');
         add_theme_support('post-thumbnails');
         add_theme_support('title-tag');

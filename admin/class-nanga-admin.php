@@ -52,13 +52,6 @@ class Nanga_Admin
         }
     }
 
-    public function login_errors($error)
-    {
-        if (current_theme_supports('nanga-white-label-login')) {
-            return __('<strong>ERROR:</strong> Please try again...', 'vg');
-        }
-    }
-
     public function plugin_settings_menu()
     {
         if (current_theme_supports('nanga-settings')) {
@@ -475,11 +468,8 @@ class Nanga_Admin
     public function disable_postboxes()
     {
         remove_meta_box('authordiv', 'attachment', 'normal');
-        //remove_meta_box( 'authordiv', 'page', 'normal' );
-        remove_meta_box('authordiv', 'post', 'normal');
         $post_types = get_post_types(['_builtin' => false, 'public' => true]);
         foreach ($post_types as $post_type) {
-            remove_meta_box('authordiv', $post_type, 'normal');
             remove_meta_box('sharing_meta', $post_type, 'advanced');
         }
     }

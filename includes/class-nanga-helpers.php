@@ -27,10 +27,10 @@ class Nanga_Helpers
      *
      * @return string Returns a single line of CSS with selectors and a property.
      */
-    public static function generate_css($selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true)
+    public static function generateCss($selector, $style, $modName, $prefix = '', $postfix = '', $echo = true)
     {
         $return = '';
-        $mod    = get_theme_mod($mod_name);
+        $mod    = get_theme_mod($modName);
         if ( ! empty($mod)) {
             $return = sprintf('%s { %s:%s; }', $selector, $style, $prefix . $mod . $postfix);
             if ($echo) {

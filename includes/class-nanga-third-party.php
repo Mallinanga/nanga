@@ -37,30 +37,10 @@ class NangaThirdParty
     public function features_gravity_forms()
     {
         if (class_exists('GFForms')) {
-            add_filter('gform_confirmation_anchor', '__return_false');
-            add_filter('gform_enable_shortcode_notification_message', '__return_false');
-            add_filter('gform_init_scripts_footer', '__return_true');
-            //@todo
-            /*
-            add_filter( 'gform_cdata_open', function ( $content = '' ) {
-                $content = 'document.addEventListener( "DOMContentLoaded", function() { ';
-
-                return $content;
-            } );
-            add_filter( 'gform_cdata_close', function ( $content = '' ) {
-                $content = ' }, false );';
-
-                return $content;
-            } );
-            */
-            remove_action('install_plugins_pre_plugin-information', ['GFLogging', 'display_changelog']);
+            //add_filter('gform_confirmation_anchor', '__return_false');
+            //add_filter('gform_enable_shortcode_notification_message', '__return_false');
+            add_filter('gform_disable_view_counter', '__return_true');
             remove_action('widgets_init', 'gf_register_widget');
-            remove_filter('site_transient_update_plugins', ['GFForms', 'check_update',]);
-            remove_filter('site_transient_update_plugins', ['GFLogging', 'check_update',]);
-            remove_filter('site_transient_update_plugins', ['RGForms', 'check_update',]);
-            remove_filter('transient_update_plugins', ['GFForms', 'check_update',]);
-            remove_filter('transient_update_plugins', ['GFLogging', 'check_update',]);
-            remove_filter('transient_update_plugins', ['RGForms', 'check_update',]);
         }
     }
 
@@ -220,9 +200,6 @@ class NangaThirdParty
             add_filter('timber/cache/location', function () {
                 return WP_CONTENT_DIR . '/cache/timber';
             });
-            if (defined('WP_ENV') && 'production' === WP_ENV) {
-                Timber::$cache = true;
-            }
         }
     }
 }

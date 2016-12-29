@@ -49,9 +49,4 @@ $(document).ajaxError(function (e, xhr, settings, error) {
         } else {
         }
     });
-    $(window).load(function () {
-        if (nanga.environment === 'development') {
-            console.log(nanga);
-        }
-    });
 })(jQuery);

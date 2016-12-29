@@ -1,44 +1,4 @@
 <?php
-if ( ! function_exists('nanga_paging_nav')) {
-    function nanga_paging_nav()
-    {
-        if ($GLOBALS['wp_query']->max_num_pages < 2) {
-            return;
-        }
-        ?>
-        <nav class="navigation paging-navigation" role="navigation">
-            <div class="nav-links">
-                <?php if (get_next_posts_link()) : ?>
-                    <div class="nav-previous"><?php next_posts_link('<span class="meta-nav">&larr;</span>'); ?></div>
-                <?php endif; ?>
-                <?php if (get_previous_posts_link()) : ?>
-                    <div class="nav-next"><?php previous_posts_link('<span class="meta-nav">&rarr;</span>'); ?></div>
-                <?php endif; ?>
-            </div>
-        </nav>
-        <?php
-    }
-}
-if ( ! function_exists('nanga_post_nav')) {
-    function nanga_post_nav()
-    {
-        $previous = (is_attachment()) ? get_post(get_post()->post_parent) : get_adjacent_post(false, '', true);
-        $next     = get_adjacent_post(false, '', false);
-        if ( ! $next && ! $previous) {
-            return;
-        }
-        ?>
-        <nav class="navigation post-navigation" role="navigation">
-            <div class="nav-links">
-                <?php
-                previous_post_link('<div class="nav-previous">%link</div>', _x('<span class="meta-nav">&larr;</span> %title', 'Previous post link', 'vg'));
-                next_post_link('<div class="nav-next">%link</div>', _x('%title <span class="meta-nav">&rarr;</span>', 'Next post link', 'vg'));
-                ?>
-            </div>
-        </nav>
-        <?php
-    }
-}
 if ( ! function_exists('nanga_posted_on')) {
     function nanga_posted_on()
     {
@@ -255,5 +215,15 @@ if ( ! function_exists('nanga_cache_fragment_output')) {
             wp_cache_add($key, $output, $group, $ttl);
         }
         echo $output;
+    }
+}
+if ( ! function_exists('nanga_log')) {
+    function nanga_log($log)
+    {
+        if (is_array($log) || is_object($log)) {
+            file_put_contents(WP_CONTENT_DIR . '/app.log', print_r($log, true) . PHP_EOL, FILE_APPEND | LOCK_EX);
+        } else {
+            file_put_contents(WP_CONTENT_DIR . '/app.log', $log . PHP_EOL, FILE_APPEND | LOCK_EX);
+        }
     }
 }
