@@ -13,6 +13,9 @@ engines:
       - php
   eslint:
     enabled: true
+    checks:
+      no-undef:
+        enabled: false
   fixme:
     enabled: true
   phpcodesniffer:
