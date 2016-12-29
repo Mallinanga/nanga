@@ -28,6 +28,12 @@ engines:
         enabled: false
       Controversial/Superglobals:
         enabled: false
+      UnusedFormalParameter:
+        enabled: false
+      UnusedLocalVariable:
+        enabled: false
+      UnusedPrivateMethod:
+        enabled: false
 ratings:
   paths:
   - "**.css"
