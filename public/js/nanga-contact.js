@@ -1,5 +1,4 @@
 (function ($) {
-    'use strict';
     $(function () {
         var form = $('#ajax-contact');
         var formMessages = $('.contact-container__messages');

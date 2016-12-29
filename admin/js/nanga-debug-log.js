@@ -1,7 +1,4 @@
 (function ($) {
-    'use strict';
-    $(function () {
-    });
     $(window).load(function () {
         var clear = $('#clear-debug-log');
         if ($('#debug-log').is(':empty')) {

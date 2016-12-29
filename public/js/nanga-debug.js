@@ -1,5 +1,4 @@
 (function ($) {
-    'use strict';
     $(window).load(function () {
         //console.log(vg_app);
         //console.log(vg_contact_form);

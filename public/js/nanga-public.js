@@ -28,7 +28,6 @@ $(document).ajaxError(function (e, xhr, settings, error) {
 //    }, true);
 //})();
 (function ($) {
-    'use strict';
     $(function () {
         var retina = window.devicePixelRatio > 1;
         $('#commentform').removeAttr('novalidate');
@@ -45,8 +44,5 @@ $(document).ajaxError(function (e, xhr, settings, error) {
             });
             return false;
         });
-        if (retina) {
-        } else {
-        }
     });
 })(jQuery);

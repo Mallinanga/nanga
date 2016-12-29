@@ -1,5 +1,3 @@
-//(function ($) {
-//"use strict";
 var latitude = vg_map.latitude,
     longitude = vg_map.longitude,
     map_zoom = 17;
@@ -203,4 +201,3 @@ function CustomZoomControl(controlDiv, map) {
 var zoomControlDiv = document.createElement('div');
 var zoomControl = new CustomZoomControl(zoomControlDiv, map);
 map.controls[google.maps.ControlPosition.LEFT_TOP].push(zoomControlDiv);
-//}(jQuery));

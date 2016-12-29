@@ -1,5 +1,4 @@
 (function ($) {
-    "use strict";
     $("#newsletter-form")
         .submit(function (e) {
             e.preventDefault();
@@ -16,7 +15,6 @@
                     _nonce: nonce
                 },
                 function (data) {
-                    console.log(data);
                     container.css('opacity', '1');
                     if (data) {
                         if (data === "Some fields are missing.") {

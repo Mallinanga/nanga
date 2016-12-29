@@ -1,5 +1,4 @@
 (function ($) {
-    'use strict';
     $(function () {
         $(document).on('submit', '#vg-ajax-search-form', function () {
             var $form = $(this);
@@ -7,7 +6,6 @@
             var query = $input.val();
             var $content = $('#content');
             var container = $('#page');
-            console.log(query);
             $.ajax({
                 type: 'post',
                 url: vg_app.ajax_url,
