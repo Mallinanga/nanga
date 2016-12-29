@@ -3,7 +3,7 @@
  * Extended custom post types for WordPress.
  *
  * @package   ExtendedCPTs
- * @version   3.0.1
+ * @version   3.0.3
  * @author    John Blackbourn <https://johnblackbourn.com>
  * @link      https://github.com/johnbillion/extended-cpts
  * @copyright 2012-2016 John Blackbourn
@@ -584,10 +584,10 @@ class Extended_CPT {
 	/**
 	 * Action fired after a CPT is registered in order to set up the custom permalink structure for the post type.
 	 *
-	 * @param string $post_type Post type name.
-	 * @param object $args      Arguments used to register the post type.
+	 * @param string                $post_type Post type name.
+	 * @param stdClass|WP_Post_Type $args      Arguments used to register the post type.
 	 */
-	public function registered_post_type( $post_type, stdClass $args ) {
+	public function registered_post_type( $post_type, $args ) {
 		if ( $post_type !== $this->post_type ) {
 			return;
 		}
@@ -638,7 +638,7 @@ class Extended_CPT {
 				 * Filter the term that gets used in the `$tax` permalink token.
 				 * @TODO make this more betterer ^
 				 *
-				 * @param stdClass $term  The `$tax` term to use in the permalink.
+				 * @param WP_Term  $term  The `$tax` term to use in the permalink.
 				 * @param array    $terms Array of all `$tax` terms associated with the post.
 				 * @param WP_Post  $post  The post in question.
 				 */
@@ -656,7 +656,7 @@ class Extended_CPT {
 				 * @param string  $term The `$tax` term name to use in the permalink.
 				 * @param WP_Post $post The post in question.
 				 */
-				$default_term_name = apply_filters( "default_{$tax}", get_option( "default_{$tax}" ), $post );
+				$default_term_name = apply_filters( "default_{$tax}", get_option( "default_{$tax}", '' ), $post );
 				if ( $default_term_name ) {
 					if ( ! is_wp_error( $default_term = get_term( $default_term_name, $tax ) ) ) {
 						$term = $default_term->slug;
@@ -741,9 +741,9 @@ class Extended_CPT {
 	/**
 	 * Extends an existing post type object. Currently only handles labels.
 	 *
-	 * @param object $pto A post type object
+	 * @param stdClass|WP_Post_Type $pto A post type object
 	 */
-	public function extend( stdClass $pto ) {
+	public function extend( $pto ) {
 
 		# Merge core with overridden labels
 		$this->args['labels'] = array_merge( (array) get_post_type_labels( $pto ), $this->args['labels'] );
