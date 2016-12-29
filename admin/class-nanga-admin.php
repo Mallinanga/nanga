@@ -488,6 +488,7 @@ class Nanga_Admin
             $vg_twig_version   = wp_get_theme('vg-twig')->get('Version');
             $vg_plugin_version = ' | <strong>Plugin</strong> N/A';
             $environment       = defined('WP_ENV') ? ' | <strong>Environment</strong> ' . ucfirst(WP_ENV) : ' | <strong>Env</strong> N/A';
+            $debug             = defined('WP_DEBUG') ? ' | <strong>Debug</strong> On' : ' | <strong>Debug</strong> Off';
             if ( ! $vg_twig_version) {
                 $vg_twig_version = ' | <strong>Theme</strong> N/A';
             } else {
@@ -498,7 +499,7 @@ class Nanga_Admin
                 $vg_plugin_version = ' | <strong>Plugin</strong> ' . $version['Version'];
             }
 
-            return '<strong>WP</strong> ' . $wp_version . $vg_twig_version . $vg_plugin_version . $environment;
+            return '<strong>WP</strong> ' . $wp_version . $vg_twig_version . $vg_plugin_version . $environment . $debug;
         }
     }
 
