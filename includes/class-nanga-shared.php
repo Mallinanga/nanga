@@ -92,15 +92,17 @@ class Nanga_Shared
         remove_post_type_support('attachment', 'comments');
         remove_post_type_support('page', 'comments');
         remove_post_type_support('page', 'custom-fields');
-        remove_post_type_support('page', 'revisions');
         remove_post_type_support('page', 'trackbacks');
         remove_post_type_support('post', 'custom-fields');
         remove_post_type_support('post', 'excerpt');
         remove_post_type_support('post', 'post-formats');
-        remove_post_type_support('post', 'revisions');
         remove_post_type_support('post', 'trackbacks');
         if (current_theme_supports('nanga-disable-comments')) {
             remove_post_type_support('post', 'comments');
+        }
+        if (current_theme_supports('nanga-disable-revisions')) {
+            remove_post_type_support('page', 'revisions');
+            remove_post_type_support('post', 'revisions');
         }
     }
 
