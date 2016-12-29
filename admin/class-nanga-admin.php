@@ -775,12 +775,14 @@ class Nanga_Admin
                 'force_activation' => true,
                 'external_url'     => 'http://www.advancedcustomfields.com/pro',
             ],
+            /*
             [
                 'name'             => 'Jigsaw',
                 'slug'             => 'jigsaw',
                 'required'         => false,
                 'force_activation' => false,
             ],
+            */
         ];
         if ('vg-twig' == get_option('template')) {
             $plugins[] = [
