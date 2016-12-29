@@ -3,6 +3,8 @@ engines:
   csslint:
     enabled: true
     checks:
+      important:
+        enabled: false
       read-error:
         enabled: false
   duplication:
@@ -15,6 +17,8 @@ engines:
     enabled: true
     checks:
       no-undef:
+        enabled: false
+      no-unused-vars:
         enabled: false
   fixme:
     enabled: true
