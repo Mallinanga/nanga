@@ -344,25 +344,25 @@ class Nanga_Admin
         remove_action('admin_bar_menu', 'wp_admin_bar_updates_menu', 40);
         remove_action('admin_bar_menu', 'wp_admin_bar_wp_menu', 10);
         if (is_admin()) {
-            $wp_toolbar->add_node([
+            $wpToolbar->add_node([
                 'id'     => 'nanga-logout',
                 'parent' => 'top-secondary',
                 'title'  => __('Logout', $this->nanga),
                 'href'   => wp_logout_url(),
             ]);
-            $wp_toolbar->add_node([
+            $wpToolbar->add_node([
                 'id'     => 'get-help',
                 'parent' => 'top-secondary',
                 'title'  => __('Get Support', $this->nanga),
             ]);
-            $wp_toolbar->add_node([
+            $wpToolbar->add_node([
                 'href'   => 'mailto:info@vgwebthings.com?subject=' . __('Support Request', $this->nanga),
                 'id'     => 'get-support',
                 'parent' => 'get-help',
                 'title'  => __('Email Support', $this->nanga),
             ]);
             if (current_theme_supports('nanga-support-request')) {
-                $wp_toolbar->add_node([
+                $wpToolbar->add_node([
                     'href'   => get_admin_url(),
                     'id'     => 'get-support-request',
                     'parent' => 'get-help',
@@ -379,7 +379,7 @@ class Nanga_Admin
             } else {
                 $analytics_page = false;
             }
-            $wp_toolbar->add_menu([
+            $wpToolbar->add_menu([
                 'href'   => $analytics_page,
                 'id'     => 'nanga-links',
                 'parent' => 'top-secondary',
@@ -387,7 +387,7 @@ class Nanga_Admin
             ]);
             $count = 1;
             foreach ($links as $label => $url) {
-                $wp_toolbar->add_node([
+                $wpToolbar->add_node([
                     'href'   => $url,
                     'id'     => 'nanga-link_' . $count++,
                     'meta'   => ['target' => '_blank'],
@@ -396,14 +396,14 @@ class Nanga_Admin
                 ]);
             }
             if (current_user_can('manage_options')) {
-                $wp_toolbar->add_menu([
+                $wpToolbar->add_menu([
                     'href'   => false,
                     'id'     => 'nanga-tools',
                     'parent' => 'top-secondary',
                     'title'  => __('Tools', $this->nanga),
                 ]);
             }
-            $wp_toolbar->add_node([
+            $wpToolbar->add_node([
                 'id'    => 'nanga-visit-site',
                 'href'  => home_url(),
                 'title' => __('View Public Side of the Site', $this->nanga),
