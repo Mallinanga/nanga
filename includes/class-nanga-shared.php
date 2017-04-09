@@ -18,6 +18,7 @@ class Nanga_Shared
     private function run_cleanup()
     {
         add_filter('comment_flood_filter', '__return_false', 10, 3);
+        add_filter('emoji_svg_url', '__return_false');
         add_filter('enable_post_by_email_configuration', '__return_false', 100);
         add_filter('sanitize_user', 'strtolower');
         add_filter('the_generator', '__return_false');

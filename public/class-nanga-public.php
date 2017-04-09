@@ -278,13 +278,6 @@ class Nanga_Public
         }
     }
 
-    public function disable_adminbar()
-    {
-        if ( ! current_user_can('manage_options')) {
-            show_admin_bar(false);
-        }
-    }
-
     public function random_post_rewrite()
     {
         add_rewrite_rule('random/?$', 'index.php?random=1', 'top');

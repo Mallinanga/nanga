@@ -54,6 +54,7 @@ class Nanga
         $this->loader->add_action('admin_enqueue_scripts', $pluginAdmin, 'enqueue_styles');
         $this->loader->add_action('admin_footer_text', $pluginAdmin, 'footer_left');
         //$this->loader->add_action('admin_head', $pluginAdmin, 'debug');
+        $this->loader->add_action('admin_init', $pluginAdmin, 'add_editor_style');
         $this->loader->add_action('admin_init', $pluginAdmin, 'admin_color_scheme');
         $this->loader->add_action('admin_init', $pluginAdmin, 'disable_admin_notices');
         $this->loader->add_action('admin_init', $pluginAdmin, 'disable_pointers');
@@ -64,7 +65,6 @@ class Nanga
         $this->loader->add_action('admin_menu', $pluginAdmin, 'disable_menus', 999);
         $this->loader->add_action('admin_menu', $pluginAdmin, 'google_analytics_dashboard');
         $this->loader->add_action('admin_menu', $pluginAdmin, 'plugin_settings_menu');
-        $this->loader->add_action('after_setup_theme', $pluginAdmin, 'add_editor_style');
         $this->loader->add_action('customize_preview_init', $pluginAdmin, 'customizer_scripts');
         $this->loader->add_action('customize_register', $pluginAdmin, 'customizer_register');
         $this->loader->add_action('login_enqueue_scripts', $pluginAdmin, 'enqueue_login_styles');
@@ -117,7 +117,6 @@ class Nanga
     private function define_public_hooks()
     {
         $pluginPublic = new Nanga_Public($this->get_nanga(), $this->get_version());
-        //$this->loader->add_action('after_setup_theme', $pluginPublic, 'disable_adminbar');
         //$this->loader->add_action( 'init', $pluginPublic, 'random_post_rewrite' );
         //$this->loader->add_action('template_redirect', $pluginPublic, 'maintenance_mode');
         //$this->loader->add_action( 'template_redirect', $pluginPublic, 'nice_search' );
