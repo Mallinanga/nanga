@@ -53,14 +53,12 @@ class Nanga_Public
         if (current_theme_supports('nanga-modernizr')) {
             wp_enqueue_script('modernizr', plugin_dir_url(__FILE__) . 'js/_modernizr.js', [], null, false);
         }
-        if ( ! is_admin()) {
-            wp_deregister_script('jquery');
-            if (current_theme_supports('nanga-cdn-assets')) {
-                wp_register_script('jquery', '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js', [], null, false);
-            } else {
+        if (current_theme_supports('nanga-cdn-jquery')) {
+            if ( ! is_admin()) {
+                wp_deregister_script('jquery');
                 wp_register_script('jquery', plugin_dir_url(__FILE__) . 'js/jquery.min.js', [], null, false);
+                wp_enqueue_script('jquery');
             }
-            wp_enqueue_script('jquery');
         }
         if (current_theme_supports('nanga-mobile-check')) {
             $script_options['is_mobile'] = wp_is_mobile_phone() ? 'true' : 'false';
