@@ -46,11 +46,6 @@ class Nanga
         $this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
     }
 
-    public function get_nanga()
-    {
-        return $this->nanga;
-    }
-
     private function define_admin_hooks()
     {
         $pluginAdmin = new Nanga_Admin($this->get_nanga(), $this->get_version());
@@ -112,11 +107,6 @@ class Nanga
         //$this->loader->add_filter( 'screen_options_show_screen', $pluginAdmin, 'screen_options_show_screen' );
     }
 
-    public function get_version()
-    {
-        return $this->version;
-    }
-
     private function define_cron()
     {
         $plugin_cron = new Nanga_Cron($this->get_nanga(), $this->get_version());
@@ -133,10 +123,12 @@ class Nanga
         //$this->loader->add_action( 'template_redirect', $pluginPublic, 'nice_search' );
         //$this->loader->add_action( 'template_redirect', $pluginPublic, 'random_post_redirect', 666 );
         $this->loader->add_action('wp_enqueue_scripts', $pluginPublic, 'asset_cachebusting', 100);
+        $this->loader->add_action('wp_enqueue_scripts', $pluginPublic, 'cookiesAssets');
         $this->loader->add_action('wp_enqueue_scripts', $pluginPublic, 'enqueue_scripts');
         $this->loader->add_action('wp_enqueue_scripts', $pluginPublic, 'enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $pluginPublic, 'js_to_footer');
         $this->loader->add_action('wp_head', $pluginPublic, 'analytics');
+        $this->loader->add_action('wp_footer', $pluginPublic, 'cookies');
         $this->loader->add_filter('body_class', $pluginPublic, 'body_class');
         $this->loader->add_filter('comment_form_default_fields', $pluginPublic, 'comment_form_default_fields');
         $this->loader->add_filter('comment_form_defaults', $pluginPublic, 'comment_form_defaults');
@@ -201,6 +193,16 @@ class Nanga
         $this->loader->add_action('plugins_loaded', $plugin_third_party, 'features_wordpress_social_login');
         $this->loader->add_action('plugins_loaded', $plugin_third_party, 'features_wpml');
         $this->loader->add_action('plugins_loaded', $plugin_third_party, 'features_yoast_seo');
+    }
+
+    public function get_nanga()
+    {
+        return $this->nanga;
+    }
+
+    public function get_version()
+    {
+        return $this->version;
     }
 
     public function run()

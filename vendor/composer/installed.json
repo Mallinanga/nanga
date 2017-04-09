@@ -17,7 +17,7 @@
         "require": {
             "php": ">=5.2"
         },
-        "time": "2016-05-19 15:46:51",
+        "time": "2016-05-19T15:46:51+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -82,7 +82,7 @@
             "composer/composer": "1.0.*@dev",
             "phpunit/phpunit": "4.1.*"
         },
-        "time": "2016-08-13 20:53:52",
+        "time": "2016-08-13T20:53:52+00:00",
         "type": "composer-plugin",
         "extra": {
             "class": "Composer\\Installers\\Plugin",

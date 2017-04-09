@@ -3,10 +3,10 @@
  * Extended custom post types for WordPress.
  *
  * @package   ExtendedCPTs
- * @version   3.0.3
+ * @version   3.2.0
  * @author    John Blackbourn <https://johnblackbourn.com>
  * @link      https://github.com/johnbillion/extended-cpts
- * @copyright 2012-2016 John Blackbourn
+ * @copyright 2012-2017 John Blackbourn
  * @license   GPL v2 or later
  *
  * This program is free software; you can redistribute it and/or modify
@@ -183,12 +183,14 @@ class Extended_CPT {
 			'edit_item'             => sprintf( 'Edit %s', $this->post_singular ),
 			'new_item'              => sprintf( 'New %s', $this->post_singular ),
 			'view_item'             => sprintf( 'View %s', $this->post_singular ),
+			'view_items'            => sprintf( 'View %s', $this->post_plural ),
 			'search_items'          => sprintf( 'Search %s', $this->post_plural ),
 			'not_found'             => sprintf( 'No %s found.', $this->post_plural_low ),
 			'not_found_in_trash'    => sprintf( 'No %s found in trash.', $this->post_plural_low ),
 			'parent_item_colon'     => sprintf( 'Parent %s:', $this->post_singular ),
 			'all_items'             => sprintf( 'All %s', $this->post_plural ),
 			'archives'              => sprintf( '%s Archives', $this->post_singular ),
+			'attributes'            => sprintf( '%s Attributes', $this->post_singular ),
 			'insert_into_item'      => sprintf( 'Insert into %s', $this->post_singular_low ),
 			'uploaded_to_this_item' => sprintf( 'Uploaded to this %s', $this->post_singular_low ),
 			'filter_items_list'     => sprintf( 'Filter %s list', $this->post_plural_low ),
@@ -271,6 +273,15 @@ class Extended_CPT {
 			add_action( 'init', array( $this, 'register_post_type' ), 9 );
 			// @codeCoverageIgnoreEnd
 		}
+
+		/**
+		 * Fired when the extended post type instance is set up.
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param Extended_CPT $instance The extended post type instance.
+		 */
+		do_action( "ext-cpts/{$post_type}/instance", $this );
 
 	}
 
@@ -1747,7 +1758,10 @@ class Extended_CPT_Admin {
 			case 'post_modified':
 			case 'post_modified_gmt':
 				if ( '0000-00-00 00:00:00' !== get_post_field( $field, $post ) ) {
-					echo esc_html( mysql2date( get_option( 'date_format' ), get_post_field( $field, $post ) ) );
+					if ( ! isset( $args['date_format'] ) ) {
+						$args['date_format'] = get_option( 'date_format' );
+					}
+					echo esc_html( mysql2date( $args['date_format'], get_post_field( $field, $post ) ) );
 				}
 				break;
 
@@ -1853,7 +1867,7 @@ class Extended_CPT_Admin {
 
 		if ( ! isset( $_post->$field ) ) {
 			if ( $type = p2p_type( $connection ) ) {
-				$type->each_connected( $wp_query, $meta, $field );
+				$type->each_connected( array( $_post ), $meta, $field );
 			} else {
 				echo esc_html( sprintf(
 					__( 'Invalid connection type: %s', 'extended-cpts' ),
@@ -1863,7 +1877,7 @@ class Extended_CPT_Admin {
 			}
 		}
 
-		foreach ( $wp_query->post->$field as $post ) {
+		foreach ( $_post->$field as $post ) {
 
 			setup_postdata( $post );
 

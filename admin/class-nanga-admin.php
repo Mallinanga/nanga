@@ -455,6 +455,7 @@ class Nanga_Admin
         remove_meta_box('dashboard_recent_drafts', 'dashboard', 'side');
         remove_meta_box('dashboard_right_now', 'dashboard', 'normal');
         remove_meta_box('icl_dashboard_widget', 'dashboard', 'normal');
+        remove_meta_box('jetpack_summary_widget', 'dashboard', 'normal');
         remove_meta_box('rg_forms_dashboard', 'dashboard', 'normal');
         remove_meta_box('woocommerce_dashboard_recent_orders', 'dashboard', 'normal');
         remove_meta_box('woocommerce_dashboard_recent_reviews', 'dashboard', 'normal');
@@ -488,7 +489,7 @@ class Nanga_Admin
             $vgTwigVersion   = wp_get_theme('vg-twig')->get('Version');
             $vgPluginVersion = ' | <strong>Plugin</strong> N/A';
             $environment     = defined('WP_ENV') ? ' | <strong>Environment</strong> ' . ucfirst(WP_ENV) : ' | <strong>Env</strong> N/A';
-            $debug           = defined('WP_DEBUG') ? ' | <strong>Debug</strong> On' : ' | <strong>Debug</strong> Off';
+            $debug           = (WP_DEBUG) ? ' | <strong>Debug</strong> On' : ' | <strong>Debug</strong> Off';
             if ( ! $vgTwigVersion) {
                 $vgTwigVersion = ' | <strong>Theme</strong> N/A';
             } else {
@@ -750,9 +751,10 @@ class Nanga_Admin
 
     public function support_request_form()
     {
-        echo '<div class="support-request-container vg-container"> <div class="support-request-container__messages"></div> <form id="support-request-form" accept-charset="UTF-8" action="https://formkeep.com/f/36041913c4c7" method="POST"><input type="hidden" name="utf8" value="✓"> <p><input type="email" name="email" placeholder="' . __('Your email', $this->nanga) . '" value="' . get_the_author_meta('user_email',
-                get_current_user_id()) . '" class="widefat" required></p> <p><input type="text" name="name" placeholder="' . __('Your name', $this->nanga) . '" value="' . get_the_author_meta('display_name', get_current_user_id()) . '" class="widefat" required></p> <p><textarea name="message" placeholder="' . __('Your message',
-                $this->nanga) . '" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . home_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="' . __('Send Support Request', $this->nanga) . '"> </form> </div>';
+        echo '<div class="support-request-container vg-container">';
+        echo '<div class="support-request-container__messages"></div>';
+        echo '<form id="support-request-form" accept-charset="UTF-8" action="https://formkeep.com/f/36041913c4c7" method="POST"><input type="hidden" name="utf8" value="✓"> <p><input type="email" name="email" placeholder="' . __('Your email', $this->nanga) . '" value="' . get_the_author_meta('user_email', get_current_user_id()) . '" class="widefat" required></p> <p><input type="text" name="name" placeholder="' . __('Your name', $this->nanga) . '" value="' . get_the_author_meta('display_name', get_current_user_id()) . '" class="widefat" required></p> <p><textarea name="message" placeholder="' . __('Your message', $this->nanga) . '" rows="10" class="widefat" required></textarea></p> <input type="hidden" name="site" value="' . home_url() . '"> <input type="submit" id="support-request-form__submit" class="button button-primary" value="' . __('Send Support Request', $this->nanga) . '"> </form>';
+        echo '</div>';
     }
 
     public function user_contact($userContactMethods)
