@@ -80,7 +80,7 @@ if ( ! function_exists('nanga_site_in_production')) {
     function nanga_site_in_production()
     {
         $development = apply_filters('nanga_development_domain', '.vgwebthings.com');
-        if (0 !== strpos($_SERVER['HTTP_HOST'], $development)) {
+        if (false === strpos($_SERVER['HTTP_HOST'], $development)) {
             return true;
         }
         if (defined('WP_ENV') && 'production' === WP_ENV) {
