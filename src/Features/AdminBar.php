@@ -18,7 +18,7 @@ class AdminBar
         add_action('admin_bar_menu', [self::class, 'nodes'], 100);
         add_action('admin_enqueue_scripts', [self::class, 'assets'], 100);
         add_action('wp_enqueue_scripts', [self::class, 'assets'], 1000);
-        add_action('wp_footer', [self::class, 'toggle'], 1000);
+        // add_action('wp_footer', [self::class, 'toggle'], 1000);
         add_theme_support('admin-bar', ['callback' => '__return_false']);
 
         //add_action('template_redirect', '_wp_admin_bar_init', 0);
