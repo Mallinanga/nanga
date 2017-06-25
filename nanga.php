@@ -1,48 +1,32 @@
 <?php
 /**
  * @wordpress-plugin
- * Plugin Name:       VG web things
- * Plugin URI:        https://github.com/Mallinanga/nanga
- * GitHub Plugin URI: https://github.com/Mallinanga/nanga
- * Description:       Functions that don't belong to the theme.
- * Version:           1.2.1
- * Author:            Panos Paganis
- * Author URI:        https://github.com/Mallinanga
- * Text Domain:       nanga
- * Domain Path:       /languages
+ * Author URI: https://github.com/Mallinanga/
+ * Author:      Panos Paganis
+ * Description: Functions that don't belong to the theme.
+ * Domain Path: /languages
+ * Plugin Name: VG web things
+ * Text Domain: nanga
+ * Version:     2.0.0
  */
-if ( ! defined('WPINC')) {
-    die;
-}
-if (defined('WP_CLI') && WP_CLI) {
-    include plugin_dir_path(__FILE__) . 'includes/class-nanga-cli.php';
-}
-if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
-    require_once(dirname(__FILE__) . '/vendor/autoload.php');
-}
-function activate_nanga()
-{
-    require_once plugin_dir_path(__FILE__) . 'includes/class-nanga-activator.php';
-    Nanga_Activator::activate();
+
+defined('WPINC') || die;
+
+define('NANGA_VERSION', '2.0.0');
+define('NANGA_DIR_PATH', plugin_dir_path(__FILE__));
+define('NANGA_DIR_URL', plugin_dir_url(__FILE__));
+
+require_once(dirname(__FILE__) . '/vendor/autoload.php');
+require_once NANGA_DIR_PATH . 'includes/extended-cpts.php';
+require_once NANGA_DIR_PATH . 'includes/extended-taxos.php';
+require_once NANGA_DIR_PATH . 'includes/helpers.php';
+if (defined('NANGA_LEGACY') || current_theme_supports('nanga-legacy')) {
+    require_once NANGA_DIR_PATH . 'includes/helpers-legacy.php';
 }
 
-function deactivate_nanga()
-{
-    require_once plugin_dir_path(__FILE__) . 'includes/class-nanga-deactivator.php';
-    Nanga_Deactivator::deactivate();
-}
+register_activation_hook(__FILE__, ['\Nanga\Nanga', 'activate']);
+register_deactivation_hook(__FILE__, ['\Nanga\Nanga', 'deactivate']);
+register_uninstall_hook(__FILE__, ['\Nanga\Nanga', 'uninstall']);
 
-register_activation_hook(__FILE__, 'activate_nanga');
-register_deactivation_hook(__FILE__, 'deactivate_nanga');
-require plugin_dir_path(__FILE__) . 'includes/nanga-helpers.php';
-require plugin_dir_path(__FILE__) . 'includes/class-nanga.php';
-if (file_exists(plugin_dir_path(__FILE__) . 'includes/nanga-limbo.php')) {
-    require plugin_dir_path(__FILE__) . 'includes/nanga-limbo.php';
-}
-function run_nanga()
-{
-    $plugin = new Nanga();
-    $plugin->run();
-}
-
-run_nanga();
+$settings = \Nanga\Settings::instance();
+$nanga    = \Nanga\Nanga::instance();

@@ -1,0 +1,48 @@
+#nanga-pagespeed {
+    overflow-x: scroll;
+}
+
+#nanga-pagespeed table {
+    max-width: 100%;
+    width: 100%;
+}
+
+#nanga-pagespeed .score {
+    cursor: pointer;
+}
+
+#nanga-pagespeed .score.is-loading {
+    animation: fetch-pagespeed-score 2.5s linear infinite;
+    opacity: 0.5;
+}
+
+.nanga-pagespeed__score {
+    text-align: right;
+    width: 50px;
+}
+
+.nanga-pagespeed__url {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nanga-pagespeed__actions {
+    text-align: right;
+    width: 100px;
+}
+
+.nanga-pagespeed__report {
+    box-shadow: inset;
+    display: none;
+}
+
+@keyframes fetch-pagespeed-score {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}

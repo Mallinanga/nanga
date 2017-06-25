@@ -1,0 +1,83 @@
+#nanga-debug-footer {
+    background-color: #23282d;
+    bottom: 0;
+    box-sizing: border-box;
+    color: #eee;
+    display: none;
+    font-family: monospace;
+    font-size: 16px;
+    height: 100vh;
+    left: 0;
+    padding: 32px 0 0 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99998;
+}
+
+.nd-toolbar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nd-toolbar a {
+    /*border: 1px solid #fff;*/
+    box-sizing: border-box;
+    color: #eee;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+    margin: 15px 15px 0 5px;
+    padding: 0 10px 20px 10px;
+    position: relative;
+    text-decoration: none;
+}
+
+.nd-toolbar a:after {
+    background-color: #eee;
+    bottom: 10px;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.nd-toolbar a:hover:after {
+    background-color: yellow;
+}
+
+.nd-inner {
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 72px;
+}
+
+#nanga-debug-log {
+    border: 1px solid #444;
+    box-sizing: border-box;
+    display: block;
+    font-family: monospace;
+    font-size: 16px;
+    margin: 0;
+    outline: none;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+.nanga-debug-module {
+    background-color: #a0a5aa;
+    box-sizing: border-box;
+    margin: 0 15px 15px 15px;
+    padding: 15px;
+}
+
+.nanga-debug-module p {
+    margin-top: 0;
+}
+
+.nanga-debug-module ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

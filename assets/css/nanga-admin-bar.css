@@ -1,0 +1,92 @@
+html.admin-bar {
+    margin-top: 32px;
+}
+
+* html.admin-bar body {
+    margin-top: 32px;
+}
+
+@media screen and ( max-width: 782px ) {
+    html.admin-bar {
+        margin-top: 46px;
+    }
+
+    * html.admin-bar body {
+        margin-top: 46px;
+    }
+}
+
+#wp-admin-bar-nanga-updates > .ab-item:before {
+    content: '\f463';
+    top: 2px;
+}
+
+#wp-admin-bar-nanga-debug > .ab-item:before {
+    content: '\f468';
+    top: 2px;
+}
+
+#wp-admin-bar-nanga-tools > .ab-item:before {
+    content: '\f107';
+    top: 2px;
+}
+
+#wp-admin-bar-nanga-settings > .ab-item:before {
+    content: '\f108';
+    top: 2px;
+}
+
+#wp-admin-bar-nanga-analytics > .ab-item:before {
+    content: '\f239';
+    top: 2px;
+}
+
+#wp-admin-bar-nanga-support > .ab-item:before {
+    content: '\f488';
+    top: 2px;
+}
+
+#wp-admin-bar-clear-cache > .ab-item:before {
+    content: '\f182';
+    top: 1px;
+}
+
+#wpadminbar .bbl_lang > .ab-item:before {
+    content: '\f326';
+    top: 2px;
+}
+
+#wp-admin-bar-WPML_ALS > div:first-child:before {
+    content: '\f326';
+}
+
+#wp-admin-bar-WPML_ALS img {
+    display: none !important;
+}
+
+@media screen and ( max-width: 1100px ) {
+    #wp-admin-bar-nanga-tools > .ab-item,
+    #wp-admin-bar-nanga-analytics > .ab-item,
+    #wp-admin-bar-nanga-debug > .ab-item {
+        font-size: 0;
+    }
+}
+
+#nanga-bar-toggle {
+    bottom: 20px;
+    color: #999;
+    cursor: pointer;
+    display: block;
+    font-size: 32px;
+    height: 32px;
+    left: 20px;
+    opacity: 0.5;
+    position: fixed;
+    text-decoration: none;
+    width: 32px;
+    z-index: 99999;
+}
+
+#nanga-bar-toggle:hover {
+    opacity: 1;
+}

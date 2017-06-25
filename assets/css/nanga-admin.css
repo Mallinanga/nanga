@@ -1,0 +1,79 @@
+a:active,
+a:focus {
+    outline: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.js .postbox .hndle,
+.js .widget .widget-top {
+    cursor: default;
+}
+
+.postbox .handlediv {
+    display: none;
+}
+
+.tablenav .view-switch {
+    display: none;
+}
+
+.fixed .column-icon {
+    width: 60px;
+}
+
+#wpml_als_help_link {
+    display: none;
+}
+
+/* Settings */
+
+#nanga-settings {
+    margin: 20px 20px 0 2px;
+}
+
+#nanga-settings .nav-tab-wrapper {
+    margin: 11px 0 0 0;
+}
+
+#nanga-settings .nav-tab .dashicons {
+    line-height: 24px;
+}
+
+.nanga-settings__content {
+    margin: 2em 0 2em 0.5em;
+}
+
+.nanga-settings__content h2 {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    margin: 2em 0 1em 0;
+    position: relative;
+}
+
+.nanga-settings__content h2:before {
+    color: #999;
+    content: '\2731';
+    font-size: 0.75em;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
+.nanga-settings__content h2:after {
+    background-color: #23282d;
+    content: '';
+    display: inline-block;
+    height: 2px;
+    margin-left: 5px;
+    width: 50px;
+}
+
+@media screen and ( max-width: 1200px ) {
+    #nanga-settings .nav-tab-updates span:nth-child(2),
+    #nanga-settings .nav-tab-cronjobs span:nth-child(2),
+    #nanga-settings .nav-tab-extend span:nth-child(2),
+    #nanga-settings .nav-tab-pagespeed span:nth-child(2),
+    #nanga-settings .nav-tab-debug span:nth-child(2) {
+        display: none;
+    }
+}
