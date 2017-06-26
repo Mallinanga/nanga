@@ -111,3 +111,9 @@ if ( ! function_exists('nanga_user_is_superadmin')) {
         return current_user_can('manage_options') && ! defined('NANGA_EXTERNAL');
     }
 }
+if ( ! function_exists('nanga_host_is_allowed')) {
+    function nanga_host_is_allowed()
+    {
+        return false;
+    }
+}

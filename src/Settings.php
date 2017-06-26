@@ -196,7 +196,7 @@ class Settings
     {
         echo '<h2>Favicon & Login Logo</h2> ';
         echo '<p>The image will be used as a browser and app icon for your site as well as for the login screen. The image must be square, and <strong>at least 512 pixels wide and tall</strong>.</p>';
-        echo '<p class="description">In case there is a filename named <code>logo.png</code> under <code>assets/img/</code> it will be used as the login screen logo.</p>';
+        echo '<p class="description">In case there is a filename named <code>logo.svg</code> or <code>logo.png</code> under <code>assets/img/</code> it will be used as the login screen logo.</p>';
         echo '<p>Choose image from the <a href="' . admin_url('/customize.php?autofocus[section]=title_tagline') . '">Customizer</a>.</p>';
     }
 

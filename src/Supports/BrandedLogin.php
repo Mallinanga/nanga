@@ -49,6 +49,9 @@ class BrandedLogin
         if (file_exists(get_stylesheet_directory() . '/assets/img/logo.png')) {
             $logo = get_stylesheet_directory_uri() . '/assets/img/logo.png';
         }
+        if (file_exists(get_stylesheet_directory() . '/assets/img/logo.svg')) {
+            $logo = get_stylesheet_directory_uri() . '/assets/img/logo.svg';
+        }
 
         return apply_filters('nanga_login_logo', $logo);
     }

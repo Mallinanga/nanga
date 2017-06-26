@@ -21,8 +21,10 @@ class AirplaneMode
             '*.amazonaws.com',
             '*.googleapis.com',
             '*.wordpress.org',
+            '*.optimus.io',
             'api.github.com',
             'connect.advancedcustomfields.com',
+            'www.wpallimport.com',
         ]);
         define('WP_ACCESSIBLE_HOSTS', implode(',', $allowed));
     }
