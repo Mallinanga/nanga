@@ -19,9 +19,10 @@ class AirplaneMode
         }
         $allowed = apply_filters('nanga_allowed_hosts', [
             '*.amazonaws.com',
+            '*.cloudfront.net',
             '*.googleapis.com',
-            '*.wordpress.org',
             '*.optimus.io',
+            '*.wordpress.org',
             'api.github.com',
             'connect.advancedcustomfields.com',
             'www.wpallimport.com',
