@@ -2,6 +2,9 @@
 
 namespace Nanga\Features;
 
+use WP_REST_Response;
+use WP_REST_Server;
+
 class API
 {
 
@@ -13,13 +16,17 @@ class API
     public static function routes()
     {
         register_rest_route('nanga/v1', '/diagnostics/', [
-            'methods'  => 'GET',
-            'callback' => self::diagnostics(),
+            'methods'  => WP_REST_Server::READABLE,
+            'callback' => [self::class, 'diagnostics'],
         ]);
     }
 
-    public static function diagnostics($data)
+    public static function diagnostics()
     {
-        return $data;
+        $response = [
+            'nanga' => (bool)get_option('nanga_plugin_activated'),
+        ];
+
+        return new WP_REST_Response($response);
     }
 }

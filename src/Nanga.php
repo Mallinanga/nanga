@@ -47,7 +47,7 @@ class Nanga
             Debug::init();
         }
         Maintenance::init();
-        // API::init();
+        API::init();
         // Rewrites::init();
         Cron::init();
         Mail::init();
