@@ -105,6 +105,12 @@ if ( ! function_exists('nanga_site_is_external')) {
         return defined('NANGA_EXTERNAL') && NANGA_EXTERNAL;
     }
 }
+if ( ! function_exists('nanga_site_is_vip')) {
+    function nanga_site_is_vip()
+    {
+        return defined('NANGA_VIP') && NANGA_VIP;
+    }
+}
 if ( ! function_exists('nanga_user_is_superadmin')) {
     function nanga_user_is_superadmin()
     {

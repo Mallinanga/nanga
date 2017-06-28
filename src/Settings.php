@@ -434,6 +434,9 @@ class Settings
         if (nanga_site_in_production() && isset(self::$test['ua']) && empty(self::$test['ua'])) {
             echo '<div class="notice notice-warning is-dismissible"><p>The site is missing a Google Analytics UA. Please enter one in <a href="' . admin_url('options-general.php?page=nanga-settings&tab=general') . '">general settings</a>.</p></div>';
         }
+        if (nanga_site_is_external() || ! nanga_site_is_vip()) {
+            echo '<div class="notice notice-warning is-dismissible"><p>The site is not hosted on a VG web things server. Please make sure the admin email is setup correctly in <a href="' . admin_url('options-general.php') . '">general settings</a>.</p></div>';
+        }
     }
 
     private function pagewelcome()

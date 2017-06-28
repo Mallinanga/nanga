@@ -25,6 +25,7 @@ use Nanga\ThirdParty\CacheEnabler;
 use Nanga\ThirdParty\EasyDigitalDownloads;
 use Nanga\ThirdParty\GravityForms;
 use Nanga\ThirdParty\Jetpack;
+use Nanga\ThirdParty\Optimus;
 use Nanga\ThirdParty\Timber;
 use Nanga\ThirdParty\UserRoleEditor;
 use Nanga\ThirdParty\WooCommerce;
@@ -66,7 +67,7 @@ class Nanga
         Customizer::init();
         add_action('plugins_loaded', [$this, 'locale']);
         add_action('tgmpa_register', [$this, 'plugins']);
-        add_action('plugins_loaded', [$this, 'thirdparty']);
+        add_action('plugins_loaded', [$this, 'thirdparty'], 11);
         add_action('after_setup_theme', [$this, 'supports']);
     }
 
@@ -408,6 +409,7 @@ class Nanga
         GravityForms::init();
         Jetpack::init();
         Timber::init();
+        Optimus::init();
         UserRoleEditor::init();
         WooCommerce::init();
         WordPressSocialLogin::init();

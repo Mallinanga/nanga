@@ -22,6 +22,26 @@ a:focus {
     width: 60px;
 }
 
+.user-rich-editing-wrap {
+    display: none !important;
+}
+
+.user-comment-shortcuts-wrap {
+    display: none !important;
+}
+
+.user-admin-bar-front-wrap {
+    display: none !important;
+}
+
+.user-language-wrap {
+    display: none !important;
+}
+
+.user-url-wrap {
+    display: none !important;
+}
+
 #wpml_als_help_link {
     display: none;
 }

@@ -7,24 +7,26 @@ class Dashboard
 
     public static function init()
     {
-        remove_action('admin_color_scheme_picker', 'admin_color_scheme_picker');
-        add_action('admin_init', [self::class, 'scheme']);
-        add_filter('get_user_option_admin_color', [self::class, 'colors']);
+        // add_action('admin_init', [self::class, 'layout']);
         // add_action('admin_init', [self::class, 'postboxes']);
+        // add_filter('get_user_option_screen_layout_attachment', [self::class, 'one']);
+        // add_filter('get_user_option_screen_layout_dashboard', [self::class, 'one']);
+        add_action('admin_enqueue_scripts', [self::class, 'assets'], 100);
+        add_action('admin_footer_text', '__return_empty_string');
         add_action('admin_head', [self::class, 'help']);
         add_action('admin_head', [self::class, 'opacity'], 100);
-        add_action('admin_enqueue_scripts', [self::class, 'assets'], 100);
+        add_action('admin_init', [self::class, 'scheme']);
         add_action('admin_menu', [self::class, 'menu'], 999);
-        remove_action('welcome_panel', 'wp_welcome_panel');
+        add_action('after_plugin_row_nanga/nanga.php', [self::class, 'warning'], 10, 3);
+        add_action('personal_options', [self::class, 'profile']);
         add_action('wp_dashboard_setup', [self::class, 'metaboxes']);
-        // add_action('admin_init', [self::class, 'layout']);
-        // add_filter('get_user_option_screen_layout_dashboard', [self::class, 'one']);
-        // add_filter('get_user_option_screen_layout_attachment', [self::class, 'one']);
+        add_filter('get_user_option_admin_color', [self::class, 'colors']);
         add_filter('manage_users_columns', [self::class, 'columnsUsers'], 100);
         add_filter('plugin_action_links_nanga/nanga.php', [self::class, 'pluginLinks']);
-        add_filter('wp_default_editor', [self::class, 'editor']);
-        add_action('admin_footer_text', '__return_empty_string');
         add_filter('update_footer', '__return_empty_string', 999);
+        add_filter('wp_default_editor', [self::class, 'editor']);
+        remove_action('admin_color_scheme_picker', 'admin_color_scheme_picker');
+        remove_action('welcome_panel', 'wp_welcome_panel');
     }
 
     public static function scheme()
@@ -61,8 +63,8 @@ class Dashboard
     public static function assets($screen)
     {
         wp_enqueue_style('nanga-admin', NANGA_DIR_URL . 'assets/css/nanga-admin.css', [], NANGA_VERSION, 'all');
-        wp_enqueue_script('nanga', NANGA_DIR_URL . 'assets/js/nanga-admin.js', ['jquery'], NANGA_VERSION, true);
-        wp_localize_script('nanga', 'nanga', [
+        wp_enqueue_script('nanga-admin', NANGA_DIR_URL . 'assets/js/nanga-admin.js', ['jquery'], NANGA_VERSION, true);
+        wp_localize_script('nanga-admin', 'nanga', [
             'current_user' => get_current_user_id(),
             'environment'  => (defined('WP_ENV')) ? WP_ENV : null,
             'locale'       => get_locale(),
@@ -79,6 +81,7 @@ class Dashboard
         remove_submenu_page('users.php', 'user-new.php');
         if ( ! nanga_user_is_superadmin()) {
             remove_menu_page('tools.php');
+            remove_submenu_page('themes.php', 'themes.php');
         }
     }
 
@@ -124,9 +127,35 @@ class Dashboard
         return $columns;
     }
 
+    public static function profile()
+    {
+        ?>
+        <script>
+            (function ($) {
+                $(function () {
+                    var h2 = $('#your-profile').find('h2');
+                    h2.each(function () {
+                        if ($(this).text() === 'About Yourself' || $(this).text() === 'Λίγα λόγια για εσάς') {
+                            $(this).next().remove();
+                            $(this).remove();
+                        }
+                    });
+                });
+            })(jQuery);
+        </script>
+        <?php
+    }
+
     public static function pluginLinks($links)
     {
         return array_merge(['advanced_settings' => '<a href="' . admin_url('options-general.php?page=nanga-settings') . '">' . __('Settings', 'nanga') . '</a>'], $links);
+    }
+
+    public static function warning($file, $data, $status)
+    {
+        if (version_compare($data['Version'], '2.0.0', '<')) {
+            echo '</tr><tr class="plugin-update-tr active"><td colspan="5" class="plugin-update" style="box-shadow:none;"><div class="update-message notice inline notice-error notice-alt" style="margin-top:15px;"><p>Versions above <em>2.0.0</em> include major changes. Please make sure you understand all the implications before upgrading this plugin.</p></div></td>';
+        }
     }
 
     public static function editor()

@@ -89,8 +89,7 @@ class AdminBar
 
     public static function assets()
     {
-        // if (is_admin_bar_showing()) {
-        if (nanga_user_is_superadmin()) {
+        if (is_admin_bar_showing() || nanga_user_is_superadmin()) {
             wp_enqueue_style('nanga-admin-bar', NANGA_DIR_URL . 'assets/css/nanga-admin-bar.css', ['dashicons'], NANGA_VERSION);
         }
         if (is_admin_bar_showing() && nanga_user_is_superadmin()) {

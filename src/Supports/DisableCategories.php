@@ -8,7 +8,7 @@ class DisableCategories
     public static function init()
     {
         add_action('init', [self::class, 'taxonomy'], 1);
-        add_filter('rewrite_rules_array', [self::class, 'rewrites']);
+        // add_filter('rewrite_rules_array', [self::class, 'rewrites']);
         add_filter('customize_nav_menu_available_item_types', [self::class, 'customizer']);
     }
 
@@ -22,6 +22,7 @@ class DisableCategories
 
     public static function rewrites($rules)
     {
+        // TODO this removes even rewrite rules from custom post types that contain the word category
         $base   = get_option('category_base');
         $needle = ($base) ? $base : 'category';
         foreach ($rules as $rule => $rewrite) {
