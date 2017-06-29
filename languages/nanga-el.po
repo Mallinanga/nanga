@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VG web things\n"
-"POT-Creation-Date: 2017-06-23 19:47+0300\n"
-"PO-Revision-Date: 2017-06-23 19:48+0300\n"
+"POT-Creation-Date: 2017-06-29 21:46+0300\n"
+"PO-Revision-Date: 2017-06-29 21:46+0300\n"
 "Last-Translator: Panos Paganis <mallinanga@gmail.com>\n"
 "Language-Team: VG web things <info@vgwebthings.com>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
@@ -24,26 +24,39 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: src/Features/Connekt_Plugin_Installer.php\n"
 "X-Poedit-SearchPathExcluded-5: src/Features/Maintenance.php\n"
 
-#: includes/class-nanga-admin.php:10
-msgid ""
-"<p>Click above to add an image to be displayed at the top of the content."
-"<br><strong>The width of the image should be "
+#: src/Features/AdminBar.php:114 src/Features/Dashboard.php:151
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: src/Features/AdminBar.php:132
+msgid "Tools"
+msgstr "Εργαλεία"
+
+#: src/Features/Comments.php:23
+msgid "Cancel reply"
 msgstr ""
 
-#: includes/class-nanga-admin.php:38
-#, php-format
-msgid "Please insert a valid Google Analytics UA Code in %1$s."
-msgstr "Παρακαλώ εισάγετε έναν έγκυρο κώδικα του Google Analytics στις %1$s."
-
-#: includes/class-nanga-admin.php:75 includes/class-nanga-admin.php:114
-msgid "Site is in maintenance mode!"
+#: src/Features/Comments.php:24
+msgid "Comment"
 msgstr ""
 
-#: includes/class-nanga-admin.php:111
-msgid "Site is now live!"
+#: src/Features/Customizer.php:29
+msgid "Current Theme Settings"
+msgstr "Τρέχον Θέμα"
+
+#: src/Settings.php:67
+msgid "Updates"
+msgstr "Ενημερώσεις"
+
+#: src/Supports/Analytics.php:22
+msgid "Analytics"
+msgstr "Στατιστικά"
+
+#: src/Supports/Analytics.php:51
+msgid "Please insert a valid Google Analytics UA."
 msgstr ""
 
-#: includes/class-nanga-admin.php:153
+#: src/Supports/LegacySupport.php:19
 msgid ""
 "Thank you! Your request has been sent. We will get back at you as soon as "
 "possible."
@@ -51,81 +64,82 @@ msgstr ""
 "Ευχαριστούμε! Το αίτημά σας εστάλη. Θα επικοινωνήσουμε μαζί σας το "
 "συντομότερο δυνατό."
 
-#: includes/class-nanga-admin.php:154
+#: src/Supports/LegacySupport.php:20
 msgid "Oops! Something went wrong and we couldn't send your message."
 msgstr "Ωχ! Κάτι πήγε στραβά και δεν μπορέσαμε να στείλουμε το μήνυμά σας."
 
-#: includes/class-nanga-admin.php:161 includes/class-nanga-admin.php:216
-msgid "Settings"
-msgstr "Ρυθμίσεις"
-
-#: includes/class-nanga-admin.php:215
-msgid "General Settings"
-msgstr "Γενικές Ρυθμίσεις"
-
-#: includes/class-nanga-admin.php:223 includes/class-nanga-admin.php:224
-msgid "Advanced Settings"
-msgstr "Προχωρημένες ρυθμίσεις"
-
-#: includes/class-nanga-admin.php:411 includes/class-nanga-admin.php:433
-msgid "Featured"
-msgstr ""
-
-#: includes/class-nanga-admin.php:464
-msgid "VG Settings"
-msgstr "VG Ρυθμίσεις"
-
-#: includes/class-nanga-admin.php:479
-msgid "Site Logo"
-msgstr "Λογότυπο"
-
-#: includes/class-nanga-admin.php:484
-msgid "Site Main Color"
-msgstr "Κύριο χρώμα του site"
-
-#: includes/class-nanga-admin.php:489
-msgid "Site Secondary Color"
-msgstr "Δευτεροβάθμιο χρώμα"
-
-#: includes/class-nanga-admin.php:582
+#: src/Supports/LegacySupport.php:27
 msgid "Create a Support Request"
 msgstr "Δημιουργήστε ένα αίτημα υποστήριξης"
 
-#: includes/class-nanga-admin.php:590
+#: src/Supports/LegacySupport.php:34
 msgid "Your email"
 msgstr "Το email σας"
 
-#: includes/class-nanga-admin.php:590
+#: src/Supports/LegacySupport.php:34
 msgid "Your name"
 msgstr "Το όνομά σας"
 
-#: includes/class-nanga-admin.php:590
+#: src/Supports/LegacySupport.php:34
 msgid "Your message"
 msgstr "Το μήνυμά σας"
 
-#: includes/class-nanga-admin.php:590
+#: src/Supports/LegacySupport.php:34
 msgid "Send Support Request"
 msgstr "Στείλτε αίτημα υποστήριξης"
 
-#: includes/class-nanga-public.php:51
-msgid "View"
-msgstr "Προβολή"
+#: src/Supports/Support.php:20
+msgid "Support Request"
+msgstr "Υποστήριξη"
 
-#: includes/class-nanga-public.php:147
-msgid "Your comment"
-msgstr "Το σχόλιό σας"
+#: src/Supports/Support.php:23
+msgid "Get Support"
+msgstr "Λάβετε υποστήριξη"
 
-#: includes/class-nanga-public.php:153
-msgid "Cancel"
-msgstr "Ακύρωση"
+#: src/ThirdParty/WPHelp.php:20
+msgid "Help"
+msgstr "Βοήθεια"
 
-#: includes/class-nanga-shared.php:161
-msgid "Primary Menu"
-msgstr "﻿Κύριο μενού"
+#: src/ThirdParty/WPHelp.php:21
+msgid "Index"
+msgstr "Περιεχόμενα"
 
-#: includes/class-nanga-shared.php:162
-msgid "Footer Menu"
-msgstr "Δευτερεύον μενού"
+#~ msgid "Please insert a valid Google Analytics UA Code in %1$s."
+#~ msgstr ""
+#~ "Παρακαλώ εισάγετε έναν έγκυρο κώδικα του Google Analytics στις %1$s."
+
+#~ msgid "General Settings"
+#~ msgstr "Γενικές Ρυθμίσεις"
+
+#~ msgid "Advanced Settings"
+#~ msgstr "Προχωρημένες ρυθμίσεις"
+
+#~ msgid "VG Settings"
+#~ msgstr "VG Ρυθμίσεις"
+
+#~ msgid "Site Logo"
+#~ msgstr "Λογότυπο"
+
+#~ msgid "Site Main Color"
+#~ msgstr "Κύριο χρώμα του site"
+
+#~ msgid "Site Secondary Color"
+#~ msgstr "Δευτεροβάθμιο χρώμα"
+
+#~ msgid "View"
+#~ msgstr "Προβολή"
+
+#~ msgid "Your comment"
+#~ msgstr "Το σχόλιό σας"
+
+#~ msgid "Cancel"
+#~ msgstr "Ακύρωση"
+
+#~ msgid "Primary Menu"
+#~ msgstr "﻿Κύριο μενού"
+
+#~ msgid "Footer Menu"
+#~ msgstr "Δευτερεύον μενού"
 
 #~ msgid "The Settings"
 #~ msgstr "Οι Ρυθμίσεις"
@@ -133,20 +147,11 @@ msgstr "Δευτερεύον μενού"
 #~ msgid "Logout"
 #~ msgstr "Αποσύνδεση"
 
-#~ msgid "Get Support"
-#~ msgstr "Λάβετε υποστήριξη"
-
 #~ msgid "Email Support"
 #~ msgstr "Υποστήριξη μέσω ηλεκτρονικού ταχυδρομείου"
 
 #~ msgid "Create Support Request"
 #~ msgstr "Δημιουργήστε αίτημα υποστήριξης"
-
-#~ msgid "Analytics"
-#~ msgstr "Στατιστικά"
-
-#~ msgid "Tools"
-#~ msgstr "Εργαλεία"
 
 #~ msgid "View Public Side of the Site"
 #~ msgstr "Δημόσια προβολή του ιστότοπου"

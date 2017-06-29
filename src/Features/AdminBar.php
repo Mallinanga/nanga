@@ -129,7 +129,7 @@ class AdminBar
             'href'   => false,
             'id'     => 'nanga-tools',
             'parent' => 'top-secondary',
-            'title'  => 'Tools',
+            'title'  => __('Tools', 'nanga'),
         ]);
         $wp_admin_bar->add_node([
             'href'   => wp_nonce_url(add_query_arg('action', 'nanga-tools__flush-object-cache', admin_url('index.php'))),

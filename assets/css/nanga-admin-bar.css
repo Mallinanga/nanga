@@ -21,6 +21,10 @@ html.admin-bar {
     top: 2px;
 }
 
+#wpadminbar ul li#wp-admin-bar-nanga-updates__settings {
+    padding-bottom: 10px;
+}
+
 #wpadminbar ul li.nanga-updates__count {
     background-color: #f1f1f1;
     border-top: 1px solid #e1e1e1;

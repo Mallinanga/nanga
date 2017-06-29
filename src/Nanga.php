@@ -233,7 +233,7 @@ class Nanga
 
     public function locale()
     {
-        load_plugin_textdomain('nanga', false, NANGA_DIR_PATH . 'languages/');
+        load_plugin_textdomain('nanga', false, '/nanga/languages/');
     }
 
     public function plugins()

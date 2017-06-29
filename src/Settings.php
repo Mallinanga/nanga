@@ -64,7 +64,7 @@ class Settings
                 'icon'  => 'dashicons-update',
                 'show'  => true,
                 'slug'  => 'updates',
-                'title' => 'Updates',
+                'title' => __('Updates', 'nanga'),
             ],
             'cronjobs'    => [
                 'icon'  => 'dashicons-backup',

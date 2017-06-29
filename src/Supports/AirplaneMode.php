@@ -22,6 +22,7 @@ class AirplaneMode
             '*.cloudfront.net',
             '*.googleapis.com',
             '*.optimus.io',
+            '*.woocommerce.com',
             '*.wordpress.org',
             'api.github.com',
             'connect.advancedcustomfields.com',
