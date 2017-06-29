@@ -441,7 +441,27 @@ class Settings
             echo '<div class="notice notice-warning is-dismissible"><p>The site is missing a Google Analytics UA. Please enter one in <a href="' . admin_url('options-general.php?page=nanga-settings&tab=general') . '">general settings</a>.</p></div>';
         }
         if (nanga_site_is_external() || ! nanga_site_is_vip()) {
-            echo '<div class="notice notice-warning is-dismissible"><p>The site is not hosted on a VG web things server. Please make sure the admin email is setup correctly in <a href="' . admin_url('options-general.php') . '">general settings</a>.</p></div>';
+            $pointer = 'notice-nanga-site-is-not-ours';
+            echo '<div id="' . esc_attr($pointer) . '" class="notice notice-warning is-dismissible"><p>The site is not hosted on a VG web things server. Please make sure the admin email is setup correctly in <a href="' . admin_url('options-general.php') . '">general settings</a>.</p></div>';
+            ?>
+            <script>
+                jQuery(document).ready(function ($) {
+                    $('#<?php echo esc_js($pointer); ?>').on('remove', function () {
+                        $.ajax({
+                            url: ajaxurl,
+                            type: 'POST',
+                            xhrFields: {
+                                withCredentials: true
+                            },
+                            data: {
+                                action: 'dismiss-wp-pointer',
+                                pointer: '<?php echo esc_js($pointer); ?>'
+                            }
+                        });
+                    })
+                });
+            </script>
+            <?php
         }
     }
 
