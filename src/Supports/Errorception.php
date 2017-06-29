@@ -7,8 +7,11 @@ class Errorception
 
     public static function init()
     {
-        // add_action('wp_head', [self::class, 'errorception'], 1);
-        add_action('wp_head', [self::class, 'sentry'], 1);
+        if (nanga_site_is_external()) {
+            return;
+        }
+        // add_action('wp_head', [self::class, 'errorception'], 5);
+        add_action('wp_head', [self::class, 'sentry'], 5);
         add_filter('wp_resource_hints', [self::class, 'hints'], 10, 2);
     }
 

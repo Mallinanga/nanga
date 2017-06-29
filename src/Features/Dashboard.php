@@ -16,6 +16,7 @@ class Dashboard
         add_action('admin_head', [self::class, 'help']);
         add_action('admin_head', [self::class, 'opacity'], 100);
         add_action('admin_init', [self::class, 'scheme']);
+        add_action('admin_init', [self::class, 'notices']);
         add_action('admin_menu', [self::class, 'menu'], 999);
         add_action('after_plugin_row_nanga/nanga.php', [self::class, 'warning'], 10, 3);
         add_action('personal_options', [self::class, 'profile']);
@@ -26,7 +27,17 @@ class Dashboard
         add_filter('update_footer', '__return_empty_string', 999);
         add_filter('wp_default_editor', [self::class, 'editor']);
         remove_action('admin_color_scheme_picker', 'admin_color_scheme_picker');
+        remove_action('admin_init', 'default_password_nag_handler', 10);
+        remove_action('admin_init', 'register_admin_color_schemes', 1);
+        remove_action('admin_menu', '_add_post_type_submenus');
         remove_action('welcome_panel', 'wp_welcome_panel');
+    }
+
+    public static function notices()
+    {
+        remove_action('admin_notices', 'default_password_nag', 10);
+        remove_action('admin_notices', 'maintenance_nag', 10);
+        remove_action('admin_notices', 'update_nag', 3);
     }
 
     public static function scheme()

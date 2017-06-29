@@ -131,12 +131,14 @@ class AdminBar
             'parent' => 'top-secondary',
             'title'  => __('Tools', 'nanga'),
         ]);
-        $wp_admin_bar->add_node([
-            'href'   => wp_nonce_url(add_query_arg('action', 'nanga-tools__flush-object-cache', admin_url('index.php'))),
-            'id'     => 'nanga-tools__flush-object-cache',
-            'parent' => 'nanga-tools',
-            'title'  => 'Flush Object Cache',
-        ]);
+        if (wp_using_ext_object_cache()) {
+            $wp_admin_bar->add_node([
+                'href'   => wp_nonce_url(add_query_arg('action', 'nanga-tools__flush-object-cache', admin_url('index.php'))),
+                'id'     => 'nanga-tools__flush-object-cache',
+                'parent' => 'nanga-tools',
+                'title'  => 'Flush Object Cache',
+            ]);
+        }
         $wp_admin_bar->add_node([
             'href'   => wp_nonce_url(add_query_arg('action', 'nanga-tools__delete-transients', admin_url('index.php'))),
             'id'     => 'nanga-tools__delete-transients',

@@ -7,7 +7,7 @@ class Optimus
 
     public static function init()
     {
-        if (current_user_can('manage_options')) {
+        if ( ! is_admin() || current_user_can('manage_options')) {
             return;
         }
         // remove_action('all_admin_notices', ['Optimus_HQ', 'optimus_hq_notice']);
