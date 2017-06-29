@@ -7,12 +7,12 @@
  * Domain Path: /languages
  * Plugin Name: VG web things
  * Text Domain: nanga
- * Version:     2.0.2
+ * Version:     2.0.3
  */
 
 defined('WPINC') || die;
 
-define('NANGA_VERSION', '2.0.2');
+define('NANGA_VERSION', '2.0.3');
 define('NANGA_DIR_PATH', plugin_dir_path(__FILE__));
 define('NANGA_DIR_URL', plugin_dir_url(__FILE__));
 
