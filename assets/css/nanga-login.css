@@ -7,7 +7,12 @@
     outline: none;
 }
 
-body {
+a {
+    color: #000;
+}
+
+a:active, a:hover {
+    color: #999;
 }
 
 #login {
@@ -29,7 +34,15 @@ body {
 }
 
 .login form {
+    background: transparent;
+    box-shadow: none;
     padding: 20px 30px 30px 30px;
+    transition: all .35s;
+}
+
+.login form:hover {
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .13);
 }
 
 .login #nav,
@@ -52,11 +65,20 @@ body {
     position: fixed;
 }
 
+.login #backtoblog a, .login #nav a {
+    color: #666;
+}
+
+.login #backtoblog a:hover, .login #nav a:hover, .login h1 a:hover {
+    color: #000;
+}
+
 .login form .forgetmenot {
     display: none !important;
 }
 
 .login form .input {
+    box-shadow: none;
     box-sizing: border-box;
     font-size: 16px;
     margin: 5px 0 20px 0;
@@ -64,8 +86,13 @@ body {
     width: 100%;
 }
 
+.login form .input:focus {
+    border-color: #000;
+}
+
 #login form p.submit input[type="submit"] {
-    background-color: #0098ed;
+    /*background-color: #0098ed;*/
+    background-color: #000;
     border: none;
     color: #fff;
     cursor: pointer;

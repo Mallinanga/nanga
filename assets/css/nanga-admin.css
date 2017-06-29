@@ -46,6 +46,14 @@ a:focus {
     display: none;
 }
 
+.metabox-holder .postbox-container .empty-container {
+    border: 3px dashed transparent;
+}
+
+.metabox-holder .postbox-container .empty-container:after {
+    content: none;
+}
+
 /* Settings */
 
 #nanga-settings {
@@ -80,7 +88,7 @@ a:focus {
 }
 
 .nanga-settings__content h2:after {
-    background-color: #23282d;
+    background-color: #999;
     content: '';
     display: inline-block;
     height: 2px;

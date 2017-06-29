@@ -48,6 +48,12 @@ class Settings
                 'slug'  => 'appearance',
                 'title' => 'Appearance',
             ],
+            'supports'    => [
+                'icon'  => 'dashicons-star-filled',
+                'show'  => nanga_site_is_external() && 'vg-twig' !== get_option('template'),
+                'slug'  => 'supports',
+                'title' => 'Fuctionality',
+            ],
             'maintenance' => [
                 'icon'  => 'dashicons-hidden',
                 'show'  => true,
@@ -243,7 +249,7 @@ class Settings
     {
         global $wpdb;
         $table_prefix = $wpdb->base_prefix;
-        echo '<textarea autocomplete="off" readonly rows="45" style="font-family:monospace;width:100%;">';
+        echo '<textarea autocomplete="off" readonly rows="30" style="font-family:monospace;width:100%;">';
         echo 'Environment: ';
         echo esc_html((defined('WP_ENV')) ? WP_ENV : 'Undefined');
         echo "\r\n";

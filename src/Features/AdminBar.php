@@ -102,6 +102,17 @@ class AdminBar
         if ( ! nanga_user_is_superadmin()) {
             return;
         }
+    }
+
+    public static function adminNodes($wp_admin_bar)
+    {
+        if ( ! current_user_can('manage_options')) {
+            return;
+        }
+        $wp_admin_bar->add_menu([
+            'id'    => 'nanga-settings',
+            'title' => __('Settings', 'nanga'),
+        ]);
         $tabs = Settings::tabs();
         foreach ($tabs as $tab) {
             if ( ! $tab['show']) {
@@ -120,15 +131,6 @@ class AdminBar
             'parent' => 'top-secondary',
             'title'  => 'Tools',
         ]);
-        // TODO move to cache enabler
-        /*
-        $wp_admin_bar->add_node([
-            'href'   => wp_nonce_url(add_query_arg('action', 'nanga-tools__flush-page-cache', admin_url('index.php'))),
-            'id'     => 'nanga-tools__flush-page-cache',
-            'parent' => 'nanga-tools',
-            'title'  => 'Flush Page Cache',
-        ]);
-        */
         $wp_admin_bar->add_node([
             'href'   => wp_nonce_url(add_query_arg('action', 'nanga-tools__flush-object-cache', admin_url('index.php'))),
             'id'     => 'nanga-tools__flush-object-cache',
@@ -149,23 +151,11 @@ class AdminBar
         ]);
     }
 
-    public static function adminNodes($wp_admin_bar)
-    {
-        if ( ! current_user_can('manage_options')) {
-            return;
-        }
-    }
-
     public static function editorNodes($wp_admin_bar)
     {
         if ( ! current_user_can('edit_pages')) {
             return;
         }
-        $wp_admin_bar->add_menu([
-            'href'  => admin_url('admin.php?page=vg-settings'),
-            'id'    => 'nanga-settings',
-            'title' => __('Settings', 'nanga'),
-        ]);
     }
 
     public static function nodes($wp_admin_bar)
@@ -174,6 +164,7 @@ class AdminBar
         remove_action('admin_bar_menu', 'wp_admin_bar_edit_menu', 80);
         remove_action('admin_bar_menu', 'wp_admin_bar_new_content_menu', 70);
         remove_action('admin_bar_menu', 'wp_admin_bar_search_menu', 4);
+        remove_action('admin_bar_menu', 'wp_admin_bar_updates_menu', 50);
         remove_action('admin_bar_menu', 'wp_admin_bar_wp_menu', 10);
         $wp_admin_bar->remove_node('about');
         $wp_admin_bar->remove_node('appearance');
@@ -189,6 +180,7 @@ class AdminBar
         $wp_admin_bar->remove_node('search');
         $wp_admin_bar->remove_node('support-forums');
         $wp_admin_bar->remove_node('themes');
+        $wp_admin_bar->remove_node('updates');
         $wp_admin_bar->remove_node('view');
         $wp_admin_bar->remove_node('view-site');
         $wp_admin_bar->remove_node('view-store');

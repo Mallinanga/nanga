@@ -75,11 +75,11 @@ class Dashboard
     {
         remove_submenu_page('edit.php', 'post-new.php');
         remove_submenu_page('edit.php?post_type=page', 'post-new.php?post_type=page');
-        remove_submenu_page('index.php', 'wp-ses/ses-stats.php');
+        remove_submenu_page('index.php', 'update-core.php');
         remove_submenu_page('plugins.php', 'plugin-install.php');
         remove_submenu_page('upload.php', 'media-new.php');
         remove_submenu_page('users.php', 'user-new.php');
-        if ( ! nanga_user_is_superadmin()) {
+        if ( ! current_user_can('manage_options')) {
             remove_menu_page('tools.php');
             remove_submenu_page('themes.php', 'themes.php');
         }

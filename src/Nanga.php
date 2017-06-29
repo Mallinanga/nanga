@@ -131,6 +131,7 @@ class Nanga
             'minify_html' => 2,
         ]);
         update_option('comment_max_links', 1);
+        update_option('comment_whitelist', 0);
         update_option('comments_notify', 0);
         update_option('date_format', 'd/m/Y');
         update_option('default_comment_status', 'closed');
@@ -164,6 +165,7 @@ class Nanga
         update_option('moderation_notify', 0);
         update_option('posts_per_page', 5);
         update_option('posts_per_rss', 1);
+        update_option('require_name_email', 0);
         update_option('rg_gforms_currency', 'EUR');
         update_option('rg_gforms_disable_css', 1);
         update_option('rg_gforms_enable_akismet', 1);
@@ -236,15 +238,7 @@ class Nanga
 
     public function plugins()
     {
-        $plugins   = [];
-        $plugins[] = [
-            'name'             => 'Advanced Custom Fields Pro',
-            'slug'             => 'advanced-custom-fields-pro',
-            'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/advanced-custom-fields-pro.zip',
-            'required'         => true,
-            'force_activation' => false,
-            'external_url'     => 'http://www.advancedcustomfields.com/pro/',
-        ];
+        $plugins = [];
         if ('vg-twig' == get_option('template')) {
             $plugins[] = [
                 'name'             => 'Timber',
@@ -253,13 +247,6 @@ class Nanga
                 'force_activation' => true,
             ];
         }
-        $plugins[] = [
-            'name'             => 'Gravity Forms',
-            'slug'             => 'gravityforms',
-            'source'           => 'https://github.com/wp-premium/gravityforms/archive/master.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
         $plugins[] = [
             'name'             => 'Image Sanity',
             'slug'             => 'imsanity',
@@ -278,85 +265,102 @@ class Nanga
             'required'         => false,
             'force_activation' => false,
         ];
-        $plugins[] = [
-            'name'             => 'WP All Import',
-            'slug'             => 'wp-all-import-pro',
-            'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-all-import-pro.zip',
-            'required'         => false,
-            'force_activation' => false,
-            'external_url'     => 'http://www.wpallimport.com/',
-        ];
-        $plugins[] = [
-            'name'             => 'WP All Export',
-            'slug'             => 'wp-all-export-pro',
-            'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-all-export-pro.zip',
-            'required'         => false,
-            'force_activation' => false,
-            'external_url'     => 'http://www.wpallimport.com/export/',
-        ];
-        $plugins[] = [
-            'name'             => 'WP Help',
-            'slug'             => 'wp-help',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'WP Sync DB',
-            'slug'             => 'wp-sync-db',
-            'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-sync-db.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'WP Sync DB Media Files',
-            'slug'             => 'wp-sync-db-media-files',
-            'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-sync-db-media-files.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'WP Sync DB CLI',
-            'slug'             => 'wp-sync-db-cli',
-            'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-sync-db-cli.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'VG web things Contact Form',
-            'slug'             => 'nanga-contact',
-            'source'           => 'https://github.com/Mallinanga/nanga-contact/archive/master.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'VG web things Deployer',
-            'slug'             => 'nanga-deploy',
-            'source'           => 'https://github.com/Mallinanga/nanga-deploy/archive/master.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'VG web things Newsletter Form',
-            'slug'             => 'nanga-newsletter',
-            'source'           => 'https://github.com/Mallinanga/nanga-newsletter/archive/master.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'VG web things Notifications',
-            'slug'             => 'nanga-notifications',
-            'source'           => 'https://github.com/Mallinanga/nanga-notifications/archive/master.zip',
-            'required'         => false,
-            'force_activation' => false,
-        ];
-        $plugins[] = [
-            'name'             => 'VG web things Updater',
-            'slug'             => 'nanga-updater',
-            'source'           => 'https://github.com/Mallinanga/nanga-updater/archive/master.zip',
-            'required'         => ! nanga_site_is_external(),
-            'force_activation' => false,
-        ];
-        if (nanga_site_in_production()) {
+        if ( ! nanga_site_is_external()) {
+            $plugins[] = [
+                'name'             => 'VG web things Contact Form',
+                'slug'             => 'nanga-contact',
+                'source'           => 'https://github.com/Mallinanga/nanga-contact/archive/master.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'VG web things Deployer',
+                'slug'             => 'nanga-deploy',
+                'source'           => 'https://github.com/Mallinanga/nanga-deploy/archive/master.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'VG web things Newsletter Form',
+                'slug'             => 'nanga-newsletter',
+                'source'           => 'https://github.com/Mallinanga/nanga-newsletter/archive/master.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'VG web things Notifications',
+                'slug'             => 'nanga-notifications',
+                'source'           => 'https://github.com/Mallinanga/nanga-notifications/archive/master.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'VG web things Updater',
+                'slug'             => 'nanga-updater',
+                'source'           => 'https://github.com/Mallinanga/nanga-updater/archive/master.zip',
+                'required'         => ! nanga_site_is_external(),
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'Advanced Custom Fields Pro',
+                'slug'             => 'advanced-custom-fields-pro',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/advanced-custom-fields-pro.zip',
+                'required'         => true,
+                'force_activation' => false,
+                'external_url'     => 'http://www.advancedcustomfields.com/pro/',
+            ];
+            $plugins[] = [
+                'name'             => 'WP Help',
+                'slug'             => 'wp-help',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'Gravity Forms',
+                'slug'             => 'gravityforms',
+                'source'           => 'https://github.com/wp-premium/gravityforms/archive/master.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'WP All Import',
+                'slug'             => 'wp-all-import-pro',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-all-import-pro.zip',
+                'required'         => false,
+                'force_activation' => false,
+                'external_url'     => 'http://www.wpallimport.com/',
+            ];
+            $plugins[] = [
+                'name'             => 'WP All Export',
+                'slug'             => 'wp-all-export-pro',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-all-export-pro.zip',
+                'required'         => false,
+                'force_activation' => false,
+                'external_url'     => 'http://www.wpallimport.com/export/',
+            ];
+            $plugins[] = [
+                'name'             => 'WP Sync DB',
+                'slug'             => 'wp-sync-db',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-sync-db.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'WP Sync DB Media Files',
+                'slug'             => 'wp-sync-db-media-files',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-sync-db-media-files.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            $plugins[] = [
+                'name'             => 'WP Sync DB CLI',
+                'slug'             => 'wp-sync-db-cli',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-sync-db-cli.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+        }
+        if (nanga_site_in_production() && ! nanga_site_is_external()) {
             $plugins[] = [
                 'name'             => 'WP Redis',
                 'slug'             => 'wp-redis',
