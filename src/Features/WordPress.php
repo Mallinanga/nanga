@@ -10,8 +10,28 @@ class WordPress
         add_action('init', [self::class, 'supports'], 1);
         add_filter('request', [self::class, 'search']);
         add_filter('upload_mimes', [self::class, 'mimes']);
-        add_filter('http_request_args', [self::class, 'request'], 100, 1);
-        add_action('http_api_curl', [self::class, 'curl'], 100, 1);
+        // add_filter('http_request_args', [self::class, 'request'], 100, 1);
+        // add_action('http_api_curl', [self::class, 'curl'], 100, 1);
+    }
+
+    public static function actions()
+    {
+        remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
+        remove_action('wp_head', 'index_rel_link');
+        remove_action('wp_head', 'parent_post_rel_link', 10);
+        remove_action('wp_head', 'rsd_link');
+        remove_action('wp_head', 'start_post_rel_link', 10);
+        remove_action('wp_head', 'wlwmanifest_link');
+        remove_action('wp_head', 'wp_generator');
+        remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+
+        remove_action('post_updated', 'wp_check_for_changed_slugs', 12, 3);
+        remove_action('attachment_updated', 'wp_check_for_changed_slugs', 12, 3);
+    }
+
+    public static function filters()
+    {
+
     }
 
     public static function supports()
@@ -28,23 +48,6 @@ class WordPress
         }
 
         return $query;
-    }
-
-    public static function actions()
-    {
-        remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);
-        remove_action('wp_head', 'index_rel_link');
-        remove_action('wp_head', 'parent_post_rel_link', 10);
-        remove_action('wp_head', 'rsd_link');
-        remove_action('wp_head', 'start_post_rel_link', 10);
-        remove_action('wp_head', 'wlwmanifest_link');
-        remove_action('wp_head', 'wp_generator');
-        remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
-    }
-
-    public static function filters()
-    {
-        remove_filter('template_redirect', 'wp_shortlink_header', 11);
     }
 
     public static function mimes($mimes)

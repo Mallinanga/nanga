@@ -49,7 +49,7 @@ class Nanga
         }
         Maintenance::init();
         API::init();
-        // Rewrites::init();
+        Rewrites::init();
         Cron::init();
         Mail::init();
         WordPress::actions();
