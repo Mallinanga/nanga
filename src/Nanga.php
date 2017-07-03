@@ -10,6 +10,7 @@ use Nanga\Features\Customizer;
 use Nanga\Features\Dashboard;
 use Nanga\Features\Debug;
 use Nanga\Features\Frontend;
+use Nanga\Features\Heartbeat;
 use Nanga\Features\Login;
 use Nanga\Features\Mail;
 use Nanga\Features\Maintenance;
@@ -59,6 +60,7 @@ class Nanga
         // Frontend::init();
         Login::init();
         Dashboard::init();
+        Heartbeat::init();
         Media::init();
         Pages::init();
         // Posts::init();
@@ -136,6 +138,7 @@ class Nanga
         update_option('date_format', 'd/m/Y');
         update_option('default_comment_status', 'closed');
         update_option('default_ping_status', 'closed');
+        update_option('default_pingback_flag', 0);
         update_option('gform_enable_noconflict', 0);
         update_option('gzipcompression', 1);
         update_option('image_default_align', 'none');
@@ -239,6 +242,7 @@ class Nanga
     public function plugins()
     {
         $plugins = [];
+        $sanity  = current_theme_supports('nanga-image-sanity');
         if ('vg-twig' == get_option('template')) {
             $plugins[] = [
                 'name'             => 'Timber',
@@ -250,8 +254,8 @@ class Nanga
         $plugins[] = [
             'name'             => 'Image Sanity',
             'slug'             => 'imsanity',
-            'required'         => current_theme_supports('nanga-image-sanity'),
-            'force_activation' => current_theme_supports('nanga-image-sanity'),
+            'required'         => $sanity,
+            'force_activation' => $sanity,
         ];
         $plugins[] = [
             'name'             => 'Optimus',
@@ -359,6 +363,13 @@ class Nanga
                 'required'         => false,
                 'force_activation' => false,
             ];
+            $plugins[] = [
+                'name'             => 'WPML',
+                'slug'             => 'sitepress-multilingual-cms',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/sitepress-multilingual-cms.3.7.0.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
         }
         if (nanga_site_in_production() && ! nanga_site_is_external()) {
             $plugins[] = [
@@ -380,12 +391,26 @@ class Nanga
                 'force_activation' => false,
             ];
         }
+        if (nanga_site_in_development()) {
+            $plugins[] = [
+                'name'             => 'WP Migrate DB',
+                'slug'             => 'wp-migrate-db',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+        }
         $plugins = apply_filters('nanga_plugins', $plugins);
         $config  = [
             'capability'   => 'manage_options',
             'dismissable'  => true,
             'has_notices'  => nanga_user_is_superadmin(),
             'is_automatic' => true,
+            'menu'         => 'nanga-extend',
+            'parent_slug'  => 'options-general.php',
+            'strings'      => [
+                'page_title' => __('Recommended & Required Plugins', 'nanga'),
+                'menu_title' => __('VG Extend', 'nanga'),
+            ],
         ];
         tgmpa($plugins, $config);
     }

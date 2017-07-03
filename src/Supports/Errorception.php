@@ -7,7 +7,7 @@ class Errorception
 
     public static function init()
     {
-        if (nanga_site_is_external()) {
+        if (nanga_site_in_development() || nanga_site_is_external()) {
             return;
         }
         // add_action('wp_head', [self::class, 'errorception'], 5);

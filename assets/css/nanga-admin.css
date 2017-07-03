@@ -31,7 +31,7 @@ a:focus {
 }
 
 .user-admin-bar-front-wrap {
-    display: none !important;
+    /*display: none !important;*/
 }
 
 .user-language-wrap {

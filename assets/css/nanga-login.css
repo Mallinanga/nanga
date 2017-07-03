@@ -21,9 +21,17 @@ a:active, a:hover {
     width: 300px;
 }
 
+body.interim-login h1 {
+    display: none !important;
+}
+
 .login #login_error,
 .login .message {
     font-size: 14px;
+}
+
+body:not(.interim-login) #login_error,
+body:not(.interim-login) .message {
     left: 0;
     line-height: 1.5;
     margin: 0;
@@ -98,7 +106,7 @@ a:active, a:hover {
     cursor: pointer;
     display: block;
     float: none;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: normal;
     line-height: 1;
     margin: 10px 0 0 0;

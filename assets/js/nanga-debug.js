@@ -1,3 +1,8 @@
+document.querySelector('.nanga-debug-link').addEventListener('click', function (e) {
+    // this.classList.toggle('is-showing');
+    document.querySelector('#nanga-debug-footer').classList.toggle('is-showing');
+    e.preventDefault();
+});
 (function ($) {
     $(window).load(function () {
         var clear = $('#clear-debug-log');

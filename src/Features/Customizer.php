@@ -11,9 +11,19 @@ class Customizer
     public static function init()
     {
         remove_action('wp_head', 'wp_custom_css_cb', 101);
+        add_filter('user_has_cap', [self::class, 'capabilities']);
         add_action('customize_preview_init', [self::class, 'assets'], 11);
         add_action('customize_register', [self::class, 'sections'], 11);
         // add_action('wp_head', [self::class, 'styles']);
+    }
+
+    public static function capabilities($caps)
+    {
+        if ( ! empty($caps['edit_pages'])) {
+            $caps['edit_theme_options'] = true;
+        }
+
+        return $caps;
     }
 
     public static function assets()

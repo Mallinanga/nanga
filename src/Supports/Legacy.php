@@ -9,7 +9,7 @@ class Legacy
     {
         self::filters();
         add_action('wp_enqueue_scripts', [self::class, 'assets']);
-        add_filter('mce_buttons', [self::class, 'mce']);
+        add_action('after_setup_theme', [self::class, 'supports']);
         add_filter('body_class', [self::class, 'classesBody']);
         add_filter('post_class', [self::class, 'classesPost'], 10, 3);
         add_filter('get_image_tag_class', [self::class, 'classesImage'], 10, 4);
@@ -18,39 +18,25 @@ class Legacy
 
     private static function filters()
     {
-        add_filter('comment_flood_filter', '__return_false', 10, 3);
-        add_filter('enable_post_by_email_configuration', '__return_false', 100);
-        add_filter('sanitize_user', 'strtolower');
-        add_filter('the_generator', '__return_false');
-        add_filter('use_default_gallery_style', '__return_false');
-        add_filter('widget_text', 'do_shortcode');
-        remove_action('set_comment_cookies', 'wp_set_comment_cookies');
         remove_all_filters('comment_flood_filter');
-        remove_filter('comment_text', 'capital_P_dangit', 31);
         remove_filter('comment_text', 'make_clickable', 9);
         remove_filter('comments_open', '_close_comments_for_old_post', 10, 2);
         remove_filter('pings_open', '_close_comments_for_old_post', 10, 2);
-        remove_filter('template_redirect', 'redirect_canonical');
-        remove_filter('template_redirect', 'wp_old_slug_redirect');
-        remove_filter('template_redirect', 'wp_redirect_admin_locations', 1000);
-        remove_filter('the_content', 'capital_P_dangit', 11);
-        remove_filter('the_content', 'wptexturize');
-        remove_filter('the_excerpt', 'wptexturize');
-        remove_filter('the_title', 'capital_P_dangit', 11);
-        remove_filter('the_title', 'wptexturize');
-        remove_filter('wp_title', 'capital_P_dangit', 11);
-        remove_filter('wp_title', 'wptexturize');
+        add_filter('comment_flood_filter', '__return_false', 10, 3);
+        add_filter('enable_post_by_email_configuration', '__return_false', 100);
+        add_filter('sanitize_user', 'strtolower');
+        add_filter('widget_text', 'do_shortcode');
     }
 
     public static function assets()
     {
-        wp_enqueue_style('nanga-legacy', NANGA_DIR_URL . 'assets/css/nanga-legacy.css', [], NANGA_VERSION, 'all');
+        wp_enqueue_style('nanga', NANGA_DIR_URL . 'assets/css/nanga-legacy.css', [], NANGA_VERSION, 'all');
         if ( ! is_admin()) {
             wp_deregister_script('jquery');
-            wp_register_script('jquery', '//cdn.jsdelivr.net/jquery/3.2.1/jquery.min.js', [], null, false);
+            wp_register_script('jquery', '//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js', [], null, false);
             wp_enqueue_script('jquery');
         }
-        wp_enqueue_script('nanga-legacy', NANGA_DIR_URL . 'assets/js/nanga-legacy.js', ['jquery'], NANGA_VERSION, true);
+        wp_enqueue_script('nanga', NANGA_DIR_URL . 'assets/js/nanga-legacy.js', ['jquery'], NANGA_VERSION, true);
         $legacy = [
             'ajax_url'     => admin_url('admin-ajax.php'),
             'current_user' => get_current_user_id(),
@@ -58,19 +44,15 @@ class Legacy
             'locale'       => get_locale(),
             'nonce'        => wp_create_nonce(),
         ];
-        wp_localize_script('nanga-legacy', 'nanga', $legacy);
+        wp_localize_script('nanga', 'nanga', $legacy);
     }
 
-    public static function mce($buttons)
+    public static function supports()
     {
-        $pos = array_search('wp_more', $buttons, true);
-        if (false !== $pos) {
-            $tempButtons   = array_slice($buttons, 0, $pos + 1);
-            $tempButtons[] = 'wp_page';
-            $buttons       = array_merge($tempButtons, array_slice($buttons, $pos + 1));
-        }
-
-        return $buttons;
+        register_nav_menus([
+            'primary' => 'Primary Menu',
+            'footer'  => 'Footer Menu',
+        ]);
     }
 
     public static function classesBody($classes)

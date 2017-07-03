@@ -7,12 +7,12 @@
  * Domain Path: /languages
  * Plugin Name: VG web things
  * Text Domain: nanga
- * Version:     2.0.3
+ * Version:     2.0.4
  */
 
 defined('WPINC') || die;
 
-define('NANGA_VERSION', '2.0.3');
+define('NANGA_VERSION', '2.0.4');
 define('NANGA_DIR_PATH', plugin_dir_path(__FILE__));
 define('NANGA_DIR_URL', plugin_dir_url(__FILE__));
 
@@ -20,7 +20,7 @@ require_once(dirname(__FILE__) . '/vendor/autoload.php');
 require_once NANGA_DIR_PATH . 'includes/extended-cpts.php';
 require_once NANGA_DIR_PATH . 'includes/extended-taxos.php';
 require_once NANGA_DIR_PATH . 'includes/helpers.php';
-if (defined('NANGA_LEGACY') || current_theme_supports('nanga-legacy')) {
+if (nanga_site_is_legacy()) {
     require_once NANGA_DIR_PATH . 'includes/helpers-legacy.php';
 }
 

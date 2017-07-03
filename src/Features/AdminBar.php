@@ -9,31 +9,27 @@ class AdminBar
 
     public static function init()
     {
+        add_filter('show_admin_bar', [self::class, 'disable']);
         add_action('admin_init', [self::class, 'actions']);
         add_action('admin_notices', [self::class, 'notices']);
-        add_filter('show_admin_bar', [self::class, 'disable']);
-        add_action('admin_bar_menu', [self::class, 'superadminNodes'], 100);
-        add_action('admin_bar_menu', [self::class, 'adminNodes'], 100);
-        add_action('admin_bar_menu', [self::class, 'editorNodes'], 100);
-        add_action('admin_bar_menu', [self::class, 'nodes'], 100);
         add_action('admin_enqueue_scripts', [self::class, 'assets'], 100);
-        add_action('wp_enqueue_scripts', [self::class, 'assets'], 1000);
-        // add_action('wp_footer', [self::class, 'toggle'], 1000);
+        add_action('wp_enqueue_scripts', [self::class, 'assets'], 99);
+        add_action('admin_bar_menu', [self::class, 'nodes'], 100);
+        add_action('admin_bar_menu', [self::class, 'editorNodes'], 101);
+        add_action('admin_bar_menu', [self::class, 'adminNodes'], 102);
+        add_action('admin_bar_menu', [self::class, 'superadminNodes'], 103);
+        add_filter('heartbeat_received', [self::class, 'heartbeat'], 10, 2);
+        add_action('wp_footer', [self::class, 'toggle'], 1000);
         add_theme_support('admin-bar', ['callback' => '__return_false']);
-
-        //add_action('template_redirect', '_wp_admin_bar_init', 0);
-        //add_action('admin_init', '_wp_admin_bar_init');
-        //add_action('before_signup_header', '_wp_admin_bar_init');
-        //add_action('activate_header', '_wp_admin_bar_init');
         add_action('template_redirect', function () {
-            //remove_action('wp_before_admin_bar_render', 'wp_customize_support_script', 11);
+            // remove_action('wp_before_admin_bar_render', 'wp_customize_support_script', 11);
             remove_action('admin_bar_menu', 'wp_admin_bar_customize_menu', 40);
         });
         /*
         add_action('wp_before_admin_bar_render', function () {
-            self::adminbarNode('NANGA');
-            self::adminbarNode('NANGA SUB1', 'http://www.vgwebthings.com', 'NANGA');
-            self::adminbarNode('NANGA SUB2', 'http://www.vgwebthings.com', 'NANGA');
+            self::add('NANGA');
+            self::add('NANGA SUB1', 'http://www.vgwebthings.com', 'NANGA');
+            self::add('NANGA SUB2', 'http://www.vgwebthings.com', 'NANGA');
         });
         */
     }
@@ -82,9 +78,6 @@ class AdminBar
         }
 
         return $userPreference;
-        // remove_action('template_redirect', '_wp_admin_bar_init', 0);
-        // remove_action('wp_footer', 'wp_admin_bar_render', 1000);
-        // remove_action('wp_head', 'wp_admin_bar_header', 10);
     }
 
     public static function assets()
@@ -93,7 +86,7 @@ class AdminBar
             wp_enqueue_style('nanga-admin-bar', NANGA_DIR_URL . 'assets/css/nanga-admin-bar.css', ['dashicons'], NANGA_VERSION);
         }
         if (is_admin_bar_showing() && nanga_user_is_superadmin()) {
-            wp_enqueue_script('nanga-admin-bar', NANGA_DIR_URL . 'assets/js/nanga-admin-bar.js', ['jquery'], NANGA_VERSION, true);
+            wp_enqueue_script('nanga-admin-bar', NANGA_DIR_URL . 'assets/js/nanga-admin-bar.js', ['jquery', 'heartbeat'], NANGA_VERSION, true);
         }
     }
 
@@ -102,6 +95,13 @@ class AdminBar
         if ( ! nanga_user_is_superadmin()) {
             return;
         }
+        /*
+        $wp_admin_bar->add_menu([
+            'id'     => 'nanga-heartbeat',
+            'parent' => 'top-secondary',
+            'title'  => '<span class="ab-icon"></span>',
+        ]);
+        */
     }
 
     public static function adminNodes($wp_admin_bar)
@@ -151,6 +151,11 @@ class AdminBar
             'parent' => 'nanga-tools',
             'title'  => 'Flush Rewrite Rules',
         ]);
+        $wp_admin_bar->add_node([
+            'id'     => 'nanga-tools__clear-everything',
+            'parent' => 'nanga-tools',
+            'title'  => 'Clear Everything',
+        ]);
     }
 
     public static function editorNodes($wp_admin_bar)
@@ -189,10 +194,23 @@ class AdminBar
         $wp_admin_bar->remove_node('wp-logo');
         $wp_admin_bar->remove_node('wporg');
         $wp_admin_bar->remove_node('wpseo-menu');
+        // global $current_user;
+        // $current_user->display_name
         $wp_admin_bar->add_node([
             'id'    => 'my-account',
-            'title' => false,
+            'title' => __('My Profile', 'nanga'),
         ]);
+    }
+
+    public static function heartbeat($response, $data)
+    {
+        // error_log(print_r($response, true));
+        // error_log(print_r($data, true));
+        if (isset($data['wp_heart_throb']) && $data['wp_heart_throb'] === 'beat') {
+            $response['wp_heart_throb'] = $data['wp_heart_throb'];
+        }
+
+        return $response;
     }
 
     public static function toggle()
@@ -200,7 +218,9 @@ class AdminBar
         if ( ! nanga_user_is_superadmin()) {
             return;
         }
-        echo '<a href="' . admin_url('index.php') . '" id="nanga-bar-toggle" class="dashicons dashicons-wordpress-alt"></a>';
+        if (wp_style_is('nanga-admin-bar', 'done')) {
+            echo '<a href="' . admin_url('index.php') . '" id="nanga-bar-toggle" class="dashicons dashicons-wordpress-alt"></a>';
+        }
     }
 
     private static function add($name, $href = '', $parent = '', $custom_meta = [])

@@ -10,6 +10,7 @@ class Yoast
         if ( ! class_exists('WPSEO_Frontend')) {
             return;
         }
+        add_filter('user_has_cap', [self::class, 'capabilities']);
         add_filter('wpseo_allow_xml_sitemap_ping', function () {
             return nanga_site_in_production();
         });
@@ -37,5 +38,14 @@ class Yoast
         }, 666);
         remove_action('edit_user_profile', [WPSEO_Admin_User_Profile::class, 'user_profile'], 666);
         remove_action('show_user_profile', [WPSEO_Admin_User_Profile::class, 'user_profile'], 666);
+    }
+
+    public static function capabilities($caps)
+    {
+        if (empty($caps['manage_options'])) {
+            $caps['wpseo_bulk_edit'] = false;
+        }
+
+        return $caps;
     }
 }

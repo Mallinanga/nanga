@@ -1,4 +1,9 @@
 <?php
+if ( ! function_exists('wp_password_change_notification')) {
+    function wp_password_change_notification()
+    {
+    }
+}
 if ( ! function_exists('write_log')) {
     function write_log($log)
     {
@@ -121,5 +126,15 @@ if ( ! function_exists('nanga_host_is_allowed')) {
     function nanga_host_is_allowed()
     {
         return false;
+    }
+}
+if ( ! function_exists('nanga_request_is_allowed')) {
+    function nanga_request_is_allowed()
+    {
+        if (defined('XMLRPC_REQUEST') || defined('REST_REQUEST') || (defined('WP_INSTALLING') && WP_INSTALLING) || wp_doing_ajax()) {
+            return false;
+        }
+
+        return true;
     }
 }

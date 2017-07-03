@@ -68,7 +68,7 @@ class Settings
             ],
             'cronjobs'    => [
                 'icon'  => 'dashicons-backup',
-                'show'  => false,
+                'show'  => true,
                 'slug'  => 'cronjobs',
                 'title' => 'Cronjobs',
             ],
@@ -232,6 +232,9 @@ class Settings
 
     private function pageCronjobs()
     {
+        echo '<pre>';
+        print_r(_get_cron_array());
+        echo '</pre>';
     }
 
     private function pagePagespeed()
@@ -242,7 +245,7 @@ class Settings
     private function pageExtend()
     {
         echo '<h2>Install Additional Plugins</h2> ';
-        echo '<p>Choose additional plugins to install <a href="' . admin_url('/themes.php?page=tgmpa-install-plugins') . '">here</a>.</p>';
+        echo '<p>Choose additional plugins to install <a href="' . admin_url('/options-general.php?page=nanga-extend') . '">here</a>.</p>';
     }
 
     private function pageDebug()

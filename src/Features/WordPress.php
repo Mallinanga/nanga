@@ -9,6 +9,7 @@ class WordPress
     {
         add_action('init', [self::class, 'supports'], 1);
         add_filter('request', [self::class, 'search']);
+        add_filter('editable_roles', [self::class, 'roles']);
         add_filter('upload_mimes', [self::class, 'mimes']);
         // add_filter('http_request_args', [self::class, 'request'], 100, 1);
         // add_action('http_api_curl', [self::class, 'curl'], 100, 1);
@@ -31,7 +32,6 @@ class WordPress
 
     public static function filters()
     {
-
     }
 
     public static function supports()
@@ -48,6 +48,13 @@ class WordPress
         }
 
         return $query;
+    }
+
+    public static function roles($roles)
+    {
+        unset($roles['contributor']);
+
+        return $roles;
     }
 
     public static function mimes($mimes)

@@ -9,12 +9,14 @@ class Dashboard
     {
         // add_action('admin_init', [self::class, 'layout']);
         // add_action('admin_init', [self::class, 'postboxes']);
-        // add_filter('get_user_option_screen_layout_attachment', [self::class, 'one']);
-        // add_filter('get_user_option_screen_layout_dashboard', [self::class, 'one']);
+        // add_filter('get_user_option_screen_layout_attachment', [self::class, '_one']);
+        // add_filter('get_user_option_screen_layout_dashboard', [self::class, '_one']);
+        add_filter('get_user_option_screen_layout', [self::class, '_two']);
         add_action('admin_enqueue_scripts', [self::class, 'assets'], 100);
         add_action('admin_footer_text', '__return_empty_string');
         add_action('admin_head', [self::class, 'help']);
         add_action('admin_head', [self::class, 'opacity'], 100);
+        add_action('admin_init', [self::class, 'footer']);
         add_action('admin_init', [self::class, 'scheme']);
         add_action('admin_init', [self::class, 'notices']);
         add_action('admin_menu', [self::class, 'menu'], 999);
@@ -31,6 +33,11 @@ class Dashboard
         remove_action('admin_init', 'register_admin_color_schemes', 1);
         remove_action('admin_menu', '_add_post_type_submenus');
         remove_action('welcome_panel', 'wp_welcome_panel');
+    }
+
+    public static function footer()
+    {
+        remove_filter('update_footer', 'core_update_footer');
     }
 
     public static function notices()
@@ -124,11 +131,6 @@ class Dashboard
         }
     }
 
-    public static function one()
-    {
-        return 1;
-    }
-
     public static function columnsUsers($columns)
     {
         unset($columns['posts']);
@@ -176,5 +178,15 @@ class Dashboard
         }
 
         return 'tinymce';
+    }
+
+    public static function _one()
+    {
+        return 1;
+    }
+
+    public static function _two()
+    {
+        return 2;
     }
 }

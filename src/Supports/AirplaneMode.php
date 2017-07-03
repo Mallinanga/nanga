@@ -24,8 +24,10 @@ class AirplaneMode
             '*.optimus.io',
             '*.woocommerce.com',
             '*.wordpress.org',
+            'api.bruteprotect.com',
             'api.github.com',
             'connect.advancedcustomfields.com',
+            'jetpack.com',
             'www.wpallimport.com',
         ]);
         define('WP_ACCESSIBLE_HOSTS', implode(',', $allowed));

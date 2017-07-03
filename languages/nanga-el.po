@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: VG web things\n"
-"POT-Creation-Date: 2017-06-29 21:46+0300\n"
-"PO-Revision-Date: 2017-06-29 21:46+0300\n"
+"POT-Creation-Date: 2017-06-30 20:36+0300\n"
+"PO-Revision-Date: 2017-06-30 20:37+0300\n"
 "Last-Translator: Panos Paganis <mallinanga@gmail.com>\n"
 "Language-Team: VG web things <info@vgwebthings.com>\n"
 "Language: el\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-4: src/Features/Connekt_Plugin_Installer.php\n"
 "X-Poedit-SearchPathExcluded-5: src/Features/Maintenance.php\n"
 
-#: src/Features/AdminBar.php:114 src/Features/Dashboard.php:151
+#: src/Features/AdminBar.php:114 src/Features/Dashboard.php:168
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
@@ -32,17 +32,29 @@ msgstr "Ρυθμίσεις"
 msgid "Tools"
 msgstr "Εργαλεία"
 
-#: src/Features/Comments.php:23
+#: src/Features/AdminBar.php:196
+msgid "My Profile"
+msgstr "Το προφίλ μου"
+
+#: src/Features/Comments.php:24
 msgid "Cancel reply"
 msgstr ""
 
-#: src/Features/Comments.php:24
+#: src/Features/Comments.php:25
 msgid "Comment"
 msgstr ""
 
 #: src/Features/Customizer.php:29
 msgid "Current Theme Settings"
 msgstr "Τρέχον Θέμα"
+
+#: src/Nanga.php:406
+msgid "Recommended & Required Plugins"
+msgstr ""
+
+#: src/Nanga.php:407
+msgid "VG Plugins"
+msgstr ""
 
 #: src/Settings.php:67
 msgid "Updates"
@@ -88,11 +100,11 @@ msgstr "Το μήνυμά σας"
 msgid "Send Support Request"
 msgstr "Στείλτε αίτημα υποστήριξης"
 
-#: src/Supports/Support.php:20
+#: src/Supports/Support.php:21
 msgid "Support Request"
 msgstr "Υποστήριξη"
 
-#: src/Supports/Support.php:23
+#: src/Supports/Support.php:24
 msgid "Get Support"
 msgstr "Λάβετε υποστήριξη"
 
