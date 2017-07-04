@@ -16,6 +16,8 @@ html.admin-bar {
     }
 }
 
+/* Updater */
+
 #wp-admin-bar-nanga-updates > .ab-item:before {
     content: '\f463';
     top: 2px;
@@ -34,6 +36,8 @@ html.admin-bar {
     color: #000;
     height: 32px;
     line-height: 32px;
+    min-width: 0;
+    white-space: normal;
 }
 
 #wpadminbar .quicklinks .menupop ul li.nanga-updates__count .ab-item .count {
@@ -41,6 +45,8 @@ html.admin-bar {
     float: right;
     font-weight: bold;
 }
+
+/* Updater EOF */
 
 #wp-admin-bar-nanga-debug > .ab-item:before {
     content: '\f468';

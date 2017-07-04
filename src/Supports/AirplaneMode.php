@@ -30,6 +30,7 @@ class AirplaneMode
             'jetpack.com',
             'www.wpallimport.com',
         ]);
+        $allowed = array_unique($allowed);
         define('WP_ACCESSIBLE_HOSTS', implode(',', $allowed));
     }
 }

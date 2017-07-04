@@ -19,7 +19,7 @@ class AdminBar
         add_action('admin_bar_menu', [self::class, 'adminNodes'], 102);
         add_action('admin_bar_menu', [self::class, 'superadminNodes'], 103);
         add_filter('heartbeat_received', [self::class, 'heartbeat'], 10, 2);
-        add_action('wp_footer', [self::class, 'toggle'], 1000);
+        // add_action('wp_footer', [self::class, 'toggle'], 1000);
         add_theme_support('admin-bar', ['callback' => '__return_false']);
         add_action('template_redirect', function () {
             // remove_action('wp_before_admin_bar_render', 'wp_customize_support_script', 11);

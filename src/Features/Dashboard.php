@@ -20,7 +20,6 @@ class Dashboard
         add_action('admin_init', [self::class, 'scheme']);
         add_action('admin_init', [self::class, 'notices']);
         add_action('admin_menu', [self::class, 'menu'], 999);
-        add_action('after_plugin_row_nanga/nanga.php', [self::class, 'warning'], 10, 3);
         add_action('personal_options', [self::class, 'profile']);
         add_action('wp_dashboard_setup', [self::class, 'metaboxes']);
         add_filter('get_user_option_admin_color', [self::class, 'colors']);
@@ -162,13 +161,6 @@ class Dashboard
     public static function pluginLinks($links)
     {
         return array_merge(['advanced_settings' => '<a href="' . admin_url('options-general.php?page=nanga-settings') . '">' . __('Settings', 'nanga') . '</a>'], $links);
-    }
-
-    public static function warning($file, $data, $status)
-    {
-        if (version_compare($data['Version'], '2.0.0', '<')) {
-            echo '</tr><tr class="plugin-update-tr active"><td colspan="5" class="plugin-update" style="box-shadow:none;"><div class="update-message notice inline notice-error notice-alt" style="margin-top:15px;"><p>Versions above <em>2.0.0</em> include major changes. Please make sure you understand all the implications before upgrading this plugin.</p></div></td>';
-        }
     }
 
     public static function editor()

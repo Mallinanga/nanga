@@ -260,7 +260,7 @@ class Settings
         echo esc_html((defined('WP_DEBUG') && WP_DEBUG) ? 'Yes' : 'No');
         echo "\r\n";
         echo 'Compatibility Mode: ';
-        if (defined('NANGA_LEGACY')) {
+        if (nanga_site_is_legacy()) {
             echo 'Yes';
         } else {
             echo 'No';

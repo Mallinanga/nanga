@@ -260,7 +260,7 @@ class Nanga
         $plugins[] = [
             'name'             => 'Optimus',
             'slug'             => 'optimus',
-            'required'         => false,
+            'required'         => true,
             'force_activation' => false,
         ];
         $plugins[] = [
