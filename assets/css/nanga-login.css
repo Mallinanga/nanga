@@ -21,6 +21,10 @@ a:active, a:hover {
     width: 300px;
 }
 
+body.interim-login #login {
+    width: 320px;
+}
+
 body.interim-login h1 {
     display: none !important;
 }

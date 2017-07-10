@@ -32,6 +32,8 @@ class WordPress
 
     public static function filters()
     {
+        add_filter('enable_post_by_email_configuration', '__return_false', 100);
+        add_filter('enable_update_services_configuration', '__return_false', 100);
     }
 
     public static function supports()

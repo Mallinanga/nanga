@@ -11,8 +11,8 @@ class Errorception
             return;
         }
         // add_action('wp_head', [self::class, 'errorception'], 5);
-        add_action('wp_head', [self::class, 'sentry'], 5);
-        add_filter('wp_resource_hints', [self::class, 'hints'], 10, 2);
+        // add_action('wp_head', [self::class, 'sentry'], 5);
+        // add_filter('wp_resource_hints', [self::class, 'hints'], 10, 2);
     }
 
     public static function errorception()

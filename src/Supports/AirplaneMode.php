@@ -27,6 +27,7 @@ class AirplaneMode
             'api.bruteprotect.com',
             'api.github.com',
             'connect.advancedcustomfields.com',
+            'geolite.maxmind.com',
             'jetpack.com',
             'www.wpallimport.com',
         ]);

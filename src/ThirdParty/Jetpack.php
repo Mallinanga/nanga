@@ -18,10 +18,17 @@ class Jetpack
         add_filter('jetpack_get_default_modules', '__return_empty_array');
         add_filter('jetpack_implode_frontend_css', '__return_false');
         add_filter('wpl_is_enabled_sitewide', '__return_false');
+        add_action('nanga_settings_tab_content_extend', [self::class, 'modules']);
     }
 
     public static function assets()
     {
         wp_dequeue_script('devicepx');
+    }
+
+    public static function modules()
+    {
+        echo '<h2>Jetpack Modules</h2> ';
+        echo '<p>Enable or disable modules <a href="' . admin_url('admin.php?page=jetpack_modules&activated=true') . '">here</a>.</p>';
     }
 }

@@ -23,7 +23,6 @@ class Legacy
         remove_filter('comments_open', '_close_comments_for_old_post', 10, 2);
         remove_filter('pings_open', '_close_comments_for_old_post', 10, 2);
         add_filter('comment_flood_filter', '__return_false', 10, 3);
-        add_filter('enable_post_by_email_configuration', '__return_false', 100);
         add_filter('sanitize_user', 'strtolower');
         add_filter('widget_text', 'do_shortcode');
     }

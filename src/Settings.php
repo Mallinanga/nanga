@@ -245,7 +245,7 @@ class Settings
     private function pageExtend()
     {
         echo '<h2>Install Additional Plugins</h2> ';
-        echo '<p>Choose additional plugins to install <a href="' . admin_url('/options-general.php?page=nanga-extend') . '">here</a>.</p>';
+        echo '<p>Choose additional plugins to install <a href="' . admin_url('options-general.php?page=nanga-extend') . '">here</a>.</p>';
     }
 
     private function pageDebug()

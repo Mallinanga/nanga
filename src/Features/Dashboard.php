@@ -90,6 +90,9 @@ class Dashboard
 
     public static function menu()
     {
+        // remove_menu_page('separator-last');
+        remove_menu_page('separator1');
+        remove_menu_page('separator2');
         remove_submenu_page('edit.php', 'post-new.php');
         remove_submenu_page('edit.php?post_type=page', 'post-new.php?post_type=page');
         remove_submenu_page('index.php', 'update-core.php');

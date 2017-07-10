@@ -269,18 +269,17 @@ class Nanga
             'required'         => false,
             'force_activation' => false,
         ];
+        $plugins[] = [
+            'name'             => 'WP Migrate DB',
+            'slug'             => 'wp-migrate-db',
+            'required'         => false,
+            'force_activation' => false,
+        ];
         if ( ! nanga_site_is_external()) {
             $plugins[] = [
                 'name'             => 'VG web things Contact Form',
                 'slug'             => 'nanga-contact',
                 'source'           => 'https://github.com/Mallinanga/nanga-contact/archive/master.zip',
-                'required'         => false,
-                'force_activation' => false,
-            ];
-            $plugins[] = [
-                'name'             => 'VG web things Deployer',
-                'slug'             => 'nanga-deploy',
-                'source'           => 'https://github.com/Mallinanga/nanga-deploy/archive/master.zip',
                 'required'         => false,
                 'force_activation' => false,
             ];
@@ -296,13 +295,6 @@ class Nanga
                 'slug'             => 'nanga-notifications',
                 'source'           => 'https://github.com/Mallinanga/nanga-notifications/archive/master.zip',
                 'required'         => false,
-                'force_activation' => false,
-            ];
-            $plugins[] = [
-                'name'             => 'VG web things Updater',
-                'slug'             => 'nanga-updater',
-                'source'           => 'https://github.com/Mallinanga/nanga-updater/archive/master.zip',
-                'required'         => ! nanga_site_is_external(),
                 'force_activation' => false,
             ];
             $plugins[] = [
@@ -343,6 +335,14 @@ class Nanga
                 'external_url'     => 'http://www.wpallimport.com/export/',
             ];
             $plugins[] = [
+                'name'             => 'WPML',
+                'slug'             => 'sitepress-multilingual-cms',
+                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/sitepress-multilingual-cms.3.7.0.zip',
+                'required'         => false,
+                'force_activation' => false,
+            ];
+            /*
+            $plugins[] = [
                 'name'             => 'WP Sync DB',
                 'slug'             => 'wp-sync-db',
                 'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/wp-sync-db.zip',
@@ -363,13 +363,7 @@ class Nanga
                 'required'         => false,
                 'force_activation' => false,
             ];
-            $plugins[] = [
-                'name'             => 'WPML',
-                'slug'             => 'sitepress-multilingual-cms',
-                'source'           => 'https://s3-eu-west-1.amazonaws.com/www.vgwebthings.com/sitepress-multilingual-cms.3.7.0.zip',
-                'required'         => false,
-                'force_activation' => false,
-            ];
+            */
         }
         if (nanga_site_in_production() && ! nanga_site_is_external()) {
             $plugins[] = [
@@ -388,14 +382,6 @@ class Nanga
                 'name'             => 'Jetpack',
                 'slug'             => 'jetpack',
                 'required'         => true,
-                'force_activation' => false,
-            ];
-        }
-        if (nanga_site_in_development()) {
-            $plugins[] = [
-                'name'             => 'WP Migrate DB',
-                'slug'             => 'wp-migrate-db',
-                'required'         => false,
                 'force_activation' => false,
             ];
         }

@@ -20,7 +20,10 @@ class Maintenance
     public static function redirect()
     {
         if ( ! current_user_can('manage_options')) {
-            header('HTTP/1.1 503 Service Unavailable', true, 503);
+            $protocol = wp_get_server_protocol();
+            header("$protocol 503 Service Unavailable", true, 503);
+            header('Content-Type: text/html; charset=utf-8');
+            header('Retry-After: 300000');
             require_once NANGA_DIR_PATH . 'views/maintenance.php';
             die();
         }
