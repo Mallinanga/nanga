@@ -13,7 +13,7 @@ class WPML
         global $sitepress;
         remove_action('wp_head', [$sitepress, 'meta_generator_tag']);
         add_action('admin_init', [self::class, 'user']);
-        add_action('wp_before_admin_bar_render', [self::class, 'node']);
+        // add_action('wp_before_admin_bar_render', [self::class, 'node']);
         // add_filter('wpml_hide_management_column', '__return_false');
     }
 

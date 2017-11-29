@@ -35,7 +35,7 @@ class Media
     public static function columns($columns)
     {
         unset($columns['author']);
-        unset($columns['parent']);
+        // unset($columns['parent']);
 
         return $columns;
     }

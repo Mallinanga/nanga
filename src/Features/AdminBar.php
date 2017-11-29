@@ -13,7 +13,7 @@ class AdminBar
         add_action('admin_init', [self::class, 'actions']);
         add_action('admin_notices', [self::class, 'notices']);
         add_action('admin_enqueue_scripts', [self::class, 'assets'], 100);
-        add_action('wp_enqueue_scripts', [self::class, 'assets'], 99);
+        // add_action('wp_enqueue_scripts', [self::class, 'assets'], 99);
         add_action('admin_bar_menu', [self::class, 'nodes'], 100);
         add_action('admin_bar_menu', [self::class, 'editorNodes'], 101);
         add_action('admin_bar_menu', [self::class, 'adminNodes'], 102);
@@ -193,7 +193,7 @@ class AdminBar
         $wp_admin_bar->remove_node('view-store');
         $wp_admin_bar->remove_node('wp-logo');
         $wp_admin_bar->remove_node('wporg');
-        $wp_admin_bar->remove_node('wpseo-menu');
+        // $wp_admin_bar->remove_node('wpseo-menu');
         // global $current_user;
         // $current_user->display_name
         $wp_admin_bar->add_node([

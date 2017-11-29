@@ -9,16 +9,16 @@ use Nanga\Features\Cron;
 use Nanga\Features\Customizer;
 use Nanga\Features\Dashboard;
 use Nanga\Features\Debug;
-use Nanga\Features\Frontend;
+// use Nanga\Features\Frontend;
 use Nanga\Features\Heartbeat;
 use Nanga\Features\Login;
 use Nanga\Features\Mail;
 use Nanga\Features\Maintenance;
 use Nanga\Features\Media;
 use Nanga\Features\Pages;
-use Nanga\Features\Posts;
+// use Nanga\Features\Posts;
 use Nanga\Features\Rewrites;
-use Nanga\Features\Shortcodes;
+// use Nanga\Features\Shortcodes;
 use Nanga\Features\WordPress;
 use Nanga\ThirdParty\ACF;
 use Nanga\ThirdParty\Akismet;
@@ -127,8 +127,8 @@ class Nanga
             'expires'     => 0,
             'new_post'    => 0,
             'new_comment' => 0,
-            'compress'    => 1,
-            'webp'        => 1,
+            'compress'    => 0,
+            'webp'        => 0,
             'excl_ids'    => '',
             'minify_html' => 2,
         ]);
@@ -341,7 +341,6 @@ class Nanga
                 'required'         => false,
                 'force_activation' => false,
             ];
-            /*
             $plugins[] = [
                 'name'             => 'WP Sync DB',
                 'slug'             => 'wp-sync-db',
@@ -363,7 +362,6 @@ class Nanga
                 'required'         => false,
                 'force_activation' => false,
             ];
-            */
         }
         if (nanga_site_in_production() && ! nanga_site_is_external()) {
             $plugins[] = [

@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Nanga\\": "src/"
+    }
+  },
+  "require": {
+    "tgmpa/tgm-plugin-activation": "*"
+  }
+}

@@ -97,11 +97,12 @@ a:focus {
 }
 
 @media screen and ( max-width: 1200px ) {
-    #nanga-settings .nav-tab-updates span:nth-child(2),
     #nanga-settings .nav-tab-cronjobs span:nth-child(2),
+    #nanga-settings .nav-tab-debug span:nth-child(2),
     #nanga-settings .nav-tab-extend span:nth-child(2),
+    #nanga-settings .nav-tab-maintenance span:nth-child(2),
     #nanga-settings .nav-tab-pagespeed span:nth-child(2),
-    #nanga-settings .nav-tab-debug span:nth-child(2) {
+    #nanga-settings .nav-tab-updates span:nth-child(2) {
         display: none;
     }
 }

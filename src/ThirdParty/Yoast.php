@@ -15,8 +15,6 @@ class Yoast
             return nanga_site_in_production();
         });
         add_filter('wpseo_bulk_edit_roles', function ($roles) {
-            write_log($roles);
-
             return ['administrator'];
         });
         // add_filter('disable_wpseo_json_ld_search', '__return_true');

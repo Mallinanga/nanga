@@ -15,7 +15,7 @@ class Dashboard
         add_action('admin_enqueue_scripts', [self::class, 'assets'], 100);
         add_action('admin_footer_text', '__return_empty_string');
         add_action('admin_head', [self::class, 'help']);
-        add_action('admin_head', [self::class, 'opacity'], 100);
+        // add_action('admin_head', [self::class, 'opacity'], 100);
         add_action('admin_init', [self::class, 'footer']);
         add_action('admin_init', [self::class, 'scheme']);
         add_action('admin_init', [self::class, 'notices']);
@@ -30,7 +30,7 @@ class Dashboard
         remove_action('admin_color_scheme_picker', 'admin_color_scheme_picker');
         remove_action('admin_init', 'default_password_nag_handler', 10);
         remove_action('admin_init', 'register_admin_color_schemes', 1);
-        remove_action('admin_menu', '_add_post_type_submenus');
+        // remove_action('admin_menu', '_add_post_type_submenus');
         remove_action('welcome_panel', 'wp_welcome_panel');
     }
 
@@ -118,15 +118,14 @@ class Dashboard
             'dashboard_recent_comments',
             'dashboard_right_now',
             'icl_dashboard_widget',
-            'jetpack_summary_widget',
+            // 'jetpack_summary_widget',
             'rg_forms_dashboard',
             'woocommerce_dashboard_recent_orders',
             'woocommerce_dashboard_recent_reviews',
             'woocommerce_dashboard_right_now',
             'woocommerce_dashboard_sales',
             'woocommerce_dashboard_status',
-            'wp_cube',
-            'wpseo-dashboard-overview',
+            // 'wpseo-dashboard-overview',
         ]);
         foreach ($metaboxes as $metabox) {
             remove_meta_box($metabox, 'dashboard', 'normal');

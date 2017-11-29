@@ -8,8 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:500,700" rel="stylesheet">
     <style>
         * {
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
             box-sizing: border-box;
             outline: none;
+            user-select: none;
         }
 
         html {
